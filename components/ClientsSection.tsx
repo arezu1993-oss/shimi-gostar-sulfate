@@ -1,143 +1,113 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Building2,
-  Wheat,
-  Factory,
-  Truck,
-  Leaf,
-  FlaskConical,
-} from "lucide-react";
+import { Building2, Factory, Leaf, Wheat, type LucideIcon } from "lucide-react";
 
-const industries = [
+type IndustryItem = {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+};
+
+const industries: IndustryItem[] = [
   {
-    title: "صنایع کشاورزی",
-    description: "تأمین سولفات‌های مورد نیاز برای اصلاح خاک و تغذیه گیاه",
+    title: "کشاورزی و باغداری",
+    description:
+      "تأمین سولفات‌ها و ترکیبات مورد نیاز برای تغذیه گیاه و اصلاح خاک",
     icon: Wheat,
   },
   {
     title: "تولیدکنندگان کود",
-    description: "مواد اولیه پایدار برای تولید کودهای ریزمغذی و ترکیبی",
+    description: "مواد اولیه پایدار برای تولید کودهای ریزمغذی، ترکیبی و تخصصی",
     icon: Leaf,
   },
   {
     title: "واحدهای صنعتی",
-    description: "تأمین مواد شیمیایی در مقیاس عمده برای خطوط تولید",
+    description:
+      "تأمین مواد شیمیایی در مقیاس عمده برای خطوط تولید و فرآیندهای صنعتی",
     icon: Factory,
   },
   {
-    title: "شرکت‌های تولیدی",
-    description: "پاسخ‌گویی به نیاز مستمر تولیدکنندگان داخلی",
+    title: "بازرگانی و توزیع",
+    description:
+      "همکاری با تأمین‌کنندگان، توزیع‌کنندگان و فعالان بازار مواد اولیه",
     icon: Building2,
-  },
-  {
-    title: "بازرگانی مواد شیمیایی",
-    description: "همکاری با تأمین‌کنندگان و توزیع‌کنندگان مواد اولیه",
-    icon: Truck,
-  },
-  {
-    title: "کاربردهای تخصصی",
-    description: "سولفات‌ها برای مصارف صنعتی، کشاورزی و فرمولاسیون",
-    icon: FlaskConical,
   },
 ];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function ClientsSection() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* accent background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(194,120,41,0.08),transparent_35%)]" />
+    <section className="relative overflow-hidden bg-slate-50 py-20 md:py-24">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(194,120,41,0.09),transparent_34%)]" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* heading */}
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center rounded-full bg-[#c27829]/10 text-[#c27829] px-5 py-2 text-sm font-bold mb-5">
-            صنایع و مشتریان هدف
-          </span>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+          className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        >
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full bg-[#c27829]/10 px-5 py-2 text-sm font-bold text-[#c27829]">
+              صنایع هدف
+            </span>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-            همراه صنایع مختلف در تأمین مواد اولیه
-          </h2>
+            <h2 className="mt-6 text-3xl font-black leading-[1.45] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl md:leading-[1.35]">
+              کاربرد محصولات در
+              <span className="text-[#c27829]"> صنایع مختلف</span>
+            </h2>
 
-          <p className="text-slate-600 max-w-2xl mx-auto leading-8">
-            محصولات شیمی گستر سولفات در صنایع کشاورزی، تولید کود، واحدهای صنعتی
-            و زنجیره تأمین مواد شیمیایی مورد استفاده قرار می‌گیرند.
-          </p>
-        </div>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
+              محصولات شیمی گستر سولفات برای مصرف‌کنندگان عمده در کشاورزی، تولید
+              کود، صنایع فرآیندی و زنجیره تأمین مواد شیمیایی عرضه می‌شود.
+            </p>
+          </div>
+        </motion.div>
 
-        {/* cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {industries.map((item, index) => {
             const Icon = item.icon;
 
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                }}
+              <motion.article
+                key={item.title}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
-                className="group relative bg-white border border-slate-200 rounded-2xl p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                transition={{
+                  duration: 0.55,
+                  delay: index * 0.08,
+                  ease: "easeOut",
+                }}
+                className="group relative overflow-hidden rounded-[1.5rem] border border-slate-200/70 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5"
               >
-                {/* accent line */}
-                <div className="absolute top-0 right-0 h-1 w-0 bg-[#c27829] group-hover:w-full transition-all duration-500" />
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-[#c27829] to-transparent opacity-80" />
 
                 <div className="relative z-10">
-                  <div className="mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-[#c27829]/10 flex items-center justify-center group-hover:bg-[#c27829] transition">
-                      <Icon
-                        size={26}
-                        className="text-[#c27829] group-hover:text-white transition"
-                      />
-                    </div>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#c27829]/10 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
+                    <Icon size={25} strokeWidth={1.8} />
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#c27829] transition">
+                  <h3 className="mt-6 text-lg font-black leading-8 text-[#0a1a2f]">
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-500 text-sm leading-7">
+                  <p className="mt-3 text-sm leading-7 text-slate-600">
                     {item.description}
                   </p>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>
-
-        {/* bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="mt-16 rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10"
-        >
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            <div className="md:col-span-2">
-              <h3 className="text-xl font-bold text-slate-900 mb-3">
-                تأمین عمده برای همکاری‌های پایدار صنعتی
-              </h3>
-              <p className="text-slate-600 leading-8">
-                در همکاری با مشتریان سازمانی تمرکز ما بر کیفیت پایدار، پاسخ‌گویی
-                سریع، ظرفیت تولید قابل اتکا و تأمین مستمر مواد اولیه است.
-              </p>
-            </div>
-
-            <div className="text-center md:text-left">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-[#c27829] px-7 py-3 text-white font-bold hover:bg-[#a8641f] transition"
-              >
-                درخواست همکاری
-              </a>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

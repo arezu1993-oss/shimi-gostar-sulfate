@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        vazir: ["var(--font-vazir)", "sans-serif"], // استفاده از CSS Variable برای Next Font
+      },
       // اضافه کردن کی‌فریم برای انیمیشن زوم هیرو اسلایدر
       keyframes: {
         "slow-zoom": {

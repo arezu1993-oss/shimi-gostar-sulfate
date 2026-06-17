@@ -1,302 +1,208 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const AUTO_PLAY_INTERVAL = 8000;
+
+const HERO_HEIGHT_CLASS =
+  "h-[calc(100svh-80px)] min-h-[640px] max-h-[860px] sm:min-h-[620px] lg:min-h-[680px]";
 
 const heroSlides = [
   {
     image: "/images/hero-1.jpg",
-    badge: "آزمایشگاه و کنترل کیفیت",
+    alt: "کنترل کیفیت سولفات های صنعتی و مواد شیمیایی در آزمایشگاه",
     title: (
       <>
-        دقت در آنالیز و <br />
-        <span className="text-[#c27829]">تعهد به کیفیت محصول</span>
+        کنترل کیفیت در تولید
+        <br />
+        <span className="text-[#d89a52]">سولفات‌های صنعتی</span>
       </>
     ),
     description:
-      "تمرکز بر کنترل کیفی، بررسی مشخصات محصول و پایش مستمر فرآیندها برای ارائه محصولی قابل اعتماد به مشتریان صنعتی و کشاورزی.",
-    badgeClass: "bg-[#c27829]/10 border-[#c27829]/30",
-    badgeTextClass: "text-[#c27829]",
-    dotClass: "bg-[#c27829]",
+      "تولید و تأمین مواد شیمیایی با پایش دقیق کیفیت، فرمولاسیون کنترل شده و استاندارد پایدار برای نیاز صنایع مختلف.",
     buttonClass: "bg-[#c27829] hover:bg-[#a36522] shadow-[#c27829]/30",
-    overlay: "bg-gradient-to-l from-[#050c16] via-[#050c16]/70 to-transparent",
+    overlay:
+      "bg-gradient-to-l from-[#050c16]/78 via-[#08111d]/48 to-transparent",
   },
   {
     image: "/images/hero-2.jpg",
-    badge: "کریستال آبی سولفات مس",
+    alt: "سولفات مس کریستالی آبی با کیفیت پایدار برای صنعت و کشاورزی",
     title: (
       <>
-        سولفات مس کریستالی <br />
-        <span className="text-blue-400">برای مصارف صنعتی و کشاورزی</span>
+        سولفات مس کریستالی
+        <br />
+        <span className="text-blue-400">با کیفیت پایدار و رنگ یکنواخت</span>
       </>
     ),
     description:
-      "تولید و تأمین سولفات مس با ظاهر یکنواخت و کیفیت مناسب، پاسخ‌گوی نیاز مجموعه‌های فعال در حوزه کشاورزی، صنعت و کاربردهای تخصصی.",
-    badgeClass: "bg-blue-500/10 border-blue-400/30",
-    badgeTextClass: "text-blue-300",
-    dotClass: "bg-blue-500",
+      "عرضه سولفات مس کریستالی برای مصارف صنعتی، کشاورزی و تخصصی با تأمین مطمئن و کیفیت قابل اتکا.",
     buttonClass: "bg-blue-600 hover:bg-blue-700 shadow-blue-500/30",
-    overlay: "bg-gradient-to-l from-[#031225] via-[#031225]/75 to-transparent",
+    overlay:
+      "bg-gradient-to-l from-[#031225]/78 via-[#07182f]/48 to-transparent",
   },
   {
     image: "/images/hero-3.jpg",
-    badge: "بسته‌بندی و آمادگی تأمین",
+    alt: "انبار و بسته بندی محصولات شیمیایی برای تامین عمده و ارسال",
     title: (
       <>
-        آمادگی برای تأمین سفارش <br />
-        <span className="text-cyan-400">با بسته‌بندی صنعتی و منظم</span>
+        تأمین عمده مواد شیمیایی
+        <br />
+        <span className="text-cyan-400">با بسته بندی منظم و ارسال مطمئن</span>
       </>
     ),
     description:
-      "زیرساخت مناسب برای نگهداری، بسته‌بندی و ارسال محصولات با هدف پاسخ‌گویی بهتر به سفارش‌های عمده و ایجاد اطمینان در فرآیند تأمین.",
-    badgeClass: "bg-cyan-500/10 border-cyan-400/30",
-    badgeTextClass: "text-cyan-300",
-    dotClass: "bg-cyan-500",
+      "آمادگی تأمین عمده سولفات ها و مواد اولیه شیمیایی برای کارخانه ها، صنایع و واحدهای کشاورزی با نظم در بسته بندی و تحویل.",
     buttonClass: "bg-cyan-600 hover:bg-cyan-700 shadow-cyan-500/30",
-    overlay: "bg-gradient-to-l from-[#07111f] via-[#07111f]/75 to-transparent",
+    overlay:
+      "bg-gradient-to-l from-[#07111f]/80 via-[#0a1827]/50 to-transparent",
   },
 ];
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-  const touchEndY = useRef<number | null>(null);
+  const activeSlide = useMemo(() => heroSlides[currentSlide], [currentSlide]);
 
-  const mouseStartX = useRef<number | null>(null);
-  const mouseStartY = useRef<number | null>(null);
-  const isMouseDown = useRef(false);
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, AUTO_PLAY_INTERVAL);
 
-  const nextSlide = () => {
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const goToNext = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
-  };
-
-  // Autoplay: با هر تغییر اسلاید ریست می‌شود
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      nextSlide();
-    }, 8000);
-
-    return () => clearTimeout(timer);
-  }, [currentSlide]);
-
-  const handleSwipe = (
-    startX: number,
-    endX: number,
-    startY: number,
-    endY: number,
-  ) => {
-    const deltaX = endX - startX;
-    const deltaY = endY - startY;
-
-    const absDeltaX = Math.abs(deltaX);
-    const absDeltaY = Math.abs(deltaY);
-
-    const minSwipeDistance = 55;
-
-    // اگر حرکت عمودی بیشتر باشد، یعنی کاربر قصد اسکرول صفحه داشته
-    if (absDeltaY > absDeltaX) return;
-
-    // اگر حرکت خیلی کم باشد، اسلاید تغییر نکند
-    if (absDeltaX < minSwipeDistance) return;
-
-    /**
-     * چون صفحه RTL است:
-     * کشیدن به چپ => اسلاید بعدی
-     * کشیدن به راست => اسلاید قبلی
-     */
-    if (deltaX < 0) {
-      nextSlide();
-    } else {
-      prevSlide();
-    }
-  };
-
-  // Touch handlers
-  const handleTouchStart = (e: React.TouchEvent<HTMLElement>) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLElement>) => {
-    touchEndX.current = e.touches[0].clientX;
-    touchEndY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchEnd = () => {
-    if (
-      touchStartX.current === null ||
-      touchStartY.current === null ||
-      touchEndX.current === null ||
-      touchEndY.current === null
-    ) {
-      return;
-    }
-
-    handleSwipe(
-      touchStartX.current,
-      touchEndX.current,
-      touchStartY.current,
-      touchEndY.current,
+  const goToPrev = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
     );
-
-    touchStartX.current = null;
-    touchStartY.current = null;
-    touchEndX.current = null;
-    touchEndY.current = null;
   };
 
-  // Mouse drag handlers
-  const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
-    isMouseDown.current = true;
-    mouseStartX.current = e.clientX;
-    mouseStartY.current = e.clientY;
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
   };
-
-  const handleMouseUp = (e: React.MouseEvent<HTMLElement>) => {
-    if (
-      !isMouseDown.current ||
-      mouseStartX.current === null ||
-      mouseStartY.current === null
-    ) {
-      return;
-    }
-
-    handleSwipe(mouseStartX.current, e.clientX, mouseStartY.current, e.clientY);
-
-    isMouseDown.current = false;
-    mouseStartX.current = null;
-    mouseStartY.current = null;
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
-    if (
-      !isMouseDown.current ||
-      mouseStartX.current === null ||
-      mouseStartY.current === null
-    ) {
-      isMouseDown.current = false;
-      return;
-    }
-
-    handleSwipe(mouseStartX.current, e.clientX, mouseStartY.current, e.clientY);
-
-    isMouseDown.current = false;
-    mouseStartX.current = null;
-    mouseStartY.current = null;
-  };
-
-  const activeSlide = heroSlides[currentSlide];
 
   return (
-    <section
-      className="relative h-[85vh] min-h-[650px] w-full overflow-hidden bg-[#050c16] select-none cursor-grab active:cursor-grabbing"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Slides */}
-      {heroSlides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img
-            src={slide.image}
-            alt={slide.badge}
-            draggable={false}
-            className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-linear pointer-events-none ${
-              index === currentSlide ? "scale-110" : "scale-100"
-            }`}
-          />
-
-          <div className={`absolute inset-0 ${slide.overlay}`} />
-        </div>
-      ))}
-
-      {/* Content */}
-      <div className="container mx-auto px-6 md:px-12 relative z-20 h-full flex flex-col justify-center items-start pointer-events-none">
-        <div
-          key={currentSlide}
-          className="max-w-4xl space-y-8 animate-in fade-in slide-in-from-right-10 duration-1000"
-        >
-          {/* Badge */}
-          <div
-            className={`inline-flex items-center gap-3 border px-5 py-3 rounded-full backdrop-blur-xl ${activeSlide.badgeClass}`}
+    <section className="relative isolate w-full overflow-hidden bg-slate-950">
+      <div className={`relative w-full ${HERO_HEIGHT_CLASS}`}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className="absolute inset-0"
+            initial={{ opacity: 0.55 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0.45 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span
-              className={`w-2.5 h-2.5 rounded-full animate-pulse ${activeSlide.dotClass}`}
+            <Image
+              src={activeSlide.image}
+              alt={activeSlide.alt}
+              fill
+              priority={currentSlide === 0}
+              sizes="100vw"
+              className="select-none object-cover object-center"
+              draggable={false}
             />
+            <div className={`absolute inset-0 ${activeSlide.overlay}`} />
+            <div className="absolute inset-0 bg-black/12" />
+          </motion.div>
+        </AnimatePresence>
 
-            <span
-              className={`text-sm font-normal tracking-wide ${activeSlide.badgeTextClass}`}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.10),transparent_28%)]" />
+
+        <div
+          className={`relative z-20 mx-auto flex w-full max-w-7xl items-center px-4 py-6 sm:px-6 sm:py-8 lg:px-12 ${HERO_HEIGHT_CLASS}`}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="w-full max-w-[360px] sm:max-w-[540px] md:max-w-2xl xl:max-w-3xl"
             >
-              {activeSlide.badge}
-            </span>
+              <div className="rounded-[28px] bg-gradient-to-l from-black/28 via-black/14 to-transparent p-5 backdrop-blur-[2px] sm:p-7 lg:p-8">
+                <div className="mb-5 h-px w-14 bg-gradient-to-l from-white/80 to-transparent sm:mb-6 sm:w-20" />
+
+                <h1 className="text-[30px] font-black leading-[1.38] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-4xl sm:leading-[1.3] md:text-5xl lg:text-[56px] lg:leading-[1.18] xl:text-6xl">
+                  {activeSlide.title}
+                </h1>
+
+                <p className="mt-4 max-w-[32rem] text-[15px] leading-7 text-slate-200/90 sm:mt-5 sm:text-base sm:leading-8 lg:mt-6 lg:text-lg lg:leading-9">
+                  {activeSlide.description}
+                </p>
+
+                <div className="pointer-events-auto mt-6 flex w-full flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap sm:gap-4 lg:mt-8">
+                  <Link
+                    href="/products"
+                    draggable={false}
+                    className={`${activeSlide.buttonClass} group flex w-full items-center justify-center gap-3 rounded-2xl px-6 py-4 text-base font-medium text-white shadow-2xl transition-all duration-300 hover:scale-[1.02] sm:w-auto sm:px-8 lg:px-10 lg:py-5 lg:text-lg`}
+                  >
+                    مشاهده محصولات
+                    <ArrowLeft
+                      size={22}
+                      className="transition-transform duration-300 group-hover:-translate-x-1.5"
+                    />
+                  </Link>
+
+                  <Link
+                    href="/contact"
+                    draggable={false}
+                    className="w-full rounded-2xl border border-white/12 bg-white/8 px-6 py-4 text-center text-base font-medium text-white backdrop-blur-md transition-all duration-300 hover:bg-white/12 sm:w-auto sm:px-8 lg:px-10 lg:py-5 lg:text-lg"
+                  >
+                    دریافت مشاوره و استعلام
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 mx-auto flex max-w-7xl items-center justify-between px-4 sm:bottom-8 sm:px-6 lg:bottom-10 lg:px-12">
+          <div className="pointer-events-auto hidden items-center gap-3 md:flex">
+            <button
+              type="button"
+              onClick={goToPrev}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+              aria-label="اسلاید قبلی"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            <button
+              type="button"
+              onClick={goToNext}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+              aria-label="اسلاید بعدی"
+            >
+              <ChevronLeft size={20} />
+            </button>
           </div>
 
-          {/* Title */}
-          <h1 className="text-5xl md:text-6xl font-black text-white leading-[1.15] tracking-tight drop-shadow-sm">
-            {activeSlide.title}
-          </h1>
-
-          {/* Description */}
-          <p className="text-xl md:text-[1.15rem] text-slate-300 leading-relaxed max-w-2xl font-normal">
-            {activeSlide.description}
-          </p>
-
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-5 pt-6 pointer-events-auto">
-            <Link
-              href="/products"
-              draggable={false}
-              className={`${activeSlide.buttonClass} text-white px-10 py-5 rounded-2xl font-normal text-lg transition-all hover:scale-105 shadow-2xl flex items-center gap-3 group`}
-            >
-              مشاهده محصولات
-              <ArrowLeft
-                size={22}
-                className="group-hover:-translate-x-2 transition-transform"
+          <div className="pointer-events-auto flex items-center gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => goToSlide(index)}
+                aria-label={`رفتن به اسلاید ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  currentSlide === index
+                    ? "w-8 bg-white"
+                    : "w-2.5 bg-white/45 hover:bg-white/70"
+                }`}
               />
-            </Link>
-
-            <Link
-              href="/contact"
-              draggable={false}
-              className="bg-white/5 hover:bg-white/10 text-white backdrop-blur-md border border-white/10 px-10 py-5 rounded-2xl font-normal text-lg transition-all"
-            >
-              دریافت مشاوره فنی
-            </Link>
+            ))}
           </div>
         </div>
-      </div>
-
-      {/* Dots */}
-      <div className="absolute bottom-12 left-12 z-30 flex items-center gap-3">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`رفتن به اسلاید ${index + 1}`}
-            className={`transition-all duration-500 rounded-full ${
-              index === currentSlide
-                ? "w-12 h-2.5 bg-white"
-                : "w-2.5 h-2.5 bg-white/30 hover:bg-white/60"
-            }`}
-          />
-        ))}
       </div>
     </section>
   );

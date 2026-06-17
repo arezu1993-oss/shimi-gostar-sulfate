@@ -1,22 +1,26 @@
+import type { ReactNode } from "react";
+import localFont from "next/font/local";
 import Header from "./Header";
 import Footer from "./Footer";
-import ScrollToTop from "../components/shared/ScrollToTop";
 import "./globals.css";
+import ScrollTools from "../components/shared/ScrollTools";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const vazir = localFont({
+  src: "../public/fonts/Vazir-Medium.woff2",
+  variable: "--font-vazir",
+  display: "swap",
+});
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className="antialiased font-vazir">
-        {" "}
-        {/* کلاس فونت اضافه شد */}
+      <body className={`${vazir.variable} font-vazir bg-white antialiased`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+
+        <main className="min-h-screen pt-20">{children}</main>
+
         <Footer />
-        <ScrollToTop />
+        <ScrollTools />
       </body>
     </html>
   );
