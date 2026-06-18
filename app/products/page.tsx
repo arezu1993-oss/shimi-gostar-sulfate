@@ -1,30 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
+  BadgeCheck,
   Beaker,
+  Boxes,
+  CheckCircle2,
+  ClipboardCheck,
   Factory,
-  Leaf,
+  FlaskConical,
+  Headphones,
   Layers,
-  Phone,
+  Leaf,
+  MessageCircle,
   PackageCheck,
-  Truck,
+  Phone,
   ShieldCheck,
-  Sparkles,
+  ChevronDown,
+  Truck,
 } from "lucide-react";
 
-// -------------------------------
-// Product Categories
-// -------------------------------
+const phoneNumber = "09123063576";
+const whatsappPhone = "989120909323";
 
 const productCategories = [
   {
     title: "سولفات مس",
     href: "/products/copper-sulfate",
-    description: "عرضه سولفات مس در گریدهای مختلف برای مصارف کشاورزی و صنعتی.",
+    description:
+      "سولفات مس کریستال و پودری برای مصارف کشاورزی، صنعتی، آبکاری، دامپروری و تولیدی با امکان ارائه آنالیز.",
     icon: Beaker,
-    accent: "from-[#c27829] to-[#d89243]",
+    badge: "محصول شاخص",
+    tags: ["کریستال", "پودری", "کشاورزی", "صنعتی"],
+    accent: "from-[#c27829] to-[#f0b56d]",
     bg: "bg-orange-50",
     iconBg: "bg-[#c27829]/10",
     iconColor: "text-[#c27829]",
@@ -32,18 +42,24 @@ const productCategories = [
   {
     title: "سایر سولفات‌ها",
     href: "/products/other-sulfates",
-    description: "تامین انواع سولفات‌های پرکاربرد برای صنایع و واحدهای تولیدی.",
+    description:
+      "تأمین سولفات‌های پرمصرف برای صنایع، کشاورزی، خوراک دام، تولید کود و فرمولاسیون‌های شیمیایی.",
     icon: Layers,
-    accent: "from-slate-700 to-slate-900",
+    badge: "تأمین متنوع",
+    tags: ["روی", "آهن", "منگنز", "منیزیم"],
+    accent: "from-slate-700 to-slate-950",
     bg: "bg-slate-50",
     iconBg: "bg-slate-200",
-    iconColor: "text-slate-700",
+    iconColor: "text-slate-800",
   },
   {
     title: "کود و نهاده‌های کشاورزی",
     href: "/products/agro-chemicals",
-    description: "محصولات منتخب برای تغذیه، تقویت و بهبود عملکرد گیاه.",
+    description:
+      "محصولات منتخب برای تغذیه گیاه، اصلاح کمبود عناصر، افزایش کیفیت محصول و پشتیبانی از کشاورزی حرفه‌ای.",
     icon: Leaf,
+    badge: "ویژه کشاورزی",
+    tags: ["تغذیه گیاه", "ریز‌مغذی", "اصلاح خاک", "افزایش عملکرد"],
     accent: "from-emerald-600 to-green-700",
     bg: "bg-emerald-50",
     iconBg: "bg-emerald-100",
@@ -52,148 +68,174 @@ const productCategories = [
   {
     title: "مواد اولیه شیمیایی",
     href: "/products/raw-materials",
-    description: "مواد اولیه مناسب برای تولیدکنندگان و صنایع پایین‌دستی.",
+    description:
+      "مواد اولیه مورد نیاز تولیدکنندگان، صنایع پایین‌دستی، واحدهای فرآیندی و مجموعه‌های بازرگانی.",
     icon: Factory,
-    accent: "from-sky-700 to-blue-900",
+    badge: "مناسب تولید",
+    tags: ["صنعتی", "تولیدی", "عمده", "فرآیندی"],
+    accent: "from-sky-700 to-blue-950",
     bg: "bg-sky-50",
     iconBg: "bg-sky-100",
     iconColor: "text-sky-800",
   },
 ];
 
-// -------------------------------
-// Strengths
-// -------------------------------
-const strengths = [
+const trustItems = [
   {
-    title: "تامین عمده",
-    description: "مناسب سفارش‌های حجمی و نیازهای مستمر صنایع.",
+    title: "تأمین عمده و مستمر",
+    description: "مناسب کارخانه‌ها، توزیع‌کنندگان و خریداران حجمی.",
     icon: Truck,
   },
   {
-    title: "بسته‌بندی و شرایط توافقی",
-    description: "امکان هماهنگی بسته‌بندی و نحوه تحویل مطابق درخواست.",
+    title: "ارائه برگه آنالیز",
+    description: "امکان ارائه اطلاعات فنی و مشخصات محصول برای سفارش‌ها.",
+    icon: ClipboardCheck,
+  },
+  {
+    title: "بسته‌بندی قابل هماهنگی",
+    description: "تأمین در بسته‌بندی‌های متناسب با نیاز مصرف یا توزیع.",
     icon: PackageCheck,
   },
   {
-    title: "کیفیت قابل اتکا",
-    description: "تمرکز بر ثبات کیفیت و تامین با استاندارد مشخص.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "پشتیبانی و پاسخ‌گویی",
-    description: "همراهی در مراحل انتخاب محصول و ثبت سفارش.",
-    icon: Phone,
+    title: "مشاوره قبل از خرید",
+    description: "راهنمایی برای انتخاب محصول مناسب بر اساس کاربرد.",
+    icon: Headphones,
   },
 ];
 
-// -------------------------------
-// Applications
-// -------------------------------
-
 const applications = [
   {
-    title: "کشاورزی",
-    description: "مناسب برای نهاده‌ها، ترکیبات تغذیه و مصارف عمومی.",
+    title: "کشاورزی و باغداری",
+    description:
+      "برای تغذیه گیاه، اصلاح کمبود عناصر، تولید کود و کاربردهای عمومی کشاورزی.",
     icon: Leaf,
   },
   {
     title: "صنایع شیمیایی",
-    description: "قابل استفاده در تولید محصولات و فرمولاسیون مختلف.",
-    icon: Beaker,
+    description:
+      "قابل استفاده در فرمولاسیون‌ها، تولید مواد واسطه و فرآیندهای شیمیایی.",
+    icon: FlaskConical,
   },
   {
-    title: "مصارف صنعتی",
-    description: "تامین مواد برای واحدهای تولیدی و فرآیندی.",
+    title: "واحدهای صنعتی",
+    description:
+      "تأمین مواد اولیه برای خطوط تولید، فرآیندهای صنعتی و مصرف مستمر.",
     icon: Factory,
   },
   {
     title: "بازرگانی و توزیع",
-    description: "پشتیبانی مناسب برای فعالیت‌های عمده‌فروشی و توزیع.",
-    icon: Layers,
+    description:
+      "گزینه مناسب برای فروشگاه‌ها، عمده‌فروش‌ها و شبکه‌های تأمین منطقه‌ای.",
+    icon: Boxes,
   },
 ];
 
-// -------------------------------
-// Page Component
-// -------------------------------
+const processSteps = [
+  {
+    title: "ثبت درخواست",
+    description: "محصول، مقدار مورد نیاز، نوع بسته‌بندی و مقصد را اعلام کنید.",
+  },
+  {
+    title: "بررسی موجودی و قیمت",
+    description:
+      "واحد فروش شرایط تأمین، زمان تحویل و قیمت روز را اعلام می‌کند.",
+  },
+  {
+    title: "هماهنگی ارسال",
+    description:
+      "پس از نهایی شدن سفارش، بسته‌بندی و ارسال طبق توافق انجام می‌شود.",
+  },
+];
+
+const faqs = [
+  {
+    question: "آیا امکان خرید عمده محصولات وجود دارد؟",
+    answer:
+      "بله، تمرکز شیمی گستر سولفات بر تأمین عمده و مستمر برای صنایع، کشاورزی و توزیع‌کنندگان است.",
+  },
+  {
+    question: "قیمت محصولات چگونه اعلام می‌شود؟",
+    answer:
+      "قیمت با توجه به نوع محصول، گرید، مقدار سفارش، بسته‌بندی و شرایط ارسال اعلام می‌شود.",
+  },
+  {
+    question: "آیا برای سولفات مس برگه آنالیز ارائه می‌شود؟",
+    answer:
+      "برای سفارش‌های مرتبط، امکان ارائه مشخصات فنی و برگه آنالیز محصول وجود دارد.",
+  },
+  {
+    question: "ارسال محصولات به چه شهرهایی انجام می‌شود؟",
+    answer:
+      "امکان هماهنگی ارسال محصولات به شهرهای مختلف کشور بر اساس مقدار سفارش و شرایط حمل وجود دارد.",
+  },
+];
 
 export default function ProductsPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(
+    "سلام، برای استعلام قیمت محصولات شیمی گستر سولفات پیام می‌دهم.",
+  )}`;
+
   return (
-    <main className="bg-white text-slate-800">
+    <main className="overflow-hidden bg-[#fcfdfe] text-slate-800">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-slate-100 bg-[radial-gradient(circle_at_top_right,_rgba(194,120,41,0.12),_transparent_28%)]">
-        <div className="container mx-auto px-6 py-16 md:px-8 md:py-24 lg:px-10">
-          <div className="grid items-center gap-10 lg:grid-cols-12">
-            {/* Text */}
-            <div className="lg:col-span-7">
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#c27829]/20 bg-[#c27829]/10 px-4 py-2 text-xs font-black text-[#c27829]">
-                <Sparkles size={14} />
-                محصولات شیمی گستر سولفات
-              </div>
+      <section className="relative overflow-hidden bg-[#07111f] text-white">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute right-[-10rem] top-[-10rem] h-96 w-96 rounded-full bg-[#c27829]/25 blur-3xl" />
+          <div className="absolute bottom-[-14rem] left-[-12rem] h-[30rem] w-[30rem] rounded-full bg-blue-500/10 blur-3xl" />
+          <div className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(#fff_1px,transparent_1px)] [background-size:34px_34px]" />
+        </div>
 
-              <h1 className="text-3xl font-black leading-[1.9] text-[#0a1a2f] md:text-5xl">
-                محصولات شیمیایی برای تامین صنعتی و کشاورزی
-              </h1>
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-28 sm:px-6 md:pt-32 lg:grid-cols-12 lg:px-10 lg:pb-24">
+          <div className="lg:col-span-7">
+            <h1 className="max-w-4xl text-3xl font-black leading-[1.45] md:text-5xl md:leading-[1.35] lg:text-6xl">
+              خرید و استعلام قیمت
+              <span className="text-[#f0b56d]"> سولفات مس </span>و مواد شیمیایی
+              صنعتی
+            </h1>
+            <p className="mt-6 max-w-2xl text-sm leading-8 text-slate-300 md:text-lg md:leading-9">
+              شیمی گستر سولفات تأمین‌کننده محصولات سولفاته، نهاده‌های کشاورزی و
+              مواد اولیه شیمیایی برای خریداران عمده و تولیدکنندگان است.
+            </p>
 
-              <p className="mt-6 max-w-2xl text-sm leading-8 text-slate-600 md:text-base">
-                مجموعه‌ای از محصولات شیمیایی منتخب که برای صنایع، تولیدکنندگان،
-                کشاورزی و فعالیت‌های بازرگانی قابل تامین هستند. تمرکز ما بر
-                تامین پایدار و همکاری بلندمدت است.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="#categories"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#c27829] px-6 py-4 text-sm font-black text-white shadow-xl shadow-orange-200 transition-all hover:bg-[#d28735]"
-                >
-                  مشاهده محصولات
-                  <ArrowLeft size={18} />
-                </Link>
-
-                <a
-                  href="tel:09123063576"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-6 py-4 text-sm font-black text-[#0a1a2f]"
-                >
-                  تماس با فروش
-                  <Phone size={18} />
-                </a>
-              </div>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="#categories"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-[#c27829] px-7 text-sm font-black text-white shadow-xl hover:bg-[#a86522] transition-all"
+              >
+                مشاهده دسته‌بندی‌ها
+                <ArrowLeft size={18} />
+              </Link>
+              <a
+                href={whatsappUrl}
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 text-sm font-black text-white backdrop-blur hover:bg-white/10 transition-all"
+              >
+                استعلام سریع در واتساپ
+                <MessageCircle size={18} />
+              </a>
             </div>
+          </div>
 
-            {/* Minimal Product Highlight */}
-            <div className="lg:col-span-5">
-              <div className="rounded-[2rem] border border-slate-100 bg-white p-6 shadow-xl">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0a1a2f] text-white">
+          <div className="lg:col-span-5">
+            <div className="relative rounded-[2.5rem] border border-white/10 bg-white/[0.06] p-5 shadow-2xl backdrop-blur">
+              <div className="rounded-[2rem] bg-white p-6 text-slate-900">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0a1a2f] text-white mb-6">
                   <Beaker size={28} />
                 </div>
-
                 <h2 className="text-2xl font-black text-[#0a1a2f]">
                   سولفات مس
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  مناسب برای کاربردهای کشاورزی، صنعتی و تولیدی. در گریدهای مختلف
-                  قابل تامین و آماده تحویل است.
+                <p className="mt-4 text-sm leading-7 text-slate-600">
+                  مناسب برای تولیدکنندگان کود، صنایع آبکاری و کشاورزی حرفه‌ای با
+                  تضمین آنالیز و تأمین پایدار.
                 </p>
-
-                <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold text-slate-700">
-                  <span className="rounded-xl bg-slate-100 px-3 py-1">
-                    کریستال
-                  </span>
-                  <span className="rounded-xl bg-slate-100 px-3 py-1">
-                    پودری
-                  </span>
-                  <span className="rounded-xl bg-slate-100 px-3 py-1">
-                    فاقد نیترات
-                  </span>
-                </div>
-
                 <Link
                   href="/products/copper-sulfate"
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#c27829]"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0a1a2f] px-5 py-4 text-sm font-black text-white hover:bg-[#132b49] transition-all"
                 >
-                  مشاهده جزئیات
-                  <ArrowLeft size={16} />
+                  مشاهده محصول شاخص
+                  <ArrowLeft size={17} />
                 </Link>
               </div>
             </div>
@@ -201,159 +243,132 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section id="categories" className="py-16 md:py-20">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10">
-          <div className="mb-10">
-            <h2 className="text-2xl font-black text-[#0a1a2f] md:text-4xl">
-              دسته‌بندی محصولات
-            </h2>
-            <p className="mt-3 max-w-xl text-sm text-slate-500">
-              مجموعه‌ای از محصولات پرکاربرد برای صنایع، کشاورزی و تامین مواد
-              اولیه.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {productCategories.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className={`group relative rounded-[2rem] border border-slate-100 ${item.bg} p-6 transition-all hover:-translate-y-1 hover:shadow-xl`}
-                >
-                  <div
-                    className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${item.accent}`}
-                  />
-                  <div
-                    className={`mb-5 flex h-14 w-14 items-center justify-center rounded-2xl ${item.iconBg} ${item.iconColor}`}
-                  >
-                    <Icon size={28} />
-                  </div>
-
-                  <h3 className="text-xl font-black text-[#0a1a2f]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.description}
-                  </p>
-
-                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-black text-[#0a1a2f] group-hover:text-[#c27829] group-hover:gap-3">
-                    مشاهده جزئیات
-                    <ArrowLeft size={16} />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+      {/* Categories Section */}
+      <section
+        id="categories"
+        className="px-4 py-16 sm:px-6 md:py-24 lg:px-10 max-w-7xl mx-auto"
+      >
+        <h2 className="text-2xl md:text-4xl font-black text-[#0a1a2f] mb-12">
+          دسته‌بندی محصولات
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {productCategories.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`group relative overflow-hidden rounded-[2rem] border border-slate-100 ${item.bg} p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+            >
+              <div
+                className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${item.accent}`}
+              />
+              <div
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl ${item.iconBg} ${item.iconColor} mb-6`}
+              >
+                <item.icon size={28} />
+              </div>
+              <h3 className="text-xl font-black text-[#0a1a2f]">
+                {item.title}
+              </h3>
+              <p className="mt-3 min-h-24 text-sm leading-7 text-slate-600">
+                {item.description}
+              </p>
+              <div className="mt-7 inline-flex items-center gap-2 text-sm font-black text-[#0a1a2f] group-hover:text-[#c27829] transition-all">
+                مشاهده و استعلام
+                <ArrowLeft size={16} />
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* Strength / Cooperation */}
-      <section className="bg-slate-50 py-16 md:py-20">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10">
-          <div className="mb-12 text-center">
-            <h2 className="text-2xl font-black text-[#0a1a2f] md:text-4xl">
-              همکاری و تامین
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-slate-500">
-              مناسب برای خریداران صنعتی، توزیع‌کنندگان و مجموعه‌هایی که نیاز به
-              تامین مستمر دارند.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {strengths.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-[1.75rem] border border-slate-100 bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0a1a2f] text-white">
-                    <Icon size={26} />
-                  </div>
-
-                  <h3 className="text-lg font-black text-[#0a1a2f]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-slate-600">
-                    {item.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+      {/* Trust Items */}
+      <section className="bg-slate-50 py-20 px-4">
+        <div className="max-w-7xl mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {trustItems.map((item, i) => (
+            <div
+              key={i}
+              className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 text-center"
+            >
+              <div className="mx-auto w-12 h-12 bg-[#0a1a2f] text-white rounded-xl flex items-center justify-center mb-5">
+                <item.icon size={24} />
+              </div>
+              <h3 className="font-black mb-3">{item.title}</h3>
+              <p className="text-sm text-slate-500 leading-7">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Applications */}
-      <section className="py-16 md:py-20 border-t border-slate-100">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10">
-          <div className="mb-12">
-            <h2 className="text-2xl font-black text-[#0a1a2f] md:text-4xl">
-              حوزه‌های کاربرد
-            </h2>
-            <p className="mt-3 max-w-xl text-sm text-slate-500">
-              محصولات قابل استفاده در صنایع مختلف، کشاورزی، تولید و فعالیت‌های
-              بازرگانی.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {applications.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-[1.75rem] border border-slate-100 bg-slate-50 p-6 transition-all hover:border-[#c27829]/20 hover:bg-white hover:shadow-lg"
-                >
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#c27829] shadow-sm">
-                    <Icon size={26} />
-                  </div>
-                  <h3 className="text-lg font-black text-[#0a1a2f]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm text-slate-600">
-                    {item.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-[#0a1a2f] py-16 md:py-20">
-        <div className="container mx-auto px-6 md:px-8 lg:px-10 text-center">
-          <h2 className="text-2xl font-black text-white md:text-4xl">
-            استعلام قیمت و دریافت اطلاعات محصول
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-xl text-sm text-slate-300">
-            برای دریافت موجودی، قیمت یا مشاوره خرید با واحد فروش در ارتباط
-            باشید.
+      {/* FAQ Section - بازطراحی شده به صورت آکاردئونی */}
+      <section className="py-20 px-4 lg:px-10 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-black text-[#0a1a2f]">سوالات پرتکرار</h2>
+          <p className="mt-4 text-slate-500">
+            پاسخ برخی از سوالات متداول مشتریان در مورد نحوه خرید و تأمین محصولات
           </p>
+        </div>
 
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
-              href="tel:09123063576"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#c27829] px-6 py-4 text-sm font-black text-white transition-all hover:bg-[#d28735]"
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm transition-all"
             >
-              تماس با فروش
-              <Phone size={18} />
-            </a>
-            {/* <Link
-              href="/products/copper-sulfate"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-black text-white hover:bg-white/10"
-            >
-              مشاهده محصولات
-              <ArrowLeft size={18} />
-            </Link> */}
+              <button
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                className="w-full flex items-center justify-between p-6 text-right transition-colors hover:bg-slate-50"
+              >
+                <span className="font-black text-slate-800 flex items-center gap-3">
+                  <ShieldCheck size={20} className="text-[#c27829]" />
+                  {faq.question}
+                </span>
+                <ChevronDown
+                  size={20}
+                  className={`text-[#c27829] transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ${openFaq === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+              >
+                <div className="p-6 pt-0 text-sm leading-8 text-slate-600 border-t border-slate-50">
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-4 pb-20">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-[#07111f] p-10 md:p-16 text-center text-white shadow-2xl">
+          <div className="relative z-10">
+            <h2 className="text-2xl md:text-4xl font-black mb-6">
+              آماده دریافت استعلام قیمت هستید؟
+            </h2>
+            <p className="max-w-2xl mx-auto text-slate-300 mb-10 leading-8">
+              واحد فروش شیمی گستر سولفات آماده پاسخگویی به درخواست‌های شما و
+              اعلام شرایط تأمین بار است.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href={whatsappUrl}
+                className="h-14 px-10 rounded-2xl bg-[#c27829] text-white font-black flex items-center justify-center gap-2 hover:bg-[#a86522] transition-all"
+              >
+                <MessageCircle size={20} />
+                استعلام در واتساپ
+              </a>
+              <a
+                href={`tel:${phoneNumber}`}
+                className="h-14 px-10 rounded-2xl bg-white/10 border border-white/20 text-white font-black flex items-center justify-center gap-2 hover:bg-white/20 transition-all"
+              >
+                <Phone size={20} />
+                تماس مستقیم
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -1,401 +1,223 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowLeft,
-  BookOpenText,
+  BookOpen,
+  Clock,
+  ChevronLeft,
+  Sparkles,
+  ShoppingCart,
   FlaskConical,
   Leaf,
   ShieldCheck,
-  ShoppingCart,
-  Tags,
+  Newspaper,
 } from "lucide-react";
 
-const featuredPosts = [
-  {
-    title: "نکات مهم در خرید سولفات مس",
-    excerpt:
-      "در این مقاله با مهم‌ترین نکات فنی، کیفی و تجاری برای خرید سولفات مس آشنا می‌شوید.",
-    category: "خرید و قیمت",
-    readTime: "۵ دقیقه",
-    href: "/blog/buying-copper-sulfate-tips",
-  },
-  {
-    title: "بررسی قیمت سولفات مس",
-    excerpt:
-      "عوامل مؤثر بر قیمت سولفات مس، کیفیت محصول، نوع بسته‌بندی و شرایط بازار را بررسی می‌کنیم.",
-    category: "خرید و قیمت",
-    readTime: "۴ دقیقه",
-    href: "/blog/copper-sulfate-price",
-  },
-  {
-    title: "تفاوت سولفات مس پودری و کریستال",
-    excerpt:
-      "تفاوت‌های اصلی سولفات مس پودری و کریستال، کاربردها و نکات انتخاب هر نوع را بررسی می‌کنیم.",
-    category: "انواع و مشخصات",
-    readTime: "۵ دقیقه",
-    href: "/blog/copper-sulfate-powder-vs-crystal",
-  },
-];
+export const metadata: Metadata = {
+  title: "وبلاگ و دانشنامه تخصصی شیمی گستر سولفات",
+  description:
+    "مقالات تخصصی درباره خرید سولفات مس، قیمت سولفات مس، کاربردهای سولفات مس در کشاورزی، صنعت، ایمنی و نگهداری مواد شیمیایی.",
+};
 
 const categories = [
   {
     title: "خرید و قیمت",
-    description:
-      "راهنمای خرید، بررسی عوامل مؤثر بر قیمت و انتخاب سولفات مس مناسب برای نیاز صنعتی یا کشاورزی.",
+    description: "راهنمای خرید، عوامل قیمت‌گذاری و نکات انتخاب محصول",
     icon: ShoppingCart,
+    color: "text-orange-600",
+    bg: "bg-orange-50",
   },
   {
-    title: "انواع و مشخصات فنی",
-    description:
-      "آشنایی با انواع سولفات مس، تفاوت پودری و کریستال، کیفیت محصول و روش تشخیص نمونه اصل.",
+    title: "انواع و مشخصات",
+    description: "بررسی خلوص، آنالیز، گریدها و ویژگی‌های فنی",
     icon: FlaskConical,
+    color: "text-blue-600",
+    bg: "bg-blue-50",
   },
   {
     title: "کاربردها و کشاورزی",
-    description:
-      "بررسی کاربردهای سولفات مس در کشاورزی، تغذیه گیاه و صنایع وابسته.",
+    description: "کاربرد سولفات مس در کشاورزی، صنعت و دامپروری",
     icon: Leaf,
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
   },
   {
     title: "ایمنی و نگهداری",
-    description:
-      "نکات مهم درباره حمل، نگهداری، بسته‌بندی و بررسی مستندات کیفی مواد شیمیایی.",
+    description: "نکات انبارداری، حمل‌ونقل و مصرف ایمن",
     icon: ShieldCheck,
+    color: "text-slate-600",
+    bg: "bg-slate-50",
   },
 ];
 
-const allPosts = [
+const posts = [
   {
-    title: "تشخیص سولفات مس اصل از تقلبی",
-    excerpt:
-      "روش‌های بررسی کیفیت، ظاهر، رنگ، آنالیز و نکات مهم برای تشخیص سولفات مس اصل از نمونه‌های بی‌کیفیت.",
-    category: "انواع و مشخصات",
+    slug: "buying-copper-sulfate-tips",
+    title: "نکات حیاتی که پیش از خرید سولفات مس باید بدانید",
+    description:
+      "خرید سولفات مس فقط مقایسه قیمت نیست. خلوص، برگه آنالیز، نوع بسته‌بندی، اعتبار تأمین‌کننده و شرایط تحویل نقش مهمی در انتخاب محصول دارند.",
+    category: "خرید و قیمت",
     readTime: "۶ دقیقه",
-    href: "/blog/how-to-identify-pure-copper-sulfate",
+    date: "۱۴۰۵/۰۳/۲۸",
   },
   {
-    title: "نقش مس در تغذیه گیاه",
-    excerpt:
-      "بررسی نقش عنصر مس در رشد گیاه، علائم کمبود مس و ارتباط آن با ترکیباتی مانند سولفات مس.",
-    category: "کاربردها و کشاورزی",
-    readTime: "۵ دقیقه",
-    href: "/blog/copper-role-in-plant-nutrition",
-  },
-  {
-    title: "تفاوت سولفات مس پودری و کریستال",
-    excerpt:
-      "در این مقاله تفاوت سولفات مس پودری و کریستال از نظر ظاهر، کاربرد، انحلال‌پذیری و انتخاب مناسب بررسی می‌شود.",
-    category: "انواع و مشخصات",
-    readTime: "۵ دقیقه",
-    href: "/blog/copper-sulfate-powder-vs-crystal",
-  },
-  {
-    title: "کاربرد سولفات مس در کشاورزی",
-    excerpt:
-      "آشنایی با مهم‌ترین کاربردهای سولفات مس در کشاورزی، باغداری، کنترل بیماری‌های گیاهی و تغذیه گیاه.",
-    category: "کاربردها و کشاورزی",
-    readTime: "۶ دقیقه",
-    href: "/blog/copper-sulfate-agriculture-uses",
-  },
-  {
-    title: "نکات مهم در خرید سولفات مس",
-    excerpt:
-      "پیش از خرید سولفات مس باید به خلوص، نوع محصول، آنالیز، بسته‌بندی و اعتبار تأمین‌کننده توجه کرد.",
+    slug: "copper-sulfate-price-factors",
+    title: "قیمت سولفات مس چگونه تعیین می‌شود؟",
+    description:
+      "در این مقاله بررسی می‌کنیم چه عواملی مانند قیمت جهانی مس، خلوص محصول، گرید، بسته‌بندی و حجم سفارش روی قیمت سولفات مس اثر می‌گذارند.",
     category: "خرید و قیمت",
     readTime: "۵ دقیقه",
-    href: "/blog/buying-copper-sulfate-tips",
+    date: "۱۴۰۵/۰۳/۲۸",
   },
   {
-    title: "بررسی قیمت سولفات مس",
-    excerpt:
-      "قیمت سولفات مس تحت تأثیر کیفیت، نوع پودری یا کریستال، نرخ مواد اولیه، بسته‌بندی و حجم سفارش قرار دارد.",
-    category: "خرید و قیمت",
-    readTime: "۴ دقیقه",
-    href: "/blog/copper-sulfate-price",
-  },
-  {
-    title: "راهنمای انتخاب سولفات مس مناسب",
-    excerpt:
-      "برای انتخاب سولفات مس مناسب باید نوع مصرف، کیفیت موردنیاز، شکل فیزیکی و مدارک کیفی محصول بررسی شود.",
-    category: "خرید و قیمت",
-    readTime: "۵ دقیقه",
-    href: "/blog/choose-right-copper-sulfate",
-  },
-  {
-    title: "نقش آنالیز و COA در خرید مواد شیمیایی",
-    excerpt:
-      "COA یکی از مهم‌ترین مدارک کیفی در خرید مواد شیمیایی است و به خریدار برای ارزیابی کیفیت محصول کمک می‌کند.",
-    category: "ایمنی و نگهداری",
-    readTime: "۵ دقیقه",
-    href: "/blog/coa-in-chemical-purchase",
-  },
-  {
-    title: "کاربرد سولفات‌ها در کشاورزی و صنعت",
-    excerpt:
-      "سولفات‌ها در بسیاری از فرآیندهای کشاورزی و صنعتی استفاده می‌شوند و سولفات مس یکی از پرکاربردترین آن‌هاست.",
+    slug: "copper-sulfate-agriculture-uses",
+    title: "کاربرد سولفات مس در کشاورزی و باغداری",
+    description:
+      "سولفات مس در کشاورزی برای تأمین عنصر مس، کنترل برخی بیماری‌های قارچی و اصلاح کمبودهای تغذیه‌ای گیاهان مورد استفاده قرار می‌گیرد.",
     category: "کاربردها و کشاورزی",
-    readTime: "۵ دقیقه",
-    href: "/blog/sulfates-in-agriculture-and-industry",
-  },
-  {
-    title: "نکات مهم در نگهداری و حمل مواد شیمیایی",
-    excerpt:
-      "نگهداری و حمل صحیح مواد شیمیایی برای حفظ کیفیت محصول، ایمنی محیط و کاهش ریسک‌های عملیاتی اهمیت زیادی دارد.",
-    category: "ایمنی و نگهداری",
-    readTime: "۴ دقیقه",
-    href: "/blog/chemical-storage-and-transportation-tips",
+    readTime: "۷ دقیقه",
+    date: "۱۴۰۵/۰۳/۲۸",
   },
 ];
 
 export default function BlogPage() {
   return (
-    <main dir="rtl" className="min-h-screen bg-slate-50 font-vazir">
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(194,120,41,0.22),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.14),transparent_32%)]" />
+    <main className="bg-[#fcfdfe] pb-20">
+      <section className="relative bg-[#07111f] pt-32 pb-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
+        </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-          <div className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur">
-              <BookOpenText className="h-4 w-4 text-[#c27829]" />
-              مرکز دانش شیمی‌گستر سولفات
-            </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#f0b56d] text-sm font-bold mb-6">
+            <Sparkles size={16} />
+            مرجع تخصصی تحلیل بازار و دانش شیمی
+          </div>
 
-            <h1 className="text-3xl font-black leading-tight text-white sm:text-4xl lg:text-5xl">
-              مقالات تخصصی سولفات مس و مواد شیمیایی صنعتی
-            </h1>
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight tracking-tight">
+            دانشنامه تخصصی <span className="text-[#f0b56d]">شیمی گستر</span>
+          </h1>
 
-            <p className="mt-6 max-w-2xl text-sm leading-8 text-slate-300 sm:text-base">
-              در این بخش می‌توانید مقالات آموزشی و سئو محور درباره خرید، قیمت،
-              انواع، کاربردها و نگهداری سولفات مس را مطالعه کنید. برای مشاهده
-              مشخصات کامل محصول اصلی، صفحه سولفات مس را ببینید.
-            </p>
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+            آخرین تحلیل‌های بازار، راهنمای خرید هوشمندانه و مقالات علمی درباره
+            سولفات مس و مواد شیمیایی برای متخصصان، کشاورزان و صنعتگران.
+          </p>
+        </div>
+      </section>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/products/copper-sulfate"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#c27829] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#c27829]/20 transition hover:bg-[#a86420]"
+      <section className="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
+        <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-xl shadow-slate-200/50 p-5 md:p-8 border border-slate-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {categories.map((cat) => (
+              <div
+                key={cat.title}
+                className="flex items-start gap-4 p-4 rounded-3xl hover:bg-slate-50 transition-all border border-slate-100"
               >
-                مشاهده صفحه سولفات مس
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
+                <div
+                  className={`w-12 h-12 shrink-0 ${cat.bg} ${cat.color} rounded-2xl flex items-center justify-center`}
+                >
+                  <cat.icon size={24} />
+                </div>
 
-              <a
-                href="#posts"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                مشاهده مقالات
-              </a>
-            </div>
+                <div>
+                  <h2 className="text-sm font-black text-slate-800 mb-1">
+                    {cat.title}
+                  </h2>
+                  <p className="text-xs leading-6 text-slate-500">
+                    {cat.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Posts */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <span className="text-sm font-bold text-[#c27829]">
-              مقالات منتخب
-            </span>
-            <h2 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">
-              راهنماهای مهم خرید و شناخت سولفات مس
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-8 bg-[#c27829] rounded-full" />
+            <h2 className="text-3xl font-black text-[#0a1a2f] tracking-tight">
+              تازه‌ترین مقالات
             </h2>
           </div>
 
           <Link
             href="/products/copper-sulfate"
-            className="text-sm font-bold text-slate-700 transition hover:text-[#c27829]"
+            className="hidden md:flex items-center gap-2 text-[#c27829] font-bold hover:gap-3 transition-all"
           >
-            مشاهده محصول سولفات مس
+            مشاهده سولفات مس
+            <ChevronLeft size={20} />
           </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {featuredPosts.map((post) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
             <article
-              key={post.title}
-              className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              key={post.slug}
+              className="group bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/70 transition-all duration-500 overflow-hidden"
             >
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-[#c27829]/10 px-3 py-1 text-xs font-bold text-[#c27829]">
-                  {post.category}
-                </span>
-                <span className="text-xs text-slate-400">{post.readTime}</span>
-              </div>
+              <div className="p-7 md:p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="px-3 py-1 bg-slate-100 rounded-lg text-[10px] font-black text-slate-500">
+                    {post.category}
+                  </span>
 
-              <h3 className="text-lg font-black leading-8 text-slate-900 transition group-hover:text-[#c27829]">
-                {post.title}
-              </h3>
-
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                {post.excerpt}
-              </p>
-
-              <div className="mt-6 flex items-center justify-between">
-                <Link
-                  href={post.href}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 transition hover:text-[#c27829]"
-                >
-                  مطالعه مقاله
-                  <ArrowLeft className="h-4 w-4" />
-                </Link>
-
-                <Link
-                  href="/products/copper-sulfate"
-                  className="text-xs font-bold text-slate-400 transition hover:text-[#c27829]"
-                >
-                  سولفات مس
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <span className="text-sm font-bold text-[#c27829]">
-              دسته‌بندی محتوا
-            </span>
-            <h2 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">
-              مسیرهای اصلی مطالعه در وبلاگ
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600">
-              مقالات وبلاگ بر اساس ساختار Silo دسته‌بندی شده‌اند تا کاربران
-              راحت‌تر به محتوای مرتبط با سولفات مس دسترسی داشته باشند.
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {categories.map((category) => {
-              const Icon = category.icon;
-
-              return (
-                <div
-                  key={category.title}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-6 transition hover:border-[#c27829]/40 hover:bg-white hover:shadow-lg"
-                >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-white">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                    <Clock size={14} />
+                    {post.readTime}
                   </div>
-
-                  <h3 className="text-base font-black text-slate-900">
-                    {category.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {category.description}
-                  </p>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* All Posts */}
-      <section
-        id="posts"
-        className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
-      >
-        <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <span className="inline-flex items-center gap-2 text-sm font-bold text-[#c27829]">
-              <Tags className="h-4 w-4" />
-              همه مقالات
-            </span>
-            <h2 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">
-              تازه‌ترین مطالب آموزشی و تخصصی
-            </h2>
-          </div>
+                <h3 className="text-xl font-black text-[#0a1a2f] mb-4 group-hover:text-[#c27829] transition-colors leading-relaxed">
+                  {post.title}
+                </h3>
 
-          <p className="max-w-xl text-sm leading-7 text-slate-600">
-            تمام مقالات این بخش با هدف تقویت شناخت کاربران از سولفات مس و هدایت
-            آن‌ها به صفحه اصلی محصول طراحی شده‌اند.
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {allPosts.map((post) => (
-            <article
-              key={post.title}
-              className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
-                  {post.category}
-                </span>
-                <span className="text-xs text-slate-400">{post.readTime}</span>
-              </div>
-
-              <h3 className="text-lg font-black leading-8 text-slate-900 transition group-hover:text-[#c27829]">
-                {post.title}
-              </h3>
-
-              <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">
-                {post.excerpt}
-              </p>
-
-              <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5">
-                <Link
-                  href={post.href}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 transition hover:text-[#c27829]"
-                >
-                  مطالعه مقاله
-                  <ArrowLeft className="h-4 w-4" />
-                </Link>
+                <p className="text-slate-500 text-sm leading-8 mb-8">
+                  {post.description}
+                </p>
 
                 <Link
-                  href="/products/copper-sulfate"
-                  className="text-xs font-bold text-slate-400 transition hover:text-[#c27829]"
+                  href={`/blog/${post.slug}`}
+                  className="flex items-center justify-between pt-6 border-t border-slate-100 group/btn"
                 >
-                  صفحه سولفات مس
+                  <span className="text-sm font-black text-slate-900 group-hover/btn:text-[#c27829]">
+                    ادامه مطلب
+                  </span>
+
+                  <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center group-hover/btn:bg-[#c27829] group-hover/btn:text-white transition-all">
+                    <ArrowLeft size={18} />
+                  </div>
                 </Link>
               </div>
             </article>
           ))}
         </div>
-      </section>
 
-      {/* CTA */}
-      <section className="px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl sm:p-10 lg:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_0.6fr] lg:items-center">
+        <div className="mt-16 bg-[#0a1a2f] rounded-[2rem] p-8 md:p-10 text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <div className="flex items-start gap-4">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#f0b56d] shrink-0">
+              <Newspaper size={26} />
+            </div>
+
             <div>
-              <span className="text-sm font-bold text-[#c27829]">
-                نیاز به اطلاعات محصول دارید؟
-              </span>
-
-              <h2 className="mt-3 text-2xl font-black leading-10 sm:text-3xl">
-                به دنبال خرید سولفات مس با کیفیت پایدار هستید؟
-              </h2>
-
-              <p className="mt-4 max-w-2xl text-sm leading-8 text-slate-300">
-                برای مشاهده مشخصات محصول، بررسی انواع سولفات مس، دریافت اطلاعات
-                درباره سولفات مس پودری، کریستال و فاقد نیترات، به صفحه اصلی
-                محصول مراجعه کنید.
+              <h3 className="text-2xl font-black mb-3">
+                به دنبال خرید سولفات مس هستید؟
+              </h3>
+              <p className="text-slate-400 leading-8 max-w-2xl">
+                برای دریافت قیمت روز، برگه آنالیز و مشاوره انتخاب گرید مناسب،
+                صفحه محصول سولفات مس شیمی گستر را مشاهده کنید.
               </p>
             </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Link
-                href="/products/copper-sulfate"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#c27829] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#a86420]"
-              >
-                مشاهده سولفات مس
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                تماس برای مشاوره خرید
-              </Link>
-            </div>
           </div>
+
+          <Link
+            href="/products/copper-sulfate"
+            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c27829] hover:bg-[#a86522] rounded-2xl font-black transition-all whitespace-nowrap"
+          >
+            مشاهده محصول
+            <ArrowLeft size={18} />
+          </Link>
         </div>
       </section>
     </main>

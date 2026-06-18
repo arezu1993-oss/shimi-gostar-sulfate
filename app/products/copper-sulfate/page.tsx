@@ -1,240 +1,297 @@
-import React from "react";
-import { FlaskConical, CheckCircle2 } from "lucide-react";
+"use client"; // برای هندل کردن باز و بسته شدن سوالات متداول
+
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  ChevronDown,
+  MessageCircle,
+  Phone,
+  FlaskConical,
+  CheckCircle2,
+  Truck,
+  PackageCheck,
+  Factory,
+} from "lucide-react";
+
+// داده‌های آنالیز
+const analysisData = [
+  { param: "فرمول شیمیایی", value: "CuSO₄·5H₂O" },
+  { param: "خلوص", value: "98% - 99%" },
+  { param: "مس", value: "24.5% - 25.2%" },
+  { param: "آهن", value: "کمتر از 0.1" },
+  { param: "نامحلول در آب", value: "کمتر از 0.05" },
+  { param: "ظاهر", value: "کریستال آبی شفاف" },
+];
+
+// سوالات متداول
+const faqs = [
+  {
+    question: "سولفات مس پنج آبه چیست و چه کاربردی دارد؟",
+    answer:
+      "سولفات مس پنج آبه یک ترکیب معدنی آبی‌رنگ است که به دلیل حلالیت بالا و حضور عنصر مس، در صنایع کشاورزی برای تولید کود، در آبکاری فلزات، و در صنایع شیمیایی برای تولید مواد واسطه استفاده می‌شود.",
+  },
+  {
+    question: "قیمت روز سولفات مس چگونه تعیین می‌شود؟",
+    answer:
+      "قیمت این محصول بر اساس خلوص، اندازه ذرات (کریستال یا پودر)، مقدار سفارش و هزینه‌های حمل‌ونقل متغیر است. برای دریافت قیمت دقیق روز، استعلام مستقیم از واحد فروش الزامی است.",
+  },
+  {
+    question: "آیا امکان تأمین سولفات مس در حجم بالا وجود دارد؟",
+    answer:
+      "بله، شیمی گستر سولفات توانایی تأمین سفارش‌های عمده برای واحدهای تولیدی، کارخانجات و توزیع‌کنندگان سراسری را در بسته‌بندی‌های کیسه و جامبوبگ دارد.",
+  },
+  {
+    question: "شرایط ارسال بار به شهرستان‌ها چگونه است؟",
+    answer:
+      "پس از نهایی شدن سفارش، هماهنگی‌های لازم با باربری‌های معتبر انجام شده و بار به سراسر ایران ارسال می‌گردد. هزینه حمل بسته به مقصد و وزن بار متغیر است.",
+  },
+];
 
 export default function CopperSulfatePage() {
-  const analysisData = [
-    { param: "خلوص (CuSO4·5H2O)", value: "98% - 99%", unit: "درصد" },
-    { param: "مس (Cu)", value: "24.5% - 25.2%", unit: "درصد" },
-    { param: "آهن (Fe)", value: "< 0.1", unit: "درصد" },
-    { param: "نامحلول در آب", value: "< 0.05", unit: "درصد" },
-  ];
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const applications = [
-    "کشاورزی و تولید کود",
-    "صنایع آبکاری فلزات",
-    "صنایع شیمیایی",
-    "خوراک دام و طیور",
-    "استخراج و فرآوری مواد معدنی",
-    "مصارف آزمایشگاهی",
-  ];
-
-  const features = [
-    "خلوص بالا و یکنواختی کریستال",
-    "حلالیت مناسب در آب",
-    "کنترل کیفی در هر بچ تولید",
-    "مناسب مصرف صنعتی و کشاورزی",
-    "قابل ارائه در بسته‌بندی‌های مختلف",
-  ];
+  const phoneNumber = "09123063576";
+  const whatsappUrl = `https://wa.me/989120909323?text=${encodeURIComponent(
+    "سلام، برای استعلام قیمت سولفات مس پنج آبه پیام می‌دهم.",
+  )}`;
 
   return (
-    <div className="pt-24 pb-16 bg-white font-vazir">
-      {/* Hero Section */}
-      <section className="bg-slate-950 text-white py-12 md:py-20 px-6 border-b border-white/5">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
-            {/* بخش متن - اولویت نمایش در راست */}
-            <div className="flex-1 text-right order-2 lg:order-1">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[#c27829] leading-tight">
-                سولفات مس ۵ آبه
-                <span className="block text-xl md:text-2xl text-slate-400 mt-2 font-medium">
-                  تولید شده با خلوص استاندارد صنعتی
-                </span>
-              </h1>
+    <main className="bg-white text-slate-900 overflow-x-hidden">
+      {/* Hero Section - بهبود یافته برای نمایش بهتر عکس */}
+      <section className="relative min-h-[700px] flex items-center justify-center pt-24 pb-12 overflow-hidden bg-[#07111f]">
+        {/* عکس کریستال - با شفافیت بیشتر برای دیده شدن */}
+        <Image
+          src="/images/hero-2.jpg"
+          alt="کریستال‌های آبی سولفات مس"
+          fill
+          priority
+          className="object-cover opacity-50"
+        />
 
-              <p className="text-base md:text-lg text-slate-400 font-light leading-relaxed mb-8 max-w-xl ml-auto">
-                محصولی با حلالیت بالا و آنالیز دقیق، بهینه‌سازی شده برای مصارف
-                کشاورزی، آبکاری و تولید مکمل‌های دامی.
-              </p>
+        {/* لایه گرادینت ملایم‌تر برای خوانایی متن */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07111f] via-transparent to-[#07111f]/60" />
 
-              <div className="flex flex-wrap gap-3 justify-start flex-row-reverse">
-                <a
-                  href="tel:09127017456"
-                  className="bg-[#c27829] text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all hover:bg-[#a66623]"
-                >
-                  استعلام قیمت
-                </a>
-                <a
-                  href="#analysis"
-                  className="bg-white/5 border border-white/10 text-slate-300 px-6 py-2.5 rounded-lg font-medium text-sm transition-all hover:bg-white/10"
-                >
-                  مشاهده آنالیز
-                </a>
-              </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 lg:px-10 grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight md:leading-[1.2]">
+              تأمین و فروش <br />
+              <span className="text-[#f0b56d]">سولفات مس پنج آبه</span>
+            </h1>
+            <p className="mt-8 text-lg md:text-xl text-slate-100 max-w-2xl leading-relaxed">
+              تولید و تأمین سولفات مس با کیفیت تضمینی جهت مصارف کشاورزی، تولید
+              کود، آبکاری و صنایع معدنی. امکان ارسال به سراسر کشور در کوتاه‌ترین
+              زمان.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <a
+                href={whatsappUrl}
+                className="h-14 px-8 rounded-2xl bg-[#c27829] text-white font-black flex items-center gap-2 hover:bg-[#a86522] transition-all"
+              >
+                استعلام قیمت واتساپ
+                <MessageCircle size={20} />
+              </a>
+              <a
+                href={`tel:${phoneNumber}`}
+                className="h-14 px-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-black flex items-center gap-2 hover:bg-white/20 transition-all"
+              >
+                تماس مستقیم
+                <Phone size={20} />
+              </a>
             </div>
+          </div>
 
-            {/* بخش عکس - ساده و سبک */}
-            <div className="w-full max-w-[280px] md:max-w-md lg:flex-1 order-1 lg:order-2">
-              <div className="relative aspect-square md:aspect-video rounded-xl overflow-hidden border border-white/10 shadow-sm">
-                <Image
-                  src="/images/hero-2.jpg"
-                  alt="Copper Sulfate"
-                  fill
-                  className="object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500"
-                  priority
-                />
+          {/* سایدبار اطلاعات سریع - حذف بج‌ها */}
+          <div className="lg:col-span-5">
+            <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl">
+              <h2 className="text-xl font-black text-[#0a1a2f] mb-6 pb-4 border-b border-slate-100">
+                مشخصات تحویل
+              </h2>
+              <ul className="space-y-4">
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-slate-500 font-bold">حالت فیزیکی:</span>
+                  <span className="font-black text-slate-800">
+                    کریستال و پودری
+                  </span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-slate-500 font-bold">بسته‌بندی:</span>
+                  <span className="font-black text-slate-800">
+                    کیسه ۲۵ کیلویی / جامبوبگ
+                  </span>
+                </li>
+                <li className="flex items-center justify-between text-sm">
+                  <span className="text-slate-500 font-bold">گرید محصول:</span>
+                  <span className="font-black text-slate-800">
+                    کشاورزی و صنعتی
+                  </span>
+                </li>
+              </ul>
+              <div className="mt-8 p-4 rounded-2xl bg-orange-50 border border-orange-100">
+                <p className="text-xs leading-6 text-orange-800 font-bold">
+                  جهت دریافت آنالیز دقیق محموله فعلی و هماهنگی ارسال، لطفاً با
+                  واحد فروش در تماس باشید.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="container mx-auto max-w-6xl px-6 mt-16">
-        {/* معرفی محصول */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">معرفی سولفات مس</h2>
+      {/* بخش آنالیز فنی - اصلاح رسپانسیو جدول */}
+      <section className="py-20 px-4 lg:px-10 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-10 items-start">
+          <div className="md:w-1/3">
+            <div className="w-16 h-16 bg-[#0a1a2f] text-white rounded-2xl flex items-center justify-center mb-6">
+              <FlaskConical size={32} />
+            </div>
+            <h2 className="text-3xl font-black text-[#0a1a2f]">
+              آنالیز فنی محصول
+            </h2>
+            <p className="mt-4 text-slate-600 leading-8">
+              سولفات مس تولیدی با استانداردهای لازم جهت استفاده در
+              فرمولاسیون‌های حساس تهیه شده است.
+            </p>
+          </div>
 
-          <p className="text-slate-700 leading-loose">
-            سولفات مس پنج آبه یکی از ترکیبات پرکاربرد در صنایع مختلف است که به
-            صورت کریستال‌های آبی رنگ تولید می‌شود. این ماده در صنایع کشاورزی
-            برای تولید کودها و قارچ‌کش‌ها، در صنایع آبکاری فلزات، در فرآوری مواد
-            معدنی و همچنین در بسیاری از کاربردهای شیمیایی مورد استفاده قرار
-            می‌گیرد.
-          </p>
-        </section>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* محتوای اصلی */}
-          <div className="lg:col-span-2 space-y-16">
-            {/* کاربردها */}
-            <section>
-              <h2 className="text-2xl font-bold mb-6">کاربردهای سولفات مس</h2>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {applications.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 bg-slate-50 p-4 rounded-lg"
-                  >
-                    <CheckCircle2 className="text-[#c27829]" size={20} />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* آنالیز */}
-            <section
-              id="analysis"
-              className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-100 border border-slate-100"
-            >
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <FlaskConical className="text-[#c27829]" />
-                آنالیز فنی محصول
-              </h2>
-
-              <div className="overflow-hidden rounded-xl border border-slate-200">
-                <table className="w-full text-right">
-                  <thead className="bg-slate-50">
-                    <tr>
-                      <th className="p-4 border-b">پارامتر</th>
-                      <th className="p-4 border-b text-center">مقدار</th>
-                      <th className="p-4 border-b text-center">واحد</th>
+          <div className="md:w-2/3 w-full">
+            <div className="bg-white rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm">
+              <div className="overflow-x-auto">
+                {" "}
+                {/* اصلاح اسکرول موبایل */}
+                <table className="w-full text-right border-collapse min-w-[500px]">
+                  <thead>
+                    <tr className="bg-[#0a1a2f] text-white">
+                      <th className="p-5 font-black text-sm">
+                        پارامتر آزمایشگاهی
+                      </th>
+                      <th className="p-5 font-black text-sm text-center">
+                        مقدار
+                      </th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    {analysisData.map((item, index) => (
-                      <tr key={index} className="hover:bg-slate-50 transition">
-                        <td className="p-4 border-b font-medium">
-                          {item.param}
+                    {analysisData.map((row, idx) => (
+                      <tr
+                        key={idx}
+                        className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}
+                      >
+                        <td className="p-5 text-sm font-bold border-b border-slate-100">
+                          {row.param}
                         </td>
-
-                        <td className="p-4 border-b text-center ltr">
-                          {item.value}
-                        </td>
-
-                        <td className="p-4 border-b text-center text-sm text-slate-500">
-                          {item.unit}
+                        <td className="p-5 text-sm font-black text-center border-b border-slate-100 text-[#c27829]">
+                          {row.value}
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-            </section>
-
-            {/* ویژگی ها */}
-            <section>
-              <h2 className="text-2xl font-bold mb-6">ویژگی‌های محصول</h2>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {features.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 bg-slate-50 p-4 rounded-lg"
-                  >
-                    <CheckCircle2 className="text-[#c27829]" size={20} />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* بسته بندی */}
-            <section>
-              <h2 className="text-2xl font-bold mb-6">بسته‌بندی و ارسال</h2>
-
-              <p className="text-slate-700 leading-loose">
-                سولفات مس تولیدی در بسته‌بندی‌های مناسب برای حمل و نگهداری ارائه
-                می‌شود. امکان تأمین محصول برای مصرف‌کنندگان صنعتی و کشاورزی در
-                حجم‌های مختلف فراهم است. ارسال سفارش‌ها از طریق باربری‌های معتبر
-                انجام می‌شود.
-              </p>
-            </section>
-
-            {/* FAQ */}
-            <section>
-              <h2 className="text-2xl font-bold mb-6">سوالات متداول</h2>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold mb-2">
-                    سولفات مس چه کاربردهایی دارد؟
-                  </h3>
-                  <p className="text-slate-600">
-                    این ماده در کشاورزی، آبکاری فلزات، صنایع شیمیایی، خوراک دام
-                    و فرآوری مواد معدنی کاربرد دارد.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold mb-2">
-                    حداقل میزان سفارش چقدر است؟
-                  </h3>
-                  <p className="text-slate-600">
-                    میزان سفارش بسته به نوع مصرف و شرایط تأمین قابل بررسی است.
-                    برای دریافت اطلاعات دقیق با واحد فروش تماس بگیرید.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          {/* سایدبار */}
-          <aside className="space-y-6">
-            <div className="bg-[#0a1528] text-white p-8 rounded-2xl">
-              <h3 className="text-xl font-bold mb-4">استعلام قیمت سولفات مس</h3>
-
-              <p className="text-slate-400 mb-6 text-sm">
-                برای دریافت قیمت روز و اطلاعات فنی محصول با واحد فروش تماس
-                بگیرید.
-              </p>
-
-              <a
-                href="tel:09127017456"
-                className="block w-full bg-[#c27829] hover:bg-[#a66623] text-center py-4 rounded-xl font-bold"
-              >
-                تماس با فروش
-              </a>
-
-              <p className="text-xs text-slate-500 mt-4 text-center">
-                پاسخگویی مستقیم واحد فروش
-              </p>
             </div>
-          </aside>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* بخش ویژگی‌ها - جایگزین بج‌های شلوغ */}
+      <section className="bg-slate-50 py-20 px-4 lg:px-10">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "ارسال سریع",
+              desc: "هماهنگی فوری باربری برای تمام نقاط ایران",
+              icon: Truck,
+            },
+            {
+              title: "ضمانت کیفیت",
+              desc: "تأمین مستقیم و ارائه مشخصات فنی دقیق",
+              icon: Factory,
+            },
+            {
+              title: "بسته‌بندی ایمن",
+              desc: "ارائه در کیسه‌های لمینت شده و مقاوم",
+              icon: PackageCheck,
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="p-8 bg-white rounded-3xl shadow-sm border border-slate-100"
+            >
+              <div className="w-12 h-12 bg-orange-50 text-[#c27829] rounded-xl flex items-center justify-center mb-5">
+                <item.icon size={24} />
+              </div>
+              <h3 className="text-xl font-black mb-3">{item.title}</h3>
+              <p className="text-sm text-slate-600 leading-7">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* سوالات متداول آکاردئونی */}
+      <section className="py-20 px-4 lg:px-10 max-w-4xl mx-auto">
+        <h2 className="text-3xl font-black text-center mb-12 text-[#0a1a2f]">
+          سوالات متداول
+        </h2>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm transition-all"
+            >
+              <button
+                onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                className="w-full flex items-center justify-between p-6 text-right transition-colors hover:bg-slate-50"
+              >
+                <span className="font-black text-slate-800">
+                  {faq.question}
+                </span>
+                <ChevronDown
+                  size={20}
+                  className={`text-[#c27829] transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+              >
+                <div className="p-6 pt-0 text-sm leading-8 text-slate-600 border-t border-slate-50">
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* فوتر استعلام */}
+      <section className="bg-[#0a1a2f] py-16 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-6">
+            آماده ثبت سفارش هستید؟
+          </h2>
+          <p className="text-slate-400 mb-10 leading-8">
+            جهت دریافت مشاوره فنی و استعلام قیمت روز سولفات مس پنج آبه، با
+            کارشناسان ما در تماس باشید.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href={`tel:${phoneNumber}`}
+              className="h-14 px-10 rounded-2xl bg-[#c27829] text-white font-black flex items-center justify-center gap-2"
+            >
+              <Phone size={20} />
+              تماس با واحد فروش
+            </a>
+            <Link
+              href="/products"
+              className="h-14 px-10 rounded-2xl bg-white/5 border border-white/10 text-white font-black flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
+            >
+              <ArrowLeft size={20} />
+              سایر محصولات
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

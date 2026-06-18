@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   Beaker,
+  BookOpenText,
   ChevronDown,
   FlaskConical,
   Home,
@@ -21,8 +22,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const HEADER_HEIGHT_CLASS = "h-20";
 
-const phoneNumber = "+989120909323";
-const displayPhone = "۰۹۱۲ ۰۹۰ ۹۳۲۳";
+const phoneNumber = "+989123063576";
+const displayPhone = "۰۹۱۲ ۳۰۶ ۳۵۷۶";
 const whatsappPhone = "989120909323";
 const whatsappText = encodeURIComponent(
   "سلام، برای مشاوره و استعلام قیمت محصولات شیمی گستر سولفات مزاحم شدم.",
@@ -32,6 +33,7 @@ const whatsappHref = `https://wa.me/${whatsappPhone}?text=${whatsappText}`;
 const navItems = [
   { title: "صفحه اصلی", href: "/", icon: Home },
   { title: "محصولات", href: "/products", icon: Package },
+  { title: "وبلاگ و مقالات", href: "/blog", icon: BookOpenText },
   { title: "درباره ما", href: "/about", icon: Info },
   { title: "تماس با ما", href: "/contact", icon: Phone },
 ];
@@ -84,7 +86,6 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
-
     return () => {
       document.body.style.overflow = "";
     };
@@ -96,12 +97,20 @@ export default function Header() {
   };
 
   const headerTheme = scrolled
-    ? "border-slate-200/80 bg-white/95 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl"
-    : "border-white/10 bg-[#07111f]/78 shadow-[0_8px_30px_rgba(15,23,42,0.06)] backdrop-blur-xl";
+    ? "border-amber-200/80 bg-[#fffaf0]/98 shadow-[0_12px_34px_rgba(120,53,15,0.12)] backdrop-blur-xl"
+    : "border-amber-100/70 bg-white/90 shadow-[0_8px_26px_rgba(120,53,15,0.08)] backdrop-blur-xl";
 
   const navLinkClass = scrolled
-    ? "text-slate-700 hover:bg-slate-50 hover:text-[#c27829]"
-    : "text-white/90 hover:bg-white/10 hover:text-[#f0b56d]";
+    ? "text-[#0a1a2f] hover:bg-[#c27829]/10 hover:text-[#c27829]"
+    : "text-slate-800 hover:bg-[#c27829]/10 hover:text-[#c27829]";
+
+  const phoneBoxClass = scrolled
+    ? "border-amber-100 bg-white text-[#0a1a2f] hover:border-[#c27829]/30 hover:bg-[#c27829]/5 hover:text-[#c27829]"
+    : "border-amber-100 bg-white/90 text-[#0a1a2f] shadow-sm hover:border-[#c27829]/30 hover:bg-[#fff7ed] hover:text-[#c27829]";
+
+  const mobileMenuButtonClass = scrolled
+    ? "border-amber-100 bg-white text-[#0a1a2f] hover:bg-[#fff7ed]"
+    : "border-amber-100 bg-white/90 text-[#0a1a2f] shadow-sm hover:bg-[#fff7ed]";
 
   return (
     <header
@@ -110,14 +119,15 @@ export default function Header() {
       <div
         className={`mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10 ${HEADER_HEIGHT_CLASS}`}
       >
+        {/* بخش لوگو اصلاح شده */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-100 bg-white p-1.5 shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md sm:h-14 sm:w-14">
+          <div className="relative flex h-12 w-12 items-center justify-center transition-all duration-300 group-hover:-translate-y-0.5 sm:h-14 sm:w-14">
             <Image
-              src="/images/logo.jpg"
+              src="/logo.svg"
               alt="لوگوی شیمی گستر سولفات"
-              width={56}
-              height={56}
-              className="h-full w-full rounded-xl object-contain mix-blend-multiply"
+              width={60}
+              height={60}
+              className="h-full w-full object-contain"
               priority
             />
           </div>
@@ -125,141 +135,103 @@ export default function Header() {
           <div className="flex flex-col leading-tight">
             <span
               className={`text-base font-black sm:text-lg ${
-                scrolled ? "text-[#0a1a2f]" : "text-white"
+                scrolled ? "text-[#0a1a2f]" : "text-slate-900"
               }`}
             >
               شیمی گستر سولفات
-            </span>
-            <span
-              className={`mt-1 hidden text-xs font-semibold sm:block ${
-                scrolled ? "text-slate-500" : "text-slate-300"
-              }`}
-            >
-              تولید و تأمین سولفات‌های صنعتی
             </span>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
-          <Link
-            href="/"
-            className={`rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
-          >
-            صفحه اصلی
-          </Link>
-
-          <div
-            className="relative"
-            onMouseEnter={() => setDesktopProductsOpen(true)}
-            onMouseLeave={() => setDesktopProductsOpen(false)}
-          >
-            <Link
-              href="/products"
-              className={`flex items-center gap-1 rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
-            >
-              محصولات
-              <ChevronDown
-                size={16}
-                className={`transition-transform duration-200 ${
-                  desktopProductsOpen ? "rotate-180" : ""
-                }`}
-              />
-            </Link>
-
-            <AnimatePresence>
-              {desktopProductsOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 12, scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 top-full mt-4 w-[360px] overflow-hidden rounded-3xl border border-slate-100 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.16)]"
+          {navItems.map((item) => {
+            if (item.title === "محصولات") {
+              return (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setDesktopProductsOpen(true)}
+                  onMouseLeave={() => setDesktopProductsOpen(false)}
                 >
-                  <div className="mb-2 px-2 pt-2">
-                    <p className="text-sm font-black text-[#0a1a2f]">
-                      دسته‌بندی محصولات
-                    </p>
-                    <p className="mt-1 text-xs leading-5 text-slate-500">
-                      انتخاب سریع گروه محصول برای مشاهده جزئیات
-                    </p>
-                  </div>
+                  <Link
+                    href="/products"
+                    className={`flex items-center gap-1 rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
+                  >
+                    محصولات
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        desktopProductsOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Link>
 
-                  <div className="space-y-1">
-                    {productItems.map((item) => {
-                      const Icon = item.icon;
+                  <AnimatePresence>
+                    {desktopProductsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 12, scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute right-0 top-full mt-4 w-[360px] overflow-hidden rounded-3xl border border-slate-100 bg-white p-3 shadow-[0_20px_60px_rgba(15,23,42,0.16)]"
+                      >
+                        <div className="mb-2 px-2 pt-2">
+                          <p className="text-sm font-black text-[#0a1a2f]">
+                            دسته‌بندی محصولات
+                          </p>
+                        </div>
 
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={() => setDesktopProductsOpen(false)}
-                          className="group flex items-start gap-3 rounded-2xl px-3 py-3 transition hover:bg-slate-50"
-                        >
-                          <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#c27829]/10 text-[#c27829] transition group-hover:bg-[#c27829] group-hover:text-white">
-                            <Icon size={18} />
-                          </span>
+                        <div className="space-y-1">
+                          {productItems.map((product) => {
+                            const ProductIcon = product.icon;
+                            return (
+                              <Link
+                                key={product.href}
+                                href={product.href}
+                                onClick={() => setDesktopProductsOpen(false)}
+                                className="group flex items-start gap-3 rounded-2xl px-3 py-3 transition hover:bg-slate-50"
+                              >
+                                <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#c27829]/10 text-[#c27829] transition group-hover:bg-[#c27829] group-hover:text-white">
+                                  <ProductIcon size={18} />
+                                </span>
+                                <span className="flex flex-col">
+                                  <span className="text-sm font-black text-slate-800 transition group-hover:text-[#c27829]">
+                                    {product.title}
+                                  </span>
+                                  <span className="mt-1 text-xs leading-5 text-slate-500">
+                                    {product.desc}
+                                  </span>
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
 
-                          <span className="flex flex-col">
-                            <span className="text-sm font-black text-slate-800 transition group-hover:text-[#c27829]">
-                              {item.title}
-                            </span>
-                            <span className="mt-1 text-xs leading-5 text-slate-500">
-                              {item.desc}
-                            </span>
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-
-                  <div className="mt-3 border-t border-slate-100 px-2 pt-3">
-                    <Link
-                      href="/products"
-                      onClick={() => setDesktopProductsOpen(false)}
-                      className="text-sm font-bold text-[#c27829] transition hover:text-[#0a1a2f]"
-                    >
-                      مشاهده همه محصولات
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <Link
-            href="/about"
-            className={`rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
-          >
-            درباره ما
-          </Link>
-
-          <Link
-            href="/contact"
-            className={`rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
-          >
-            تماس با ما
-          </Link>
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-xl px-4 py-2.5 text-sm font-bold transition ${navLinkClass}`}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
           <a
             href={`tel:${phoneNumber}`}
-            className={`flex h-11 items-center gap-2 rounded-2xl border px-4 text-sm font-black transition ${
-              scrolled
-                ? "border-slate-200 bg-slate-50 text-[#0a1a2f] hover:border-[#c27829]/30 hover:bg-[#c27829]/5 hover:text-[#c27829]"
-                : "border-white/10 bg-white/10 text-white hover:bg-white/15"
-            }`}
+            className={`flex h-11 items-center gap-2 rounded-2xl border px-4 text-sm font-black transition ${phoneBoxClass}`}
             aria-label="تماس مستقیم"
           >
             <span dir="ltr">{displayPhone}</span>
-            <Phone size={18} />
-          </a>
-
-          <a
-            href={`tel:${phoneNumber}`}
-            className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0a1a2f] text-white shadow-sm transition hover:bg-[#c27829]"
-            aria-label="تماس تلفنی"
-          >
             <Phone size={18} />
           </a>
 
@@ -277,17 +249,14 @@ export default function Header() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className={`flex h-11 w-11 items-center justify-center rounded-2xl border transition lg:hidden ${
-            scrolled
-              ? "border-slate-100 bg-slate-50 text-[#0a1a2f] hover:bg-slate-100"
-              : "border-white/10 bg-white/10 text-white hover:bg-white/15"
-          }`}
+          className={`flex h-11 w-11 items-center justify-center rounded-2xl border transition lg:hidden ${mobileMenuButtonClass}`}
           aria-label="باز کردن منو"
         >
           <Menu size={24} />
         </button>
       </div>
 
+      {/* منوی موبایل */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -309,32 +278,28 @@ export default function Header() {
               className="fixed right-0 top-0 z-[120] flex h-[100dvh] w-[88vw] max-w-sm flex-col overflow-hidden bg-white shadow-2xl lg:hidden"
             >
               <div className="flex items-center justify-between border-b border-slate-100 px-4 py-4">
-                <Link href="/" onClick={closeMenu} className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-100 bg-white p-1.5 shadow-sm">
-                    <Image
-                      src="/images/logo.jpg"
-                      alt="لوگوی شیمی گستر سولفات"
-                      width={48}
-                      height={48}
-                      className="h-full w-full rounded-xl object-contain mix-blend-multiply"
-                    />
-                  </div>
-
+                <Link
+                  href="/"
+                  onClick={closeMenu}
+                  className="flex items-center gap-3"
+                >
+                  <Image
+                    src="/logo.svg"
+                    alt="لوگوی شیمی گستر سولفات"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain"
+                  />
                   <div className="flex flex-col leading-tight">
                     <span className="text-base font-black text-[#0a1a2f]">
                       شیمی گستر سولفات
                     </span>
-                    <span className="mt-1 text-xs font-semibold text-slate-500">
-                      سولفات‌های صنعتی
-                    </span>
                   </div>
                 </Link>
-
                 <button
                   type="button"
                   onClick={closeMenu}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-700 transition hover:bg-slate-100"
-                  aria-label="بستن منو"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-700"
                 >
                   <X size={22} />
                 </button>
@@ -344,7 +309,6 @@ export default function Header() {
                 <div className="space-y-2">
                   {navItems.map((item) => {
                     const Icon = item.icon;
-
                     if (item.title === "محصولات") {
                       return (
                         <div
@@ -353,7 +317,7 @@ export default function Header() {
                         >
                           <button
                             type="button"
-                            onClick={() => setProductsOpen((value) => !value)}
+                            onClick={() => setProductsOpen((v) => !v)}
                             className="flex w-full items-center justify-between bg-slate-50 px-4 py-4 text-right text-sm font-black text-[#0a1a2f]"
                           >
                             <span className="flex items-center gap-3">
@@ -362,72 +326,45 @@ export default function Header() {
                               </span>
                               محصولات
                             </span>
-
                             <ChevronDown
                               size={18}
-                              className={`transition-transform ${
-                                productsOpen ? "rotate-180" : ""
-                              }`}
+                              className={productsOpen ? "rotate-180" : ""}
                             />
                           </button>
-
-                          <AnimatePresence initial={false}>
+                          <AnimatePresence>
                             {productsOpen && (
                               <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="overflow-hidden bg-white"
+                                initial={{ height: 0 }}
+                                animate={{ height: "auto" }}
+                                exit={{ height: 0 }}
+                                className="overflow-hidden bg-white p-2 space-y-1"
                               >
-                                <div className="space-y-1 p-2">
+                                {productItems.map((p) => (
                                   <Link
-                                    href="/products"
+                                    key={p.href}
+                                    href={p.href}
                                     onClick={closeMenu}
-                                    className="block rounded-xl px-4 py-3 text-sm font-bold text-slate-600 hover:bg-slate-50"
+                                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-50"
                                   >
-                                    مشاهده همه محصولات
+                                    <p.icon
+                                      size={16}
+                                      className="text-[#c27829]"
+                                    />
+                                    {p.title}
                                   </Link>
-
-                                  {productItems.map((product) => {
-                                    const ProductIcon = product.icon;
-
-                                    return (
-                                      <Link
-                                        key={product.href}
-                                        href={product.href}
-                                        onClick={closeMenu}
-                                        className="flex items-start gap-3 rounded-xl px-4 py-3 text-sm transition hover:bg-slate-50"
-                                      >
-                                        <span className="mt-0.5 text-[#c27829]">
-                                          <ProductIcon size={17} />
-                                        </span>
-
-                                        <span className="flex flex-col">
-                                          <span className="font-bold text-slate-700">
-                                            {product.title}
-                                          </span>
-                                          <span className="mt-1 text-xs leading-5 text-slate-500">
-                                            {product.desc}
-                                          </span>
-                                        </span>
-                                      </Link>
-                                    );
-                                  })}
-                                </div>
+                                ))}
                               </motion.div>
                             )}
                           </AnimatePresence>
                         </div>
                       );
                     }
-
                     return (
                       <Link
                         key={item.href}
                         href={item.href}
                         onClick={closeMenu}
-                        className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-4 text-sm font-black text-slate-700 transition hover:bg-slate-50 hover:text-[#c27829]"
+                        className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
                       >
                         <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-50 text-[#c27829]">
                           <Icon size={18} />
@@ -437,45 +374,27 @@ export default function Header() {
                     );
                   })}
                 </div>
-
-                <div className="mt-5 rounded-2xl bg-slate-50 p-4">
-                  <p className="text-sm font-black text-[#0a1a2f]">
-                    مشاوره و استعلام قیمت
-                  </p>
-                  <p className="mt-2 text-xs leading-6 text-slate-500">
-                    برای دریافت قیمت روز و راهنمایی انتخاب محصول، با بخش فروش در ارتباط باشید.
-                  </p>
-                </div>
               </div>
 
-              <div className="border-t border-slate-100 bg-white p-4">
+              <div className="border-t border-slate-100 p-4">
                 <div className="grid grid-cols-2 gap-3">
                   <a
                     href={`tel:${phoneNumber}`}
-                    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#0a1a2f] text-sm font-black text-white transition hover:bg-[#c27829]"
+                    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#0a1a2f] text-sm font-black text-white"
                   >
                     <Phone size={18} />
                     تماس
                   </a>
-
                   <a
                     href={whatsappHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#25D366] text-sm font-black text-white transition hover:bg-[#1ebe5d]"
+                    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-[#25D366] text-sm font-black text-white"
                   >
                     <MessageCircle size={19} />
                     واتس‌اپ
                   </a>
                 </div>
-
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="mt-3 flex h-11 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 text-sm font-black text-[#0a1a2f]"
-                  dir="ltr"
-                >
-                  {displayPhone}
-                </a>
               </div>
             </motion.aside>
           </>
