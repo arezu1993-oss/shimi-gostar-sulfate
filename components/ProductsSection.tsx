@@ -78,7 +78,7 @@ const productCategories: ProductCategory[] = [
     accent: "text-blue-400",
     iconBg: "bg-blue-500/10",
     primaryCta: "مشاهده مشخصات فنی",
-    secondaryCta: "استعلام قیمت سولفات مس",
+    secondaryCta: "استعلام قیمت",
   },
   {
     title: "سایر سولفات‌ها",

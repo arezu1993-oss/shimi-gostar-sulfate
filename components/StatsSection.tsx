@@ -149,18 +149,14 @@ export default function StatsSection() {
                   />
 
                   <div className="relative z-10">
-                    <div className="mb-8 flex items-start justify-between gap-4">
+                    <div className="mb-8 flex items-start gap-4">
                       <div className="flex h-13 w-13 items-center justify-center rounded-2xl bg-white/10 text-[#f0b56d] ring-1 ring-white/10 transition group-hover:bg-[#c27829] group-hover:text-white">
                         <Icon size={25} strokeWidth={1.8} />
                       </div>
-
-                      <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-xs font-bold text-slate-300">
-                        ۰{index + 1}
-                      </span>
                     </div>
 
                     <div className="flex items-end gap-1">
-                      <span className="text-5xl font-black tracking-tight text-white md:text-6xl">
+                      <span className="text-4xl font-black tracking-tight text-white md:text-5xl">
                         <CountUp
                           end={stat.number}
                           duration={2.2}
@@ -182,10 +178,6 @@ export default function StatsSection() {
                     <p className="mt-3 min-h-[72px] text-sm leading-7 text-slate-300">
                       {stat.description}
                     </p>
-
-                    <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <div className="h-full w-2/3 rounded-full bg-gradient-to-l from-[#c27829] to-[#f0b56d] transition-all duration-500 group-hover:w-full" />
-                    </div>
                   </div>
                 </motion.article>
               );

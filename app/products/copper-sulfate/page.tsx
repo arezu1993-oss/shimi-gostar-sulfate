@@ -158,7 +158,7 @@ export default function CopperSulfatePage() {
 
           <div className="md:w-2/3 w-full">
             <div className="bg-white rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm">
-              <div className="overflow-x-auto">
+              <div className="overflow-x-visible-auto">
                 {" "}
                 {/* اصلاح اسکرول موبایل */}
                 <table className="w-full text-right border-collapse min-w-[500px]">

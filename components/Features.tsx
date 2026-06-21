@@ -87,7 +87,7 @@ export default function Features() {
             <div className="mt-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 rounded-2xl bg-[#0a1a2f] px-6 py-4 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-[#c27829]"
+                className="inline-flex items-center gap-3 rounded-2xl bg-[#0a1a2f] px-6 py-4 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:-translate-y-0.5 hover:bg-[#c27829]"
               >
                 دریافت مشاوره و استعلام
                 <ArrowLeft size={18} />
@@ -95,21 +95,19 @@ export default function Features() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-8">
-            {features.map((feature, index) => {
+          <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:col-span-8 lg:auto-rows-fr">
+            {features.map((feature) => {
               const Icon = feature.icon;
 
               return (
                 <article
                   key={feature.title}
-                  className={`group relative overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5 sm:p-7 ${
-                    index === 0 || index === 3 ? "sm:translate-y-6" : ""
-                  }`}
+                  className="group relative h-full overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5 sm:p-7"
                 >
                   <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[2rem] bg-gradient-to-bl from-[#c27829]/10 to-transparent" />
 
-                  <div className="relative z-10">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
                       <Icon size={30} strokeWidth={1.7} />
                     </div>
 

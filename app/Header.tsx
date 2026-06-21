@@ -114,7 +114,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-[100] w-full border-b transition-all duration-300 ${headerTheme}`}
+      className={`fixed left-0 right-0 top-0 z-[100] w-full transition-all duration-300 ${headerTheme}`}
     >
       <div
         className={`mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10 ${HEADER_HEIGHT_CLASS}`}
