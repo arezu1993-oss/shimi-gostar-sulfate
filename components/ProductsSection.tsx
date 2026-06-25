@@ -5,16 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
-  Award,
   Beaker,
+  Boxes,
   CheckCircle2,
   Factory,
-  FlaskConical,
-  PackageCheck,
   PhoneCall,
-  ShieldCheck,
   Sprout,
-  Truck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -47,12 +43,6 @@ type RegularProduct = BaseProduct & {
 
 type ProductCategory = FeaturedProduct | RegularProduct;
 
-type TrustItem = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
-
 const productsHref = "/products";
 const contactHref = "/contact";
 
@@ -64,9 +54,9 @@ const productCategories: ProductCategory[] = [
     image: "/images/hero-2.jpg",
     alt: "سولفات مس کریستالی آبی برای کاربردهای صنعتی و کشاورزی",
     featured: true,
-    icon: FlaskConical,
+    icon: Boxes,
     description:
-      "سولفات مس کریستالی یکی از محصولات اصلی شیمی گستر سولفات است که برای کاربردهای کشاورزی، صنعتی و فرآیندی با کیفیت پایدار، رنگ یکنواخت و قابلیت تأمین عمده عرضه می‌شود.",
+      "سولفات مس کریستالی با رنگ یکنواخت، کیفیت پایدار و امکان تأمین عمده برای کاربردهای کشاورزی، صنعتی و فرآیندی عرضه می‌شود.",
     specs: [
       "خلوص ۲۴٪ تا ۲۵٪",
       "کریستال آبی یکنواخت",
@@ -77,7 +67,7 @@ const productCategories: ProductCategory[] = [
     href: "/products/copper-sulfate",
     accent: "text-blue-400",
     iconBg: "bg-blue-500/10",
-    primaryCta: "مشاهده مشخصات فنی",
+    primaryCta: "مشاهده مشخصات",
     secondaryCta: "استعلام قیمت",
   },
   {
@@ -88,7 +78,7 @@ const productCategories: ProductCategory[] = [
     featured: false,
     icon: Beaker,
     description:
-      "تأمین انواع سولفات‌های فلزی برای مصارف صنعتی، کشاورزی و تولیدی با تمرکز بر کیفیت و پایداری تأمین.",
+      "تأمین سولفات‌های فلزی پرمصرف برای کاربردهای صنعتی، کشاورزی و تولیدی.",
     specs: ["سولفات آهن و روی", "منیزیم و منگنز", "مصرف صنعتی و کشاورزی"],
     href: "/products/other-sulfates",
     accent: "text-cyan-600",
@@ -103,7 +93,7 @@ const productCategories: ProductCategory[] = [
     featured: false,
     icon: Sprout,
     description:
-      "نهاده‌ها و ترکیبات مورد استفاده در کشاورزی برای تغذیه گیاه، بهبود عملکرد کشت و اصلاح شرایط خاک.",
+      "نهاده‌های کاربردی برای تغذیه گیاه، بهبود عملکرد کشت و اصلاح خاک.",
     specs: ["کودهای پودری و مایع", "ریز مغذی‌های تخصصی", "مصرف باغی و زراعی"],
     href: "/products/agro-chemicals",
     accent: "text-emerald-600",
@@ -118,7 +108,7 @@ const productCategories: ProductCategory[] = [
     featured: false,
     icon: Factory,
     description:
-      "تأمین مواد اولیه شیمیایی برای کارخانه‌ها و واحدهای تولیدی با رویکرد تأمین عمده، منظم و قابل اتکا.",
+      "تأمین مواد اولیه شیمیایی برای کارخانه‌ها و واحدهای تولیدی به‌صورت عمده.",
     specs: ["مواد پایه تولید", "تأمین عمده B2B", "زنجیره تأمین پایدار"],
     href: "/products/raw-materials",
     accent: "text-[#c27829]",
@@ -127,31 +117,8 @@ const productCategories: ProductCategory[] = [
   },
 ];
 
-const trustItems: TrustItem[] = [
-  {
-    title: "تأمین عمده و مستمر",
-    description: "مناسب کارخانه‌ها، واحدهای تولیدی و مصرف‌کنندگان عمده",
-    icon: PackageCheck,
-  },
-  {
-    title: "مشاوره انتخاب گرید",
-    description: "راهنمایی برای انتخاب محصول متناسب با کاربرد صنعتی یا کشاورزی",
-    icon: ShieldCheck,
-  },
-  {
-    title: "بسته‌بندی منظم",
-    description: "آماده‌سازی سفارش‌ها با تمرکز بر نظم، کیفیت و تحویل مطمئن",
-    icon: Award,
-  },
-  {
-    title: "ارسال و هماهنگی فروش",
-    description: "امکان هماهنگی برای تأمین، بارگیری و ارسال سفارش‌های عمده",
-    icon: Truck,
-  },
-];
-
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -164,14 +131,12 @@ export default function ProductsSection() {
     (item): item is RegularProduct => !item.featured,
   );
 
-  if (!featuredProduct) {
-    return null;
-  }
+  if (!featuredProduct) return null;
 
   const FeaturedIcon = featuredProduct.icon;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/70 to-white py-20 md:py-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/70 to-white pt-2 pb-12 md:pt-10 md:pb-16">
       <div className="pointer-events-none absolute right-[-10rem] top-20 h-72 w-72 rounded-full bg-[#c27829]/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-20 left-[-10rem] h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
 
@@ -181,7 +146,7 @@ export default function ProductsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           className="mb-12 flex flex-col gap-8 md:mb-16 lg:flex-row lg:items-end lg:justify-between"
         >
           <div className="max-w-3xl">
@@ -196,18 +161,17 @@ export default function ProductsSection() {
             </h2>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
-              تمرکز اصلی شیمی گستر سولفات بر تولید و تأمین سولفات مس کریستالی
-              است؛ در کنار آن، انواع سولفات‌های فلزی، نهاده‌های کشاورزی و مواد
-              اولیه شیمیایی برای مصرف صنعتی و عمده تأمین می‌شود.
+              تولید و تأمین سولفات مس کریستالی، انواع سولفات‌های فلزی، نهاده‌های
+              کشاورزی و مواد اولیه شیمیایی برای مصرف صنعتی و عمده.
             </p>
           </div>
 
           <Link
             href={productsHref}
-            className="hidden shrink-0 items-center gap-3 rounded-2xl bg-[#0a1a2f] px-7 py-4 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-[#c27829] md:inline-flex"
+            className="hidden shrink-0 items-center gap-3 rounded-xl bg-[#0a1a2f] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:bg-[#c27829] md:inline-flex"
           >
             مشاهده همه محصولات
-            <ArrowLeft size={19} />
+            <ArrowLeft size={18} />
           </Link>
         </motion.div>
 
@@ -217,8 +181,8 @@ export default function ProductsSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#07111f] shadow-2xl shadow-slate-950/10 lg:col-span-12"
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#07111f] shadow-xl shadow-slate-950/10 lg:col-span-12"
           >
             <div className="absolute inset-0">
               <Image
@@ -226,14 +190,14 @@ export default function ProductsSection() {
                 alt={featuredProduct.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 1180px"
-                className="object-cover object-center opacity-85 transition duration-700 group-hover:scale-[1.02]"
+                className="object-cover object-center opacity-85"
                 priority={false}
               />
               <div className="absolute inset-0 bg-gradient-to-l from-[#06101d]/95 via-[#07111f]/78 to-[#07111f]/20" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.20),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(194,120,41,0.22),transparent_30%)]" />
             </div>
 
-            <div className="relative z-10 grid min-h-[520px] grid-cols-1 items-center gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-12 lg:p-12 xl:p-14">
+            <div className="relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-12 lg:p-12 xl:p-14">
               <div className="lg:col-span-7 xl:col-span-6">
                 <div className="mb-6 inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white backdrop-blur-md">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
@@ -244,7 +208,7 @@ export default function ProductsSection() {
                   </span>
                 </div>
 
-                <h3 className="text-3xl font-black leading-[1.35] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[54px] lg:leading-[1.22]">
+                <h3 className="text-3xl font-black leading-[1.35] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.22]">
                   {featuredProduct.title}
                 </h3>
 
@@ -256,9 +220,9 @@ export default function ProductsSection() {
                   {featuredProduct.specs.map((spec) => (
                     <span
                       key={spec}
-                      className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-bold text-white backdrop-blur-md"
+                      className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm font-bold text-white backdrop-blur-md"
                     >
-                      <CheckCircle2 size={17} className="text-blue-300" />
+                      <CheckCircle2 size={16} className="text-blue-300" />
                       {spec}
                     </span>
                   ))}
@@ -267,20 +231,20 @@ export default function ProductsSection() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <Link
                     href={featuredProduct.href}
-                    className="group/btn inline-flex items-center justify-center gap-3 rounded-2xl bg-[#c27829] px-7 py-4 text-base font-black text-white shadow-xl shadow-[#c27829]/25 transition hover:-translate-y-0.5 hover:bg-[#a36522] sm:px-8"
+                    className="group/btn inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#c27829] px-5 py-3 text-sm font-black text-white shadow-lg shadow-[#c27829]/25 transition duration-300 hover:bg-[#a36522] sm:px-6 lg:py-3.5 lg:text-[15px]"
                   >
                     {featuredProduct.primaryCta}
                     <ArrowLeft
-                      size={20}
+                      size={18}
                       className="transition group-hover/btn:-translate-x-1"
                     />
                   </Link>
 
                   <Link
                     href={contactHref}
-                    className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-7 py-4 text-base font-black text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/15 sm:px-8"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur-md transition duration-300 hover:bg-white/15 sm:px-6 lg:py-3.5 lg:text-[15px]"
                   >
-                    <PhoneCall size={19} />
+                    <PhoneCall size={18} />
                     {featuredProduct.secondaryCta}
                   </Link>
                 </div>
@@ -296,7 +260,7 @@ export default function ProductsSection() {
                     {featuredProduct.applications.map((application) => (
                       <div
                         key={application}
-                        className="rounded-2xl border border-white/10 bg-white/10 p-4 text-sm font-bold text-white"
+                        className="rounded-xl border border-white/10 bg-white/10 p-4 text-sm font-bold text-white"
                       >
                         {application}
                       </div>
@@ -308,8 +272,8 @@ export default function ProductsSection() {
                       مناسب برای خرید عمده و تأمین مستمر
                     </p>
                     <p className="mt-2 text-sm leading-7 text-slate-200/85">
-                      برای دریافت قیمت روز، موجودی، نوع بسته‌بندی و شرایط ارسال،
-                      درخواست خود را برای واحد فروش ارسال کنید.
+                      برای قیمت روز، موجودی، نوع بسته‌بندی و شرایط ارسال با واحد
+                      فروش هماهنگ کنید.
                     </p>
                   </div>
                 </div>
@@ -328,11 +292,11 @@ export default function ProductsSection() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{
-                  duration: 0.55,
+                  duration: 0.45,
                   ease: "easeOut",
-                  delay: index * 0.08,
+                  delay: index * 0.04,
                 }}
-                className="group overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white shadow-sm transition duration-500 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-2xl hover:shadow-slate-950/10 lg:col-span-4"
+                className="group overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white shadow-sm transition duration-300 hover:border-[#c27829]/25 hover:shadow-lg hover:shadow-slate-950/5 lg:col-span-4"
               >
                 <Link href={product.href} className="block">
                   <div className="relative h-60 overflow-hidden bg-slate-900 sm:h-64 lg:h-56 xl:h-64">
@@ -341,28 +305,28 @@ export default function ProductsSection() {
                       alt={product.alt}
                       fill
                       sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover object-center transition duration-700 group-hover:scale-[1.04]"
+                      className="object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/25 to-transparent" />
 
-                    <div className="absolute right-5 top-5 inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/15 px-3 py-2 text-xs font-bold text-white backdrop-blur-md">
+                    <div className="absolute right-5 top-5 inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/15 px-3 py-2 text-xs font-bold text-white backdrop-blur-md">
                       {product.badge}
                     </div>
 
                     <div className="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/15 text-white backdrop-blur-md">
-                      <Icon size={24} />
+                      <Icon size={23} />
                     </div>
                   </div>
                 </Link>
 
                 <div className="p-6 sm:p-7">
                   <Link href={product.href} className="group/title block">
-                    <h3 className="text-2xl font-black leading-9 text-[#0a1a2f] transition group-hover/title:text-[#c27829]">
+                    <h3 className="text-2xl font-black leading-9 text-[#0a1a2f] transition duration-300 group-hover/title:text-[#c27829]">
                       {product.title}
                     </h3>
                   </Link>
 
-                  <p className="mt-4 min-h-[88px] text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+                  <p className="mt-4 min-h-[64px] text-sm leading-7 text-slate-600 sm:text-[15px] sm:leading-8">
                     {product.description}
                   </p>
 
@@ -370,25 +334,25 @@ export default function ProductsSection() {
                     {product.specs.map((spec) => (
                       <span
                         key={spec}
-                        className="rounded-xl bg-slate-100 px-3.5 py-2.5 text-xs font-bold text-slate-700"
+                        className="rounded-xl bg-slate-100 px-3.5 py-2 text-xs font-bold text-slate-700"
                       >
                         {spec}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-7 flex items-center justify-between gap-4 border-t border-slate-100 pt-5">
+                  <div className="mt-7 flex items-center justify-between gap-3 border-t border-slate-100 pt-5">
                     <Link
                       href={product.href}
-                      className="inline-flex items-center gap-2 text-sm font-black text-[#0a1a2f] transition hover:text-[#c27829]"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0a1a2f] px-4 py-2.5 text-xs font-black text-white transition duration-300 hover:bg-[#c27829] sm:text-sm"
                     >
                       {product.cta}
-                      <ArrowLeft size={18} />
+                      <ArrowLeft size={17} />
                     </Link>
 
                     <Link
                       href={contactHref}
-                      className="hidden rounded-xl bg-slate-50 px-4 py-2.5 text-xs font-black text-slate-700 transition hover:bg-[#c27829]/10 hover:text-[#c27829] sm:inline-flex"
+                      className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-black text-slate-700 transition duration-300 hover:border-[#c27829]/20 hover:bg-[#c27829]/10 hover:text-[#c27829]"
                     >
                       استعلام
                     </Link>
@@ -399,45 +363,13 @@ export default function ProductsSection() {
           })}
         </div>
 
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className="mt-8 grid grid-cols-1 gap-4 rounded-[2rem] border border-slate-200/70 bg-white/80 p-4 shadow-sm backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4 lg:p-5"
-        >
-          {trustItems.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className="rounded-[1.5rem] border border-slate-100 bg-slate-50/80 p-5 transition hover:border-[#c27829]/20 hover:bg-white"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#c27829]/10 text-[#c27829]">
-                  <Icon size={21} />
-                </div>
-
-                <h3 className="mt-4 text-base font-black text-[#0a1a2f]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-7 text-slate-600">
-                  {item.description}
-                </p>
-              </div>
-            );
-          })}
-        </motion.div>
-
         <div className="mt-8 flex justify-center md:hidden">
           <Link
             href={productsHref}
-            className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-[#0a1a2f] px-7 py-4 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition hover:bg-[#c27829] sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#0a1a2f] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:bg-[#c27829] sm:w-auto"
           >
             مشاهده همه محصولات
-            <ArrowLeft size={19} />
+            <ArrowLeft size={18} />
           </Link>
         </div>
       </div>

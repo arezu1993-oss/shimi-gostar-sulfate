@@ -1,11 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowLeft,
-  BadgeCheck,
+  CheckCircle2,
   ClipboardCheck,
   Factory,
   FlaskConical,
   Microscope,
+  PhoneCall,
   Scale,
   type LucideIcon,
 } from "lucide-react";
@@ -19,109 +22,121 @@ type FeatureItem = {
 const features: FeatureItem[] = [
   {
     title: "کنترل کیفیت دقیق",
-    desc: "محصولات با پایش کیفی منظم و بررسی مشخصات فنی عرضه می‌شوند تا کیفیت در سفارش‌های تکرارشونده و مصرف صنعتی پایدار بماند.",
+    desc: "پایش منظم مشخصات فنی برای حفظ ثبات کیفیت در سفارش‌های عمده.",
     icon: Microscope,
   },
   {
     title: "تخصص در محصولات سولفاته",
-    desc: "تمرکز تخصصی بر تولید و تأمین سولفات مس و سایر سولفات‌های پرکاربرد، انتخاب محصول مناسب را برای کاربردهای صنعتی و کشاورزی ساده‌تر می‌کند.",
+    desc: "تمرکز تخصصی بر سولفات مس و ترکیبات سولفاته پرکاربرد.",
     icon: FlaskConical,
   },
   {
-    title: "همکاری عمده و قراردادی",
-    desc: "امکان تأمین برای واحدهای تولیدی، توزیع‌کنندگان و مصرف‌کنندگان عمده با رویکرد همکاری منظم، برنامه‌پذیر و قابل اتکا فراهم است.",
+    title: "تأمین منظم و عمده",
+    desc: "همکاری پایدار با صنایع و خریداران B2B برای تأمین مستمر.",
     icon: Factory,
   },
   {
-    title: "شفافیت در مشخصات سفارش",
-    desc: "اطلاعات فنی، نوع بسته‌بندی، شرایط تحویل و جزئیات سفارش با شفافیت ارائه می‌شود تا فرآیند خرید سریع‌تر و مطمئن‌تر انجام شود.",
+    title: "شفافیت در سفارش",
+    desc: "ارائه روشن مشخصات، بسته‌بندی و شرایط تحویل پیش از خرید.",
     icon: ClipboardCheck,
   },
 ];
 
 const highlights = [
-  "مناسب برای تأمین عمده و همکاری B2B",
-  "تمرکز تخصصی بر سولفات مس و ترکیبات سولفاته",
-  "پشتیبانی فروش برای انتخاب محصول متناسب با نیاز",
+  "مناسب همکاری عمده و B2B",
+  "تمرکز تخصصی بر سولفات مس",
+  "پاسخ‌گویی سریع برای استعلام",
 ];
 
 export default function Features() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 md:py-28">
+    <section className="relative overflow-hidden bg-white py-14 md:py-18">
       <div className="pointer-events-none absolute left-[-8rem] top-20 h-64 w-64 rounded-full bg-[#c27829]/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-10 right-[-8rem] h-64 w-64 rounded-full bg-slate-900/5 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-[-8rem] h-64 w-64 rounded-full bg-slate-900/5 blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-4">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#c27829]/20 bg-[#c27829]/5 px-5 py-2 text-sm font-bold text-[#c27829]">
-              <Scale size={16} />
-              چرا شیمی گستر سولفات
-            </span>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2rem] border border-slate-200/70 bg-gradient-to-br from-white via-white to-slate-50 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(194,120,41,0.08),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(15,23,42,0.04),transparent_24%)]" />
 
-            <h2 className="mt-6 text-3xl font-black leading-[1.45] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl md:leading-[1.35]">
-              تأمین تخصصی با
-              <span className="text-[#c27829]"> کیفیت پایدار</span>
-              <br />
-              برای مصرف‌کنندگان صنعتی
-            </h2>
+          <div className="relative z-10 p-6 sm:p-8 lg:p-10 xl:p-12">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#c27829]/20 bg-[#c27829]/5 px-5 py-2 text-sm font-bold text-[#c27829]">
+                <Scale size={16} />
+                مزیت همکاری
+              </span>
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
-              شیمی گستر سولفات با تمرکز بر محصولات سولفاته، کنترل کیفیت منظم و
-              پاسخ‌گویی دقیق به نیاز مشتریان عمده، همراه مطمئن صنایع، کشاورزی و
-              واحدهای تولیدی است.
-            </p>
+              <h2 className="mt-5 text-3xl font-black leading-[1.5] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl">
+                چرا
+                <span className="text-[#c27829]"> شیمی گستر سولفات</span>
+              </h2>
 
-            <div className="mt-7 space-y-3">
-              {highlights.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-700"
-                >
-                  <BadgeCheck size={18} className="shrink-0 text-[#c27829]" />
-                  <span>{item}</span>
-                </div>
-              ))}
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
+                مزیت ما فقط فروش محصول نیست؛ ثبات کیفیت، تمرکز تخصصی و پاسخ‌گویی
+                دقیق، خرید عمده را سریع‌تر، مطمئن‌تر و ساده‌تر می‌کند.
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+                {highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/90 px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm"
+                  >
+                    <CheckCircle2
+                      size={16}
+                      className="shrink-0 text-blue-300"
+                    />
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {features.map((feature) => {
+                const Icon = feature.icon;
+
+                return (
+                  <article
+                    key={feature.title}
+                    className="group relative h-full overflow-hidden rounded-[1.5rem] border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5"
+                  >
+                    <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[2rem] bg-gradient-to-bl from-[#c27829]/10 to-transparent" />
+
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
+                        <Icon size={26} strokeWidth={1.8} />
+                      </div>
+
+                      <h3 className="mt-5 text-lg font-black leading-8 text-[#0a1a2f] sm:text-xl">
+                        {feature.title}
+                      </h3>
+
+                      <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[15px] sm:leading-8">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            <div className="mt-10 flex flex-row items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-3 rounded-2xl bg-[#0a1a2f] px-6 py-4 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:-translate-y-0.5 hover:bg-[#c27829]"
+                className="inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-2xl bg-[#0a1a2f] px-3 py-3.5 text-xs font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:-translate-y-0.5 hover:bg-[#c27829] sm:min-w-[190px] sm:flex-none sm:px-6 sm:py-4 sm:text-sm"
               >
-                دریافت مشاوره و استعلام
-                <ArrowLeft size={18} />
+                دریافت مشاوره
+                <ArrowLeft size={17} className="shrink-0" />
+              </Link>
+
+              <Link
+                href="/contact"
+                className="inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-3.5 text-xs font-black text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-[#c27829]/20 hover:bg-[#c27829]/10 hover:text-[#c27829] sm:min-w-[190px] sm:flex-none sm:px-6 sm:py-4 sm:text-sm"
+              >
+                <PhoneCall size={17} className="shrink-0" />
+                استعلام
               </Link>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:col-span-8 lg:auto-rows-fr">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-
-              return (
-                <article
-                  key={feature.title}
-                  className="group relative h-full overflow-hidden rounded-[1.75rem] border border-slate-200/70 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5 sm:p-7"
-                >
-                  <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[2rem] bg-gradient-to-bl from-[#c27829]/10 to-transparent" />
-
-                  <div className="relative z-10 flex h-full flex-col">
-                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
-                      <Icon size={30} strokeWidth={1.7} />
-                    </div>
-
-                    <h3 className="mt-6 text-xl font-black leading-8 text-[#0a1a2f]">
-                      {feature.title}
-                    </h3>
-
-                    <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
-                      {feature.desc}
-                    </p>
-                  </div>
-                </article>
-              );
-            })}
           </div>
         </div>
       </div>

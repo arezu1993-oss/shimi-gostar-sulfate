@@ -1,110 +1,116 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, Factory, Leaf, Wheat, type LucideIcon } from "lucide-react";
+import {
+  Building2,
+  Factory,
+  Sprout,
+  ShoppingCart,
+  type LucideIcon,
+} from "lucide-react";
 
 type IndustryItem = {
   title: string;
-  description: string;
+  role: string;
   icon: LucideIcon;
 };
 
 const industries: IndustryItem[] = [
   {
     title: "کشاورزی و باغداری",
-    description:
-      "تأمین سولفات‌ها و ترکیبات مورد نیاز برای تغذیه گیاه و اصلاح خاک",
-    icon: Wheat,
+    role: "اصلاح خاک و تغذیه تخصصی باغات و مزارع",
+    icon: Sprout,
   },
   {
     title: "تولیدکنندگان کود",
-    description: "مواد اولیه پایدار برای تولید کودهای ریزمغذی، ترکیبی و تخصصی",
-    icon: Leaf,
-  },
-  {
-    title: "واحدهای صنعتی",
-    description:
-      "تأمین مواد شیمیایی در مقیاس عمده برای خطوط تولید و فرآیندهای صنعتی",
+    role: "تأمین مواد اولیه خطوط تولید کـودهای ریـزمغذی",
     icon: Factory,
   },
   {
-    title: "بازرگانی و توزیع",
-    description:
-      "همکاری با تأمین‌کنندگان، توزیع‌کنندگان و فعالان بازار مواد اولیه",
+    title: "واحدهای صنعتی",
+    role: "استفاده در فرآیندهای شیمیایی و آبکاری فلزات",
     icon: Building2,
+  },
+  {
+    title: "بازرگانی و توزیع",
+    role: "تأمین عمده برای شبکه‌های توزیع استانی و کشوری",
+    icon: ShoppingCart,
   },
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
 export default function ClientsSection() {
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-20 md:py-24">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(194,120,41,0.09),transparent_34%)]" />
+    <section className="relative overflow-hidden bg-white py-14 md:py-24">
+      {/* Background Element */}
+      <div className="absolute right-0 top-0 h-full w-full opacity-[0.03] [mask-image:linear-gradient(to_bottom,white,transparent)]">
+        <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern
+              id="grid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M0 40L40 0M0 0l40 40"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className="mb-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
-        >
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center rounded-full bg-[#c27829]/10 px-5 py-2 text-sm font-bold text-[#c27829]">
-              صنایع هدف
-            </span>
-
-            <h2 className="mt-6 text-3xl font-black leading-[1.45] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl md:leading-[1.35]">
-              کاربرد محصولات در
-              <span className="text-[#c27829]"> صنایع مختلف</span>
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-[#0a1a2f] sm:text-4xl">
+              بازار هدف محصولات
             </h2>
+            <div className="mt-4 h-1 w-12 rounded-full bg-[#c27829]/30 mx-auto" />
+          </motion.div>
+        </div>
 
-            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
-              محصولات شیمی گستر سولفات برای مصرف‌کنندگان عمده در کشاورزی، تولید
-              کود، صنایع فرآیندی و زنجیره تأمین مواد شیمیایی عرضه می‌شود.
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 lg:gap-6">
           {industries.map((item, index) => {
             const Icon = item.icon;
 
             return (
-              <motion.article
+              <motion.div
                 key={item.title}
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.55,
-                  delay: index * 0.08,
-                  ease: "easeOut",
-                }}
-                className="group relative overflow-hidden rounded-[1.5rem] border border-slate-200/70 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#c27829]/25 hover:shadow-xl hover:shadow-slate-900/5"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group flex items-center gap-5 rounded-2xl border border-slate-100 bg-slate-50/50 p-5 transition-all duration-300 hover:border-[#c27829]/20 hover:bg-white hover:shadow-md"
               >
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-[#c27829] to-transparent opacity-80" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-[#c27829] shadow-sm ring-1 ring-slate-200 transition-colors group-hover:bg-[#c27829] group-hover:text-white sm:h-14 sm:w-14">
+                  <Icon size={24} />
+                </div>
 
-                <div className="relative z-10">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#c27829]/10 text-[#c27829] transition duration-300 group-hover:bg-[#c27829] group-hover:text-white">
-                    <Icon size={25} strokeWidth={1.8} />
-                  </div>
-
-                  <h3 className="mt-6 text-lg font-black leading-8 text-[#0a1a2f]">
+                <div className="flex flex-col">
+                  <h3 className="text-base font-black text-[#0a1a2f] sm:text-lg">
                     {item.title}
                   </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.description}
+                  <p className="mt-1 text-sm leading-6 text-slate-500">
+                    {item.role}
                   </p>
                 </div>
-              </motion.article>
+              </motion.div>
             );
           })}
         </div>

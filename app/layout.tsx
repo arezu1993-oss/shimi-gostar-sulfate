@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "./globals.css";
 import ScrollTools from "../components/shared/ScrollTools";
+import SmoothScroll from "../components/SmoothScroll"; // حتماً مطمئن شو مسیر فایل درسته
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -23,14 +24,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fa" dir="rtl">
       <body className={`${vazir.variable} font-vazir bg-white antialiased`}>
-        <Header />
+        <SmoothScroll>
+          <Header />
 
-        <main className="min-h-screen pt-20">{children}</main>
+          <main className="min-h-screen pt-20">{children}</main>
 
-        <Footer />
-        <ScrollTools />
+          <Footer />
+          <ScrollTools />
+        </SmoothScroll>
       </body>
     </html>
   );
 }
-
