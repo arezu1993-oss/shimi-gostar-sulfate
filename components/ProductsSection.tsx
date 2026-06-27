@@ -136,9 +136,10 @@ export default function ProductsSection() {
   const FeaturedIcon = featuredProduct.icon;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/70 to-white pt-2 pb-12 md:pt-10 md:pb-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/70 to-white pt-6 pb-12 md:pt-12 md:pb-16">
       <div className="pointer-events-none absolute right-[-10rem] top-20 h-72 w-72 rounded-full bg-[#c27829]/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-20 left-[-10rem] h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+      <div className="pointer-events-none absolute left-10 top-10 hidden h-56 w-56 rounded-full bg-[#c27829]/6 blur-3xl lg:block" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <motion.div
@@ -147,32 +148,39 @@ export default function ProductsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.45, ease: "easeOut" }}
-          className="mb-12 flex flex-col gap-8 md:mb-16 lg:flex-row lg:items-end lg:justify-between"
+          className="mb-12 md:mb-16"
         >
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#c27829]/20 bg-[#c27829]/5 px-5 py-2 text-sm font-bold text-[#c27829]">
-              <span className="h-2 w-2 rounded-full bg-[#c27829]" />
-              محصولات و دسته‌بندی‌ها
-            </span>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center lg:gap-8 xl:gap-10">
+            <div className="text-center lg:col-span-7 lg:text-right">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#c27829]/20 bg-[#c27829]/5 px-5 py-2 text-sm font-bold text-[#c27829] shadow-sm shadow-[#c27829]/5">
+                <span className="h-2 w-2 rounded-full bg-[#c27829]" />
+                محصولات و دسته‌بندی‌ها
+              </span>
 
-            <h2 className="mt-6 text-3xl font-black leading-[1.45] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl md:leading-[1.35]">
-              تأمین تخصصی سولفات‌ها و
-              <span className="text-[#c27829]"> مواد اولیه شیمیایی</span>
-            </h2>
+              <h2 className="mx-auto mt-5 max-w-[23ch] text-3xl font-black leading-[1.5] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl md:leading-[1.35] lg:mr-0 lg:ml-auto lg:text-[56px] lg:leading-[1.28] xl:text-[50px]">
+                تأمین تخصصی
+                <span className="text-[#c27829]"> سولفات‌ها </span>و مواد اولیه
+                شیمیایی
+              </h2>
+            </div>
 
-            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
-              تولید و تأمین سولفات مس کریستالی، انواع سولفات‌های فلزی، نهاده‌های
-              کشاورزی و مواد اولیه شیمیایی برای مصرف صنعتی و عمده.
-            </p>
+            <div className="mx-auto max-w-2xl text-center lg:col-span-5 lg:mx-0 lg:max-w-xl lg:justify-self-end lg:text-right">
+              <p className="text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
+                تولید و تأمین سولفات مس کریستالی، انواع سولفات‌های فلزی،
+                نهاده‌های کشاورزی و مواد اولیه شیمیایی برای مصرف صنعتی و عمده.
+              </p>
+
+              <div className="mt-6 flex justify-center lg:justify-center">
+                <Link
+                  href={productsHref}
+                  className="inline-flex items-center gap-3 rounded-2xl bg-[#0a1a2f] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:-translate-y-0.5 hover:bg-[#c27829]"
+                >
+                  مشاهده همه محصولات
+                  <ArrowLeft size={18} />
+                </Link>
+              </div>
+            </div>
           </div>
-
-          <Link
-            href={productsHref}
-            className="hidden shrink-0 items-center gap-3 rounded-xl bg-[#0a1a2f] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:bg-[#c27829] md:inline-flex"
-          >
-            مشاهده همه محصولات
-            <ArrowLeft size={18} />
-          </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-7">
@@ -216,22 +224,25 @@ export default function ProductsSection() {
                   {featuredProduct.description}
                 </p>
 
-                <div className="mt-7 flex flex-wrap gap-3">
+                <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2">
                   {featuredProduct.specs.map((spec) => (
                     <span
                       key={spec}
-                      className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-sm font-bold text-white backdrop-blur-md"
+                      className="flex min-h-[58px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-center text-sm font-bold leading-6 text-white backdrop-blur-md"
                     >
-                      <CheckCircle2 size={16} className="text-blue-300" />
-                      {spec}
+                      <CheckCircle2
+                        size={16}
+                        className="shrink-0 text-blue-300"
+                      />
+                      <span>{spec}</span>
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:mx-auto lg:w-fit lg:justify-center">
                   <Link
                     href={featuredProduct.href}
-                    className="group/btn inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#c27829] px-5 py-3 text-sm font-black text-white shadow-lg shadow-[#c27829]/25 transition duration-300 hover:bg-[#a36522] sm:px-6 lg:py-3.5 lg:text-[15px]"
+                    className="group/btn inline-flex min-w-[220px] items-center justify-center gap-2.5 rounded-xl bg-[#c27829] px-5 py-3 text-sm font-black text-white shadow-lg shadow-[#c27829]/25 transition duration-300 hover:bg-[#a36522] sm:px-6 lg:py-3.5 lg:text-[15px]"
                   >
                     {featuredProduct.primaryCta}
                     <ArrowLeft
@@ -242,7 +253,7 @@ export default function ProductsSection() {
 
                   <Link
                     href={contactHref}
-                    className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur-md transition duration-300 hover:bg-white/15 sm:px-6 lg:py-3.5 lg:text-[15px]"
+                    className="inline-flex min-w-[220px] items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur-md transition duration-300 hover:bg-white/15 sm:px-6 lg:py-3.5 lg:text-[15px]"
                   >
                     <PhoneCall size={18} />
                     {featuredProduct.secondaryCta}
@@ -256,11 +267,11 @@ export default function ProductsSection() {
                     کاربردهای رایج سولفات مس
                   </p>
 
-                  <div className="mt-5 grid grid-cols-2 gap-3">
+                  <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2">
                     {featuredProduct.applications.map((application) => (
                       <div
                         key={application}
-                        className="rounded-xl border border-white/10 bg-white/10 p-4 text-sm font-bold text-white"
+                        className="flex min-h-[72px] w-full items-center justify-center rounded-xl border border-white/10 bg-white/10 p-4 text-center text-sm font-bold leading-6 text-white"
                       >
                         {application}
                       </div>
@@ -361,16 +372,6 @@ export default function ProductsSection() {
               </motion.article>
             );
           })}
-        </div>
-
-        <div className="mt-8 flex justify-center md:hidden">
-          <Link
-            href={productsHref}
-            className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#0a1a2f] px-6 py-3.5 text-sm font-black text-white shadow-lg shadow-slate-900/10 transition duration-300 hover:bg-[#c27829] sm:w-auto"
-          >
-            مشاهده همه محصولات
-            <ArrowLeft size={18} />
-          </Link>
         </div>
       </div>
     </section>

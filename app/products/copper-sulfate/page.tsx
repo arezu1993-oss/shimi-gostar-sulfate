@@ -16,10 +16,10 @@ import {
 
 const analysisData = [
   { param: "فرمول شیمیایی", value: "CuSO₄·5H₂O" },
-  { param: "خلوص", value: "98% - 99%" },
-  { param: "مس", value: "24.5% - 25.2%" },
-  { param: "آهن", value: "کمتر از 0.1%" },
-  { param: "نامحلول در آب", value: "کمتر از 0.05%" },
+  { param: "خلوص", value: "۹۹% - ۹۸%" },
+  { param: "مس", value: "۲۵.۲% - ۲۴.۵%" },
+  { param: "آهن", value: "کمتر از ۰.۱%" },
+  { param: "نامحلول در آب", value: "کمتر از ۰.۰۵%" },
   { param: "ظاهر", value: "کریستال آبی شفاف" },
 ];
 

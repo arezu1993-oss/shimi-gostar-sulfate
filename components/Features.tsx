@@ -67,7 +67,7 @@ export default function Features() {
 
               <h2 className="mt-5 text-3xl font-black leading-[1.5] tracking-tight text-[#0a1a2f] sm:text-4xl md:text-5xl">
                 چرا
-                <span className="text-[#c27829]"> شیمی گستر سولفات</span>
+                <span className="text-[#c27829]"> شیمی گستر سولفات؟</span>
               </h2>
 
               <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
@@ -75,23 +75,25 @@ export default function Features() {
                 دقیق، خرید عمده را سریع‌تر، مطمئن‌تر و ساده‌تر می‌کند.
               </p>
 
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-7 grid w-full max-w-2xl grid-cols-1 gap-3 mx-auto sm:grid-cols-2 lg:grid-cols-3">
                 {highlights.map((item) => (
-                  <span
+                  <div
                     key={item}
-                    className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white/90 px-4 py-2.5 text-sm font-bold text-slate-700 shadow-sm"
+                    className="flex min-h-[64px] h-full items-center justify-center rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-center text-sm font-bold text-slate-700 shadow-sm"
                   >
-                    <CheckCircle2
-                      size={16}
-                      className="shrink-0 text-blue-300"
-                    />
-                    {item}
-                  </span>
+                    <span className="inline-flex items-center justify-center gap-2">
+                      <CheckCircle2
+                        size={16}
+                        className="shrink-0 text-blue-300"
+                      />
+                      {item}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {features.map((feature) => {
                 const Icon = feature.icon;
 

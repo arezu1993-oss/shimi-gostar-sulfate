@@ -118,7 +118,7 @@ ${trimmedPhone}
                   className="inline-flex items-center gap-2 text-sm font-bold text-slate-200 transition hover:text-[#f0b56d]"
                 >
                   <Phone size={17} className="shrink-0 text-[#f0b56d]" />
-                  <span dir="ltr">0912 306 3576</span>
+                  <span dir="ltr">۰۹۱۲ ۳۰۶ ۳۵۷۶</span>
                 </a>
 
                 <div className="hidden h-4 w-px bg-white/10 sm:block" />
