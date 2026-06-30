@@ -45,7 +45,7 @@ const fadeUp = {
 
 export default function ClientsSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-14 md:py-24">
+    <section className="relative overflow-hidden bg-white py-15 md:py-20">
       {/* Background Element */}
       <div className="absolute right-0 top-0 h-full w-full opacity-[0.03] [mask-image:linear-gradient(to_bottom,white,transparent)]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
