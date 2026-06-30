@@ -11,8 +11,16 @@ import {
   Factory,
   PhoneCall,
   Sprout,
+  Layers,
   type LucideIcon,
 } from "lucide-react";
+
+type ProductVariant = {
+  name: string;
+  badge?: string;
+  description: string;
+  isBase?: boolean;
+};
 
 type BaseProduct = {
   title: string;
@@ -31,6 +39,7 @@ type BaseProduct = {
 type FeaturedProduct = BaseProduct & {
   featured: true;
   shortTitle: string;
+  variants: ProductVariant[];
   applications: string[];
   primaryCta: string;
   secondaryCta: string;
@@ -48,27 +57,48 @@ const contactHref = "/contact";
 
 const productCategories: ProductCategory[] = [
   {
-    title: "سولفات مس کریستالی",
+    title: "سولفات مس",
     shortTitle: "سولفات مس",
-    badge: "محصول اصلی و استراتژیک",
+    badge: "محصول اصلی در ۳ فرم عرضه",
     image: "/images/hero-2.jpg",
-    alt: "سولفات مس کریستالی آبی برای کاربردهای صنعتی و کشاورزی",
+    alt: "تولید و تأمین سولفات مس در فرم‌های کریستالی، پودری و شکری",
     featured: true,
     icon: Boxes,
     description:
-      "سولفات مس کریستالی با رنگ یکنواخت، کیفیت پایدار و امکان تأمین عمده برای کاربردهای کشاورزی، صنعتی و فرآیندی عرضه می‌شود.",
+      "سولفات مس محصول استراتژیک شیمی گستر سولفات است که با بیس کریستالی تولید شده و متناسب با نیاز صنایع و سفارش مشتری، در فرم‌های پودری و شکری نیز عرضه می‌شود.",
     specs: [
       "خلوص ۲۴٪ تا ۲۵٪",
-      "کریستال آبی یکنواخت",
       "گرید کشاورزی و صنعتی",
-      "قابل عرضه عمده",
+      "امکان تأمین عمده و B2B",
     ],
-    applications: ["کشاورزی", "صنایع شیمیایی", "فرآیندهای صنعتی", "تأمین B2B"],
+    variants: [
+      {
+        name: "کریستالی",
+        badge: "فرم پایه و اصلی",
+        description: "مبنای تولید، با بلورهای آبی یکدست و حلالیت استاندارد.",
+        isBase: true,
+      },
+      {
+        name: "پودری",
+        badge: "سفارشی و فرآوری‌شده",
+        description: "دانه‌بندی ریز جهت انحلال سریع‌تر در کاربردهای خاص.",
+      },
+      {
+        name: "شکری",
+        badge: "متناسب با سفارش",
+        description: "فرمی بین کریستال و پودر جهت مصارف ترجیحی صنایع.",
+      },
+    ],
+    applications: [
+      "کشاورزی و سموم",
+      "صنایع معدنی و آبکاری",
+      "تغذیه دام و طیور",
+    ],
     href: "/products/copper-sulfate",
     accent: "text-blue-400",
     iconBg: "bg-blue-500/10",
-    primaryCta: "مشاهده مشخصات",
-    secondaryCta: "استعلام قیمت",
+    primaryCta: "مشاهده مشخصات فنی",
+    secondaryCta: "استعلام قیمت روز",
   },
   {
     title: "سایر سولفات‌ها",
@@ -166,8 +196,8 @@ export default function ProductsSection() {
 
             <div className="mx-auto max-w-2xl text-center lg:col-span-5 lg:mx-0 lg:max-w-xl lg:justify-self-end lg:text-right">
               <p className="text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">
-                تولید و تأمین سولفات مس کریستالی، انواع سولفات‌های فلزی،
-                نهاده‌های کشاورزی و مواد اولیه شیمیایی برای مصرف صنعتی و عمده.
+                تولید و تأمین سولفات مس در ۳ فرم فیزیکی، انواع سولفات‌های فلزی،
+                نهاده‌های کشاورزی و مواد اولیه صنعتی به صورت عمده و مستمر.
               </p>
 
               <div className="mt-6 flex justify-center lg:justify-center">
@@ -206,7 +236,8 @@ export default function ProductsSection() {
             </div>
 
             <div className="relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 p-6 sm:p-8 md:p-10 lg:grid-cols-12 lg:p-12 xl:p-14">
-              <div className="lg:col-span-7 xl:col-span-6">
+              {/* بخش چپ: اطلاعات کلی محصول و دکمه‌ها */}
+              <div className="lg:col-span-6 xl:col-span-6">
                 <div className="mb-6 inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-white backdrop-blur-md">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
                     <FeaturedIcon size={20} />
@@ -224,14 +255,15 @@ export default function ProductsSection() {
                   {featuredProduct.description}
                 </p>
 
-                <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-2">
+                {/* مشخصات اصلی محصول */}
+                <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
                   {featuredProduct.specs.map((spec) => (
                     <span
                       key={spec}
-                      className="flex min-h-[58px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3.5 py-2.5 text-center text-sm font-bold leading-6 text-white backdrop-blur-md"
+                      className="flex min-h-[54px] w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3.5 py-2 text-center text-xs font-bold leading-5 text-white backdrop-blur-md"
                     >
                       <CheckCircle2
-                        size={16}
+                        size={15}
                         className="shrink-0 text-blue-300"
                       />
                       <span>{spec}</span>
@@ -239,10 +271,11 @@ export default function ProductsSection() {
                   ))}
                 </div>
 
-                <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:mx-auto lg:w-fit lg:justify-center">
+                {/* دکمه‌های فراخوان عمل (CTA) */}
+                <div className="mt-8 flex flex-col items-stretch justify-start gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                   <Link
                     href={featuredProduct.href}
-                    className="group/btn inline-flex min-w-[220px] items-center justify-center gap-2.5 rounded-xl bg-[#c27829] px-5 py-3 text-sm font-black text-white shadow-lg shadow-[#c27829]/25 transition duration-300 hover:bg-[#a36522] sm:px-6 lg:py-3.5 lg:text-[15px]"
+                    className="group/btn inline-flex min-w-[200px] items-center justify-center gap-2.5 rounded-xl bg-[#c27829] px-5 py-3.5 text-sm font-black text-white shadow-lg shadow-[#c27829]/25 transition duration-300 hover:bg-[#a36522]"
                   >
                     {featuredProduct.primaryCta}
                     <ArrowLeft
@@ -253,7 +286,7 @@ export default function ProductsSection() {
 
                   <Link
                     href={contactHref}
-                    className="inline-flex min-w-[220px] items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur-md transition duration-300 hover:bg-white/15 sm:px-6 lg:py-3.5 lg:text-[15px]"
+                    className="inline-flex min-w-[200px] items-center justify-center gap-2.5 rounded-xl border border-white/15 bg-white/10 px-5 py-3.5 text-sm font-black text-white backdrop-blur-md transition duration-300 hover:bg-white/15"
                   >
                     <PhoneCall size={18} />
                     {featuredProduct.secondaryCta}
@@ -261,30 +294,59 @@ export default function ProductsSection() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 xl:col-span-6">
-                <div className="mr-auto max-w-xl rounded-[1.75rem] border border-white/12 bg-white/10 p-5 backdrop-blur-xl sm:p-6 lg:max-w-md xl:max-w-lg">
-                  <p className="text-sm font-black text-blue-200">
-                    کاربردهای رایج سولفات مس
-                  </p>
+              {/* بخش راست: نمایش فرم‌های عرضه با اولویت‌بندی بصری فوق‌العاده */}
+              <div className="lg:col-span-6 xl:col-span-6">
+                <div className="mr-auto max-w-xl rounded-[1.75rem] border border-white/12 bg-white/5 p-5 backdrop-blur-xl sm:p-6 lg:max-w-md xl:max-w-lg">
+                  <div className="mb-4 flex items-center gap-2">
+                    <Layers size={18} className="text-blue-300" />
+                    <p className="text-sm font-black text-blue-200">
+                      فرم‌های مختلف فیزیکی قابل عرضه
+                    </p>
+                  </div>
 
-                  <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2">
-                    {featuredProduct.applications.map((application) => (
+                  <div className="space-y-3.5">
+                    {featuredProduct.variants.map((variant) => (
                       <div
-                        key={application}
-                        className="flex min-h-[72px] w-full items-center justify-center rounded-xl border border-white/10 bg-white/10 p-4 text-center text-sm font-bold leading-6 text-white"
+                        key={variant.name}
+                        className={`relative rounded-2xl border p-4 transition-all duration-300 ${
+                          variant.isBase
+                            ? "border-blue-500/40 bg-blue-500/10 shadow-lg shadow-blue-500/5"
+                            : "border-white/10 bg-white/5 hover:border-white/20"
+                        }`}
                       >
-                        {application}
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-base font-black text-white flex items-center gap-2">
+                            {variant.name}
+                            {variant.isBase && (
+                              <span className="h-1.5 w-1.5 rounded-full bg-blue-400 animate-pulse" />
+                            )}
+                          </h4>
+                          {variant.badge && (
+                            <span
+                              className={`rounded-lg px-2.5 py-1 text-[10px] font-bold ${
+                                variant.isBase
+                                  ? "bg-blue-400/20 text-blue-200 border border-blue-400/30"
+                                  : "bg-white/10 text-slate-300 border border-white/5"
+                              }`}
+                            >
+                              {variant.badge}
+                            </span>
+                          )}
+                        </div>
+                        <p className="mt-2 text-xs leading-6 text-slate-300">
+                          {variant.description}
+                        </p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-5 rounded-2xl border border-[#c27829]/25 bg-[#c27829]/15 p-5">
-                    <p className="text-sm font-black text-white">
-                      مناسب برای خرید عمده و تأمین مستمر
+                  <div className="mt-5 rounded-2xl border border-[#c27829]/25 bg-[#c27829]/10 p-4">
+                    <p className="text-xs font-black text-[#c27829]">
+                      قابلیت سفارشی‌سازی دانه‌بندی
                     </p>
-                    <p className="mt-2 text-sm leading-7 text-slate-200/85">
-                      برای قیمت روز، موجودی، نوع بسته‌بندی و شرایط ارسال با واحد
-                      فروش هماهنگ کنید.
+                    <p className="mt-1.5 text-[11px] leading-5 text-slate-300">
+                      امکان تأمین پایدار و بسته‌بندی در انواع کیسه‌های ۲۵ کیلویی
+                      و جامبوبگ متناسب با سفارش شما مقدور است.
                     </p>
                   </div>
                 </div>

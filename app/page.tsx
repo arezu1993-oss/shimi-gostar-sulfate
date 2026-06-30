@@ -4,6 +4,7 @@ import ProductsSection from "../components/ProductsSection";
 import Features from "../components/Features";
 import StatsSection from "../components/StatsSection";
 import ClientsSection from "../components/ClientsSection";
+import AgroCatalogSection from "../components/AgroCatalogSection";
 import HomeFaqSection from "../components/HomeFaqSection";
 
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Features />
       <StatsSection />
       <ClientsSection />
+      <AgroCatalogSection />
       <HomeFaqSection />
     </div>
   );
