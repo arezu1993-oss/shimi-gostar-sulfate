@@ -16,7 +16,7 @@ import {
 const quickContactItems = [
   {
     title: "تماس مستقیم",
-    value: "۰۹۱۲ ۳۰۶ ۳۵۷۶",
+    value: "۳۵۷۶ ۳۰۶ ۰۹۱۲",
     href: "tel:09123063576",
     description: "برای استعلام قیمت، ثبت سفارش و دریافت اطلاعات محصول",
     icon: Phone,
@@ -26,7 +26,7 @@ const quickContactItems = [
   },
   {
     title: "واتس‌اپ واحد فروش",
-    value: "۰۹۱۲ ۰۹۰ ۹۳۲۳",
+    value: "۹۳۲۳ ۰۹۰ ۰۹۱۲",
     href: "https://wa.me/989120909323",
     description: "مناسب برای دریافت پاسخ سریع و هماهنگی سفارش",
     icon: MessageSquare,
