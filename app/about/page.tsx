@@ -65,7 +65,7 @@ export default function AboutPage() {
               استاندارد جهانی در محصولات سولفاته
             </div>
 
-            <h1 className="text-3xl font-black leading-[1.3] md:text-6xl lg:text-7xl lg:leading-[1.2]">
+            <h1 className="text-3xl font-black leading-[1.5] md:text-4xl lg:text-6xl lg:leading-[1.3]">
               دقت در <span className="text-[#f0b56d]">تولید</span>،<br />
               تداوم در <span className="text-[#f0b56d]">تأمین</span>.
             </h1>
@@ -99,7 +99,7 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.2 }}
             className="relative lg:col-span-5"
           >
-            {/* در موبایل از aspect-square استفاده شده تا عکس خیلی بلند نشود */}
+
             <div className="relative aspect-square lg:aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/10 p-2 shadow-2xl shadow-blue-900/20">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#07111f] via-transparent to-transparent" />
               <Image
@@ -120,7 +120,7 @@ export default function AboutPage() {
                       تضمین کیفیت
                     </p>
                     <p className="text-sm md:text-lg font-black text-white">
-                      خلوص بالای ۹۹٪
+                      خلوص بالای 94 %
                     </p>
                   </div>
                 </div>
@@ -135,9 +135,9 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {[
-              { label: "ظرفیت تأمین ماهانه", value: "۵۰۰+ تُن" },
+              { label: "ظرفیت تأمین ماهانه", value: "۲۵۰+ تُن" },
               { label: "مشتریان صنعتی فعال", value: "۱۲۰+" },
-              { label: "خلوص محصولات", value: "۹۹.۲٪" },
+              { label: "خلوص محصولات", value: "۹۸٪ - ۹۴" },
               { label: "ارسال به سراسر کشور", value: "۳۱" },
             ].map((stat, i) => (
               <div

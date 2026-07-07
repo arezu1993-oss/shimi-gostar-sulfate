@@ -19,7 +19,7 @@ import {
 
 const analysisData = [
   { param: "فرمول شیمیایی", value: "CuSO₄·5H₂O" },
-  { param: "خلوص (Purity)", value: "۹۹% - ۹۸%" },
+  { param: "خلوص (Purity)", value: "۹۸% - ۹۴%" },
   { param: "محتوای مس (Cu)", value: "۲۵.۲% - ۲۴.۵%" },
   { param: "آهن (Fe)", value: "کمتر از ۰.۱%" },
   { param: "نامحلول در آب", value: "کمتر از ۰.۰۵%" },
@@ -377,13 +377,13 @@ export default function CopperSulfatePage() {
               className="flex h-16 items-center justify-center gap-3 rounded-2xl bg-[#c27829] px-12 font-black text-white transition hover:scale-105 active:scale-95 shadow-lg shadow-[#c27829]/20"
             >
               <Phone size={22} />
-              تماس مستقیم: {phoneNumber}
+              تماس مستقیم
             </a>
             <Link
               href="/contact"
               className="flex h-16 items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/5 px-12 font-black text-white transition hover:bg-white/10"
             >
-              صفحه ارتباط با ما
+               ارتباط با ما
               <ArrowLeft size={22} />
             </Link>
           </div>

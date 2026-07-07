@@ -8,6 +8,7 @@ import {
   BookOpenText,
   ChevronDown,
   FlaskConical,
+  Handshake,
   Home,
   Info,
   Layers,
@@ -18,6 +19,7 @@ import {
   Sprout,
   X,
 } from "lucide-react";
+
 import {
   AnimatePresence,
   motion,
@@ -34,6 +36,7 @@ const navItems = [
   { title: "محصولات", href: "/products", icon: Package },
   { title: "وبلاگ و مقالات", href: "/blog", icon: BookOpenText },
   { title: "درباره ما", href: "/about", icon: Info },
+  { title: "همکاری با ما", href: "/partnership", icon: Handshake },
   { title: "تماس با ما", href: "/contact", icon: Phone },
 ];
 

@@ -58,7 +58,9 @@ ${trimmedPhone}
 
 مبدا:
 فوتر سایت`;
-    const whatsappUrl = `https://wa.me/${employerWhatsappPhone}?text=${encodeURIComponent(text)}`;
+    const whatsappUrl = `https://wa.me/${employerWhatsappPhone}?text=${encodeURIComponent(
+      text,
+    )}`;
 
     window.open(whatsappUrl, "_blank");
     setStatus("success");
@@ -107,9 +109,27 @@ ${trimmedPhone}
             <div className="mt-6 space-y-4 text-sm">
               <div className="flex items-start gap-3 text-slate-400">
                 <MapPin size={18} className="mt-1 shrink-0 text-[#f0b56d]" />
-                <span className="text-[13px] leading-7">
-                  تهران، شهرک صنعتی سالاریه، خیابان نرگس غربی، پلاک SH9
-                </span>
+                <div className="space-y-3 text-[13px] leading-7">
+                  <div>
+                    <span className="block font-bold text-slate-200">
+                      آدرس کارخانه:
+                    </span>
+                    <span>
+                      ورامین، شهرک صنعتی سالاریه، بلوار نرگس شرقی، پلاک 6، قطعه
+                      SH9
+                    </span>
+                  </div>
+
+                  <div>
+                    <span className="block font-bold text-slate-200">
+                       دفتر مرکزی:
+                    </span>
+                    <span>
+                      تهران، چیتگر، خیابان طراوت، خیابان شهید محمد میر کمالی،
+                      مجتمع آرام (بیمه)، بلوک A، طبقه همکف تجاری، واحد یک
+                    </span>
+                  </div>
+                </div>
               </div>
 
               <div className="flex flex-wrap items-center gap-x-6 gap-y-3">

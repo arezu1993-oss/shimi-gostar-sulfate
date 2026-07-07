@@ -26,7 +26,7 @@ const stats: StatItem[] = [
     icon: Factory,
   },
   {
-    number: 30000,
+    number: 3000,
     suffix: "+",
     label: "تن ظرفیت سالانه",
     icon: Package,
