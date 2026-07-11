@@ -59,9 +59,8 @@ export const partnershipSchema = z.object({
   city: z
     .string()
     .trim()
-    .max(80, "نام شهر بیش از حد طولانی است.")
-    .optional()
-    .or(z.literal("")),
+    .min(2, "نام شهر را وارد کنید.")
+    .max(80, "نام شهر بیش از حد طولانی است."),
 
   message: z
     .string()

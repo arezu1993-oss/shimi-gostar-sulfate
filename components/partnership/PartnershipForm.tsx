@@ -64,7 +64,7 @@ export default function PartnershipForm() {
     }
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("/api/partnership", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

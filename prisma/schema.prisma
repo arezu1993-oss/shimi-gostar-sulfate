@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Partnership {
+  id              Int      @id @default(autoincrement())
+  fullName        String
+  companyName     String?
+  phone           String
+  email           String?
+  cooperationType String
+  city            String
+  description     String
+  status          String   @default("NEW")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
