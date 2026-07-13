@@ -52,19 +52,8 @@ export default function PartnershipForm() {
       return;
     }
 
-    const endpoint = process.env.NEXT_PUBLIC_PARTNERSHIP_ENDPOINT;
-
-    if (!endpoint) {
-      setSubmitState({
-        type: "error",
-        message:
-          "آدرس سرویس ارسال فرم تنظیم نشده است. لطفاً فایل .env.local را بررسی کنید.",
-      });
-      return;
-    }
-
     try {
-      const response = await fetch("/api/partnership", {
+      const response = await fetch("/send-email.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
