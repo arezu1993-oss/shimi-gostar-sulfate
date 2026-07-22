@@ -8,7 +8,23 @@ import {
   Phone,
   Tag,
   CheckCircle2,
+  FlaskConical,
+  AlertTriangle,
+  Leaf,
+  Factory,
 } from "lucide-react";
+
+type ArticleSection = {
+  heading?: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  ordered?: boolean;
+  note?: {
+    title: string;
+    body: string;
+    tone?: "info" | "warning" | "success";
+  };
+};
 
 type BlogPostItem = {
   slug: string;
@@ -18,11 +34,182 @@ type BlogPostItem = {
   date: string;
   readTime: string;
   category: string;
-  content: string[];
   tags: string[];
+  highlights: string[];
+  summary: string;
+  ctaTitle: string;
+  ctaDescription: string;
+  sections: ArticleSection[];
 };
 
 const posts: BlogPostItem[] = [
+  {
+    slug: "copper-sulfate-complete-guide",
+    title:
+      "سولفات مس چیست؟ معرفی کامل کاربردها، انواع، ویژگی‌ها و تولید به روش هوادهی",
+    description:
+      "راهنمای جامع سولفات مس شامل معرفی کامل، ویژگی‌های فیزیکی و شیمیایی، انواع سولفات مس، کاربردهای کشاورزی و صنعتی، روش تولید به روش هوادهی و نکات ایمنی.",
+    author: "تیم فنی شیمی گستر سولفات",
+    date: "۱۴۰۵/۰۴/۳۱",
+    readTime: "۱۰ دقیقه",
+    category: "انواع و مشخصات",
+    tags: [
+      "سولفات مس",
+      "Copper Sulfate",
+      "CuSO4",
+      "سولفات مس پنتاهیدرات",
+      "تولید سولفات مس",
+      "روش هوادهی",
+      "کاربرد سولفات مس",
+      "مواد شیمیایی صنعتی",
+    ],
+    highlights: [
+      "سولفات مس بیشتر به صورت پنتاهیدرات آبی‌رنگ شناخته می‌شود.",
+      "این ماده در کشاورزی، آبکاری، معدن، تصفیه آب و صنایع شیمیایی کاربرد دارد.",
+      "روش هوادهی یکی از مسیرهای متداول تولید صنعتی سولفات مس است.",
+    ],
+    summary:
+      "سولفات مس یکی از مهم‌ترین ترکیبات مس در صنعت و کشاورزی است. شناخت فرم‌های مختلف، کاربردها، شرایط تولید و الزامات ایمنی آن برای انتخاب و مصرف صحیح محصول اهمیت بالایی دارد.",
+    ctaTitle: "برای انتخاب گرید مناسب سولفات مس به راهنمایی نیاز دارید؟",
+    ctaDescription:
+      "برای بررسی مشخصات فنی، نوع مصرف، خلوص، بسته‌بندی و شرایط تأمین، با واحد فنی و فروش شیمی گستر سولفات در ارتباط باشید.",
+    sections: [
+      {
+        heading: "مقدمه",
+        paragraphs: [
+          "سولفات مس، با فرمول شیمیایی CuSO₄، یکی از ترکیبات معدنی مهم و پرکاربرد مس است که در صنایع مختلفی نظیر کشاورزی، پزشکی، صنایع شیمیایی و تصفیه آب نقش مهمی ایفا می‌کند.",
+          "این ماده معمولاً با فرم آبدار خود، یعنی سولفات مس پنتاهیدرات، شناخته می‌شود که به صورت بلورهای آبی‌رنگ ظاهر می‌شود. در این مقاله، سولفات مس را از نظر ساختار، ویژگی‌ها، انواع، کاربردها، روش تولید و ملاحظات ایمنی بررسی می‌کنیم.",
+        ],
+      },
+      {
+        heading: "سولفات مس چیست؟",
+        paragraphs: [
+          "سولفات مس یک ترکیب معدنی است که از کاتیون مس دو ظرفیتی Cu²⁺ و آنیون سولفات SO₄²⁻ تشکیل شده است.",
+          "این ماده معمولاً به صورت پنتاهیدرات با فرمول CuSO₄·5H₂O یافت می‌شود که همان فرم آبی‌رنگ شناخته‌شده آن است. فرم بدون آب این ترکیب با فرمول CuSO₄ به رنگ سفید یا خاکستری مایل به آبی دیده می‌شود.",
+        ],
+      },
+      {
+        heading: "ویژگی‌های سولفات مس",
+        bullets: [
+          "ظاهر: بلورهای آبی روشن تا آبی تیره در فرم پنتاهیدرات",
+          "حلالیت: به‌راحتی در آب حل می‌شود و محلولی آبی‌رنگ تشکیل می‌دهد",
+          "رفتار حرارتی: در حدود 150 درجه سانتی‌گراد آب تبلور خود را از دست می‌دهد و در دماهای بالاتر تجزیه می‌شود",
+          "چگالی: در متن اولیه حدود 3.6 g/cm³ ذکر شده است",
+          "pH محلول: محلول آبی آن کمی اسیدی است",
+          "سمیت: برای انسان و حیوانات سمی است و باید با احتیاط مصرف شود",
+          "خاصیت اکسیدکنندگی: به عنوان یک عامل اکسیدکننده ملایم عمل می‌کند",
+        ],
+      },
+      {
+        heading: "انواع سولفات مس",
+        paragraphs: [
+          "سولفات مس را می‌توان بر اساس میزان آب موجود در ساختار کریستالی آن دسته‌بندی کرد.",
+        ],
+        bullets: [
+          "سولفات مس پنتاهیدرات (CuSO₄·5H₂O): رایج‌ترین و پایدارترین فرم تجاری با بلورهای آبی‌رنگ",
+          "سولفات مس بی‌آب (CuSO₄): فرم بدون آب کریستالی که معمولاً سفیدرنگ است و رطوبت را سریع جذب می‌کند",
+          "سولفات مس تری‌هیدرات و مونوهیدرات: فرم‌هایی با مصرف کمتر نسبت به نوع پنتاهیدرات",
+        ],
+      },
+      {
+        heading: "کاربردهای سولفات مس",
+        paragraphs: [
+          "سولفات مس به دلیل خواص ضدمیکروبی، نقش تغذیه‌ای عنصر مس و واکنش‌پذیری مناسب، در حوزه‌های مختلف کاربرد دارد.",
+        ],
+      },
+      {
+        heading: "کاربرد در کشاورزی",
+        bullets: [
+          "استفاده به عنوان قارچ‌کش و باکتری‌کش در برخی فرمولاسیون‌ها",
+          "کاربرد در محلول بوردو برای محافظت از محصولات باغی و زراعی",
+          "تأمین ریزمغذی مس برای رفع کمبود این عنصر در خاک",
+          "کمک به بهبود رشد گیاه و فرآیندهای متابولیکی",
+          "کاربرد در برخی طعمه‌ها برای کنترل حلزون و راب",
+        ],
+      },
+      {
+        heading: "کاربرد در دامپزشکی",
+        bullets: [
+          "استفاده در برخی موارد برای ضدعفونی کردن زخم‌ها",
+          "کاربرد به عنوان مکمل مس در جیره غذایی دام با دوز کنترل‌شده",
+        ],
+      },
+      {
+        heading: "کاربرد در صنایع",
+        bullets: [
+          "الکترولیت در فرآیند آبکاری مس",
+          "ماده اولیه در تولید برخی رنگدانه‌های آبی و سبز",
+          "کاربرد در صنعت نساجی و تثبیت رنگ",
+          "استفاده در فلوتاسیون برای جداسازی کانی‌ها",
+          "کنترل رشد جلبک در برخی سامانه‌های آبی",
+          "کاربرد در دباغی چرم و برخی فرآیندهای مرتبط با سیم و محصولات مسی",
+        ],
+      },
+      {
+        heading: "کاربردهای دیگر",
+        bullets: [
+          "استفاده از فرم بی‌آب به عنوان عامل خشک‌کننده برای برخی حلال‌های آلی",
+          "کاربرد در برخی ترکیبات آتش‌بازی برای ایجاد رنگ سبز",
+          "استفاده در آزمایشگاه به عنوان معرف شیمیایی",
+        ],
+      },
+      {
+        heading: "تولید سولفات مس به روش هوادهی",
+        paragraphs: [
+          "یکی از روش‌های صنعتی تولید سولفات مس، روش هوادهی یا Air Oxidation است. در این روش، از اکسیژن هوا به عنوان عامل اکسیدکننده استفاده می‌شود تا مس فلزی در حضور اسید سولفوریک به سولفات مس تبدیل شود.",
+          "معادله کلی این فرآیند به صورت 2Cu + 2H₂SO₄ + O₂ → 2CuSO₄ + 2H₂O بیان می‌شود.",
+        ],
+        note: {
+          title: "شرایط معمول فرآیند",
+          body: "این واکنش معمولاً در محدوده دمایی حدود 60 تا 80 درجه سانتی‌گراد انجام می‌شود تا بازدهی فرآیند افزایش پیدا کند.",
+          tone: "info",
+        },
+      },
+      {
+        heading: "مراحل اصلی فرآیند هوادهی",
+        ordered: true,
+        bullets: [
+          "آماده‌سازی ماده اولیه شامل ضایعات، براده، سیم یا کاتد مس تمیز",
+          "اختلاط با محلول اسید سولفوریک، معمولاً در غلظت مناسب",
+          "تزریق هوا برای اکسید شدن مس و تشکیل یون‌های مس",
+          "کنترل دما و شرایط واکنش برای افزایش راندمان",
+          "تغلیظ محلول و سپس سرد کردن برای تبلور سولفات مس پنتاهیدرات",
+          "جداسازی، شست‌وشو و خشک کردن بلورها",
+        ],
+      },
+      {
+        heading: "مزایای روش هوادهی",
+        bullets: [
+          "استفاده از اکسیژن هوا به عنوان عامل اکسیدکننده ارزان و در دسترس",
+          "قابلیت تولید سولفات مس با خلوص بالا",
+          "امکان استفاده برای انواع مختلف مواد اولیه مسی",
+        ],
+      },
+      {
+        heading: "نکات مهم در فرآیند هوادهی",
+        bullets: [
+          "کنترل دقیق دما و غلظت اسید سولفوریک",
+          "اطمینان از کیفیت هوای ورودی و نبود ناخالصی‌های مزاحم",
+          "استفاده از تجهیزات مقاوم در برابر خوردگی به دلیل ماهیت اسیدی محیط",
+        ],
+      },
+      {
+        heading: "ملاحظات ایمنی و زیست‌محیطی",
+        bullets: [
+          "مصرف خوراکی این ماده می‌تواند باعث مسمومیت گوارشی، آسیب کبدی و کلیوی شود",
+          "تماس با پوست و چشم ممکن است باعث تحریک و سوزش شود",
+          "برای موجودات آبزی بسیار سمی است",
+          "پساب‌های حاوی سولفات مس نباید بدون کنترل و تصفیه وارد محیط زیست شوند",
+          "استفاده از دستکش، عینک محافظ و لباس کار هنگام کار با این ماده ضروری است",
+        ],
+        note: {
+          title: "هشدار ایمنی",
+          body: "در صورت تماس با پوست یا چشم، محل را با آب فراوان شست‌وشو دهید و در صورت بلعیدن، مراجعه فوری به پزشک ضروری است.",
+          tone: "warning",
+        },
+      },
+    ],
+  },
   {
     slug: "buying-copper-sulfate-tips",
     title: "نکات حیاتی که پیش از خرید سولفات مس باید بدانید",
@@ -33,16 +220,55 @@ const posts: BlogPostItem[] = [
     readTime: "۶ دقیقه",
     category: "خرید و قیمت",
     tags: ["سولفات مس", "خرید سولفات مس", "قیمت سولفات مس", "آنالیز محصول"],
-    content: [
-      "سولفات مس یکی از مواد شیمیایی پرکاربرد در صنایع مختلف، کشاورزی، دامپروری، آبکاری و تولید ترکیبات شیمیایی است. به همین دلیل انتخاب محصول مناسب، فقط به پیدا کردن پایین‌ترین قیمت محدود نمی‌شود. کیفیت، خلوص، یکنواختی دانه‌بندی و معتبر بودن برگه آنالیز از مواردی هستند که باید پیش از خرید بررسی شوند.",
-
-      "اولین نکته در خرید سولفات مس، توجه به نوع محصول است. سولفات مس پنج آبه به دلیل شکل کریستالی آبی‌رنگ و کاربرد گسترده، یکی از رایج‌ترین انواع این ماده محسوب می‌شود. این محصول باید ظاهری یکنواخت، رنگ مشخص و بسته‌بندی سالم داشته باشد.",
-
-      "موضوع دوم، بررسی برگه آنالیز است. در خرید عمده مواد شیمیایی، وجود آنالیز معتبر به خریدار کمک می‌کند از درصد خلوص، میزان رطوبت و مشخصات فنی محصول مطمئن شود. اگر محصول برای کاربردهای حساس استفاده می‌شود، این موضوع اهمیت بیشتری پیدا می‌کند.",
-
-      "موضوع سوم، انتخاب تأمین‌کننده معتبر است. تأمین‌کننده‌ای که توانایی ارائه مشاوره فنی، ارسال منظم، بسته‌بندی مناسب و پاسخگویی شفاف داشته باشد، ریسک خرید را کاهش می‌دهد. در شیمی گستر سولفات، تمرکز اصلی بر ارائه محصول باکیفیت، قیمت رقابتی و پشتیبانی تخصصی است.",
-
-      "در نهایت، پیش از ثبت سفارش، بهتر است حجم مصرف، نوع کاربرد، شرایط نگهداری و شیوه حمل‌ونقل مشخص شود. این موارد باعث می‌شود انتخاب نهایی دقیق‌تر انجام شود و محصول خریداری‌شده بیشترین بازدهی را در کاربرد مورد نظر داشته باشد.",
+    highlights: [
+      "خرید سولفات مس فقط بر پایه پایین‌ترین قیمت تصمیم درستی نیست.",
+      "برگه آنالیز معتبر و خلوص واقعی محصول باید پیش از خرید بررسی شود.",
+      "تأمین‌کننده‌ای که پاسخ‌گو و منظم باشد، ریسک خرید عمده را کاهش می‌دهد.",
+    ],
+    summary:
+      "برای خرید مطمئن سولفات مس، باید خلوص، نوع کاربرد، بسته‌بندی، کیفیت تأمین و شرایط تحویل را هم‌زمان بررسی کرد. انتخاب فنی معمولاً از خرید صرفاً ارزان، نتیجه بهتری می‌دهد.",
+    ctaTitle: "پیش از خرید، مشخصات فنی محصول را بررسی کنید",
+    ctaDescription:
+      "برای دریافت برگه آنالیز، بررسی نوع مصرف و انتخاب بسته‌بندی مناسب، با واحد فروش شیمی گستر سولفات تماس بگیرید.",
+    sections: [
+      {
+        heading: "خرید سولفات مس فقط مقایسه قیمت نیست",
+        paragraphs: [
+          "سولفات مس یکی از مواد شیمیایی پرکاربرد در صنایع مختلف، کشاورزی، دامپروری، آبکاری و تولید ترکیبات شیمیایی است. به همین دلیل انتخاب محصول مناسب، فقط به پیدا کردن پایین‌ترین قیمت محدود نمی‌شود.",
+          "کیفیت، خلوص، یکنواختی دانه‌بندی و معتبر بودن برگه آنالیز از مواردی هستند که باید پیش از خرید بررسی شوند. در خرید مواد شیمیایی، تصمیم درست زمانی گرفته می‌شود که مشخصات محصول با نوع مصرف نهایی هماهنگ باشد.",
+        ],
+      },
+      {
+        heading: "نوع محصول را دقیق انتخاب کنید",
+        paragraphs: [
+          "اولین نکته در خرید سولفات مس، توجه به نوع محصول است. سولفات مس پنج‌آبه به دلیل شکل کریستالی آبی‌رنگ و کاربرد گسترده، یکی از رایج‌ترین انواع این ماده محسوب می‌شود.",
+          "این محصول باید ظاهری یکنواخت، رنگ مشخص و بسته‌بندی سالم داشته باشد. هرگونه تغییر ظاهری غیرعادی، کلوخه‌شدگی شدید یا بسته‌بندی نامناسب می‌تواند نشانه ضعف در نگهداری یا کیفیت محصول باشد.",
+        ],
+      },
+      {
+        heading: "برگه آنالیز را جدی بگیرید",
+        paragraphs: [
+          "موضوع دوم، بررسی برگه آنالیز است. در خرید عمده مواد شیمیایی، وجود آنالیز معتبر به خریدار کمک می‌کند از درصد خلوص، میزان رطوبت و مشخصات فنی محصول مطمئن شود.",
+          "اگر محصول برای کاربردهای حساس یا فرآیندهای کنترل‌شده استفاده می‌شود، این موضوع اهمیت بیشتری پیدا می‌کند. اتکا به ظاهر محصول بدون بررسی مشخصات فنی، مبنای کافی برای تصمیم خرید نیست.",
+        ],
+      },
+      {
+        heading: "تأمین‌کننده معتبر، فقط فروشنده نیست",
+        paragraphs: [
+          "موضوع سوم، انتخاب تأمین‌کننده معتبر است. تأمین‌کننده‌ای که توانایی ارائه مشاوره فنی، ارسال منظم، بسته‌بندی مناسب و پاسخ‌گویی شفاف داشته باشد، ریسک خرید را کاهش می‌دهد.",
+          "در خریدهای تکرارشونده یا عمده، ثبات کیفیت و پایداری تأمین به اندازه قیمت اهمیت دارد. مجموعه‌ای که بتواند مشخصات فنی، شرایط تحویل و وضعیت موجودی را شفاف اعلام کند، انتخاب مطمئن‌تری خواهد بود.",
+        ],
+      },
+      {
+        heading: "قبل از ثبت سفارش، این موارد را مشخص کنید",
+        bullets: [
+          "حجم مصرف واقعی و دوره زمانی تأمین",
+          "نوع کاربرد محصول و سطح خلوص مورد نیاز",
+          "شرایط نگهداری در انبار یا محل مصرف",
+          "شیوه حمل‌ونقل و حساسیت بسته‌بندی",
+          "نیاز به برگه آنالیز یا مشخصات فنی تکمیلی",
+        ],
+      },
     ],
   },
   {
@@ -55,16 +281,51 @@ const posts: BlogPostItem[] = [
     readTime: "۵ دقیقه",
     category: "خرید و قیمت",
     tags: ["قیمت سولفات مس", "مواد شیمیایی", "بازار مس", "خرید عمده"],
-    content: [
-      "قیمت سولفات مس تحت تأثیر چند عامل اصلی تعیین می‌شود و به همین دلیل ممکن است در بازه‌های زمانی مختلف تغییر کند. شناخت این عوامل به خریداران کمک می‌کند تصمیم دقیق‌تری بگیرند و فقط بر اساس عدد نهایی قیمت قضاوت نکنند.",
-
-      "یکی از مهم‌ترین عوامل، قیمت فلز مس در بازارهای جهانی است. از آنجا که مس ماده اصلی در تولید سولفات مس است، نوسان قیمت آن می‌تواند مستقیماً بر قیمت نهایی محصول اثر بگذارد.",
-
-      "عامل بعدی، درصد خلوص و کیفیت محصول است. سولفات مس با خلوص بالاتر و آنالیز دقیق‌تر معمولاً قیمت بالاتری دارد، اما در بسیاری از کاربردها بازدهی بهتر و ریسک کمتری ایجاد می‌کند.",
-
-      "نوع بسته‌بندی و حجم سفارش نیز بر قیمت اثرگذار است. سفارش‌های عمده معمولاً از نظر قیمت واحد، اقتصادی‌تر هستند. همچنین بسته‌بندی مقاوم و استاندارد می‌تواند در حمل‌ونقل و نگهداری محصول اهمیت زیادی داشته باشد.",
-
-      "در نهایت، هزینه‌های حمل، شرایط بازار داخلی و موجودی محصول نیز از عوامل مؤثر هستند. برای دریافت قیمت دقیق، بهتر است با واحد فروش تماس گرفته شود تا بر اساس حجم سفارش و مقصد ارسال، قیمت نهایی اعلام شود.",
+    highlights: [
+      "قیمت جهانی مس یکی از مهم‌ترین عوامل اثرگذار بر قیمت نهایی سولفات مس است.",
+      "خلوص بالاتر معمولاً قیمت را بالا می‌برد، اما ریسک مصرف را کمتر می‌کند.",
+      "بسته‌بندی، حجم سفارش، حمل و شرایط بازار داخلی هم روی قیمت اثر دارند.",
+    ],
+    summary:
+      "قیمت سولفات مس فقط یک عدد ثابت نیست و از چند متغیر فنی و بازار تأثیر می‌گیرد. برای برآورد درست، باید مشخصات محصول، تناژ سفارش و مقصد تحویل را هم در نظر گرفت.",
+    ctaTitle: "برای دریافت قیمت دقیق، مشخصات سفارش را روشن کنید",
+    ctaDescription:
+      "قیمت نهایی سولفات مس به نوع گرید، حجم سفارش، بسته‌بندی و مقصد ارسال وابسته است. برای استعلام دقیق، با واحد فروش تماس بگیرید.",
+    sections: [
+      {
+        heading: "قیمت سولفات مس چرا متغیر است؟",
+        paragraphs: [
+          "قیمت سولفات مس تحت تأثیر چند عامل اصلی تعیین می‌شود و به همین دلیل ممکن است در بازه‌های زمانی مختلف تغییر کند. شناخت این عوامل به خریداران کمک می‌کند تصمیم دقیق‌تری بگیرند و فقط بر اساس عدد نهایی قیمت قضاوت نکنند.",
+        ],
+      },
+      {
+        heading: "قیمت جهانی مس",
+        paragraphs: [
+          "یکی از مهم‌ترین عوامل، قیمت فلز مس در بازارهای جهانی است. از آنجا که مس ماده اصلی در تولید سولفات مس است، نوسان قیمت آن می‌تواند مستقیماً بر قیمت نهایی محصول اثر بگذارد.",
+          "هر تغییر در بازار جهانی مس، هزینه تولید و تأمین مواد اولیه را جابه‌جا می‌کند و این اثر معمولاً در قیمت محصول نهایی دیده می‌شود.",
+        ],
+      },
+      {
+        heading: "خلوص و کیفیت محصول",
+        paragraphs: [
+          "عامل بعدی، درصد خلوص و کیفیت محصول است. سولفات مس با خلوص بالاتر و آنالیز دقیق‌تر معمولاً قیمت بالاتری دارد، اما در بسیاری از کاربردها بازدهی بهتر و ریسک کمتری ایجاد می‌کند.",
+          "در کاربردهای حساس، اختلاف کیفیت می‌تواند مستقیماً بر نتیجه مصرف اثر بگذارد. به همین دلیل مقایسه قیمت بدون توجه به سطح کیفی، مقایسه کاملی نیست.",
+        ],
+      },
+      {
+        heading: "گرید، بسته‌بندی و حجم سفارش",
+        paragraphs: [
+          "نوع بسته‌بندی و حجم سفارش نیز بر قیمت اثرگذار است. سفارش‌های عمده معمولاً از نظر قیمت واحد، اقتصادی‌تر هستند. همچنین بسته‌بندی مقاوم و استاندارد می‌تواند در حمل‌ونقل و نگهداری محصول اهمیت زیادی داشته باشد.",
+          "اگر محصول در گریدهای متفاوت عرضه شود، تفاوت در کیفیت، فرآوری یا سطح کنترل مشخصات فنی می‌تواند اختلاف قیمت ایجاد کند.",
+        ],
+      },
+      {
+        heading: "هزینه حمل و شرایط بازار داخلی",
+        paragraphs: [
+          "در نهایت، هزینه‌های حمل، شرایط بازار داخلی و موجودی محصول نیز از عوامل مؤثر هستند. فاصله مقصد، نوع ارسال و وضعیت عرضه و تقاضا می‌تواند روی قیمت نهایی سفارش اثر بگذارد.",
+          "برای دریافت قیمت دقیق، بهتر است استعلام بر اساس حجم سفارش، نوع بسته‌بندی و مقصد ارسال انجام شود تا عدد نهایی به واقعیت نزدیک باشد.",
+        ],
+      },
     ],
   },
   {
@@ -77,16 +338,55 @@ const posts: BlogPostItem[] = [
     readTime: "۷ دقیقه",
     category: "کاربردها و کشاورزی",
     tags: ["سولفات مس کشاورزی", "کود مس", "باغداری", "کنترل قارچ"],
-    content: [
-      "سولفات مس در کشاورزی و باغداری کاربردهای متنوعی دارد. عنصر مس یکی از ریزمغذی‌های ضروری برای رشد گیاهان است و کمبود آن می‌تواند باعث کاهش کیفیت رشد، ضعف برگ‌ها و افت عملکرد محصول شود.",
-
-      "یکی از کاربردهای مهم سولفات مس، کمک به رفع کمبود مس در خاک و گیاه است. البته میزان مصرف باید بر اساس آزمون خاک، نوع محصول و توصیه کارشناسان انجام شود، زیرا مصرف بیش از حد ترکیبات مس می‌تواند برای گیاه و خاک مشکل‌ساز باشد.",
-
-      "سولفات مس همچنین در برخی فرمولاسیون‌ها برای کنترل بیماری‌های قارچی مورد استفاده قرار می‌گیرد. در باغداری، ترکیبات مبتنی بر مس سابقه طولانی در مدیریت برخی بیماری‌های گیاهی دارند.",
-
-      "نکته مهم در استفاده کشاورزی، توجه به دوز مصرف، زمان مصرف و سازگاری با سایر ترکیبات است. استفاده نادرست می‌تواند باعث گیاه‌سوزی یا کاهش اثربخشی شود.",
-
-      "برای انتخاب سولفات مس مناسب کشاورزی، کیفیت محصول، خلوص، قابلیت حل‌شوندگی و اعتبار تأمین‌کننده اهمیت دارد. مشاوره با کارشناس فنی پیش از مصرف می‌تواند از خطاهای رایج جلوگیری کند.",
+    highlights: [
+      "مس یکی از ریزمغذی‌های ضروری برای رشد و عملکرد طبیعی گیاه است.",
+      "سولفات مس در برخی کاربردها برای رفع کمبود مس و کنترل بیماری‌های قارچی استفاده می‌شود.",
+      "مصرف بیش از حد یا نادرست این ترکیب می‌تواند باعث آسیب به گیاه و خاک شود.",
+    ],
+    summary:
+      "سولفات مس در کشاورزی زمانی مفید است که متناسب با آزمون خاک، نوع محصول و توصیه فنی مصرف شود. کیفیت محصول و دقت در دوز مصرف، نقش مستقیمی در نتیجه نهایی دارند.",
+    ctaTitle: "برای انتخاب سولفات مس مناسب مصرف کشاورزی، راهنمایی تخصصی بگیرید",
+    ctaDescription:
+      "برای بررسی خلوص، قابلیت حل‌شوندگی، نوع مصرف و شرایط استفاده، با کارشناسان شیمی گستر سولفات مشورت کنید.",
+    sections: [
+      {
+        heading: "چرا سولفات مس در کشاورزی اهمیت دارد؟",
+        paragraphs: [
+          "سولفات مس در کشاورزی و باغداری کاربردهای متنوعی دارد. عنصر مس یکی از ریزمغذی‌های ضروری برای رشد گیاهان است و کمبود آن می‌تواند باعث کاهش کیفیت رشد، ضعف برگ‌ها و افت عملکرد محصول شود.",
+          "به همین دلیل، استفاده از ترکیبات مسی در بسیاری از برنامه‌های تغذیه و حفاظت گیاه، جایگاه مشخصی دارد.",
+        ],
+      },
+      {
+        heading: "رفع کمبود مس در خاک و گیاه",
+        paragraphs: [
+          "یکی از کاربردهای مهم سولفات مس، کمک به رفع کمبود مس در خاک و گیاه است. البته میزان مصرف باید بر اساس آزمون خاک، نوع محصول و توصیه کارشناسان انجام شود، زیرا مصرف بیش از حد ترکیبات مس می‌تواند برای گیاه و خاک مشکل‌ساز باشد.",
+          "در مصرف کشاورزی، تشخیص کمبود واقعی و تعیین دوز مناسب بسیار مهم‌تر از مصرف عمومی و بدون ارزیابی است.",
+        ],
+      },
+      {
+        heading: "کنترل برخی بیماری‌های قارچی",
+        paragraphs: [
+          "سولفات مس در برخی فرمولاسیون‌ها برای کنترل بیماری‌های قارچی مورد استفاده قرار می‌گیرد. در باغداری، ترکیبات مبتنی بر مس سابقه طولانی در مدیریت برخی بیماری‌های گیاهی دارند.",
+          "اثرگذاری مناسب این ترکیبات به زمان مصرف، دوز مصرف و شرایط محیطی وابسته است.",
+        ],
+      },
+      {
+        heading: "نکات مهم در مصرف کشاورزی",
+        bullets: [
+          "توجه به دوز مصرف و پرهیز از مصرف بیش از حد",
+          "رعایت زمان مناسب مصرف بر اساس نوع گیاه و شرایط مزرعه",
+          "بررسی سازگاری با سایر ترکیبات مصرفی",
+          "پرهیز از مصرف خودسرانه بدون توصیه فنی",
+          "انتخاب محصول با خلوص و قابلیت حل‌شوندگی مناسب",
+        ],
+      },
+      {
+        heading: "انتخاب محصول مناسب برای باغداری و کشاورزی",
+        paragraphs: [
+          "برای انتخاب سولفات مس مناسب کشاورزی، کیفیت محصول، خلوص، قابلیت حل‌شوندگی و اعتبار تأمین‌کننده اهمیت دارد. محصولی که از نظر مشخصات فنی پایدار باشد، در مصرف مزرعه‌ای نتیجه قابل پیش‌بینی‌تری ایجاد می‌کند.",
+          "مشاوره با کارشناس فنی پیش از مصرف می‌تواند از خطاهای رایج جلوگیری کند و به انتخاب دقیق‌تر محصول کمک کند.",
+        ],
+      },
     ],
   },
 ];
@@ -107,7 +407,8 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "مقاله پیدا نشد",
+      title: "مقاله پیدا نشد | شیمی گستر سولفات",
+      description: "مقاله مورد نظر در وبلاگ شیمی گستر سولفات یافت نشد.",
     };
   }
 
@@ -115,6 +416,93 @@ export async function generateMetadata({
     title: `${post.title} | شیمی گستر سولفات`,
     description: post.description,
   };
+}
+
+function NoteBox({
+  title,
+  body,
+  tone = "info",
+}: {
+  title: string;
+  body: string;
+  tone?: "info" | "warning" | "success";
+}) {
+  const styles = {
+    info: "border-sky-200 bg-sky-50 text-sky-900",
+    warning: "border-amber-200 bg-amber-50 text-amber-900",
+    success: "border-emerald-200 bg-emerald-50 text-emerald-900",
+  };
+
+  const Icon =
+    tone === "warning"
+      ? AlertTriangle
+      : tone === "success"
+        ? CheckCircle2
+        : FlaskConical;
+
+  return (
+    <div
+      className={`my-10 rounded-[1.75rem] border p-6 md:p-7 ${styles[tone]}`}
+    >
+      <div className="mb-3 flex items-center gap-2">
+        <Icon size={20} />
+        <h3 className="text-base font-black">{title}</h3>
+      </div>
+      <p className="text-sm leading-8">{body}</p>
+    </div>
+  );
+}
+
+function ArticleSectionView({ section }: { section: ArticleSection }) {
+  return (
+    <section className="mb-12">
+      {section.heading ? (
+        <h2 className="mb-5 text-2xl font-black leading-10 text-[#0a1a2f] md:text-[1.9rem]">
+          {section.heading}
+        </h2>
+      ) : null}
+
+      {section.paragraphs?.map((paragraph, index) => (
+        <p
+          key={index}
+          className="mb-6 text-[1.06rem] leading-[2.35rem] text-slate-700 text-justify"
+        >
+          {paragraph}
+        </p>
+      ))}
+
+      {section.bullets ? (
+        section.ordered ? (
+          <ol className="space-y-4 pr-5 text-[1.02rem] leading-[2.25rem] text-slate-700 marker:font-bold marker:text-[#c27829]">
+            {section.bullets.map((item, index) => (
+              <li key={index} className="pr-2">
+                {item}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <ul className="space-y-4 text-[1.02rem] leading-[2.25rem] text-slate-700">
+            {section.bullets.map((item, index) => (
+              <li key={index} className="flex gap-3">
+                <span className="mt-2 text-sm font-black text-[#c27829]">
+                  •
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )
+      ) : null}
+
+      {section.note ? (
+        <NoteBox
+          title={section.note.title}
+          body={section.note.body}
+          tone={section.note.tone}
+        />
+      ) : null}
+    </section>
+  );
 }
 
 export default async function BlogPost({
@@ -131,37 +519,37 @@ export default async function BlogPost({
 
   return (
     <main className="bg-white pb-24">
-      <div className="fixed top-0 left-0 w-full h-1 z-50 bg-slate-100">
-        <div className="h-full bg-[#c27829] w-1/3" />
+      <div className="fixed top-0 left-0 z-50 h-1 w-full bg-slate-100">
+        <div className="h-full w-1/3 bg-[#c27829]" />
       </div>
 
-      <header className="pt-32 pb-16 bg-slate-50 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto px-4">
+      <header className="border-b border-slate-100 bg-slate-50 pt-32 pb-16">
+        <div className="mx-auto max-w-4xl px-4">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-bold text-[#c27829] mb-8 hover:gap-3 transition-all"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-bold text-[#c27829] transition-all hover:gap-3"
           >
             <ArrowLeft size={16} className="rotate-180" />
             برگشت به مجله علمی
           </Link>
 
           <div className="mb-5">
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-white border border-slate-200 text-xs font-black text-slate-600">
+            <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-600">
               {post.category}
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-black text-[#0a1a2f] leading-tight mb-8 tracking-tight">
+          <h1 className="mb-8 text-3xl font-black leading-[1.8] tracking-tight text-[#0a1a2f] md:text-5xl">
             {post.title}
           </h1>
 
-          <p className="text-lg leading-9 text-slate-600 mb-8">
+          <p className="mb-8 text-lg leading-9 text-slate-600">
             {post.description}
           </p>
 
-          <div className="flex flex-wrap items-center gap-6 md:gap-8 text-sm text-slate-500">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 md:gap-8">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-[#0a1a2f] text-white flex items-center justify-center text-[10px] font-bold">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0a1a2f] text-[10px] font-bold text-white">
                 SG
               </div>
               <span className="font-bold text-slate-900">{post.author}</span>
@@ -180,121 +568,159 @@ export default async function BlogPost({
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-16 grid lg:grid-cols-12 gap-12 lg:gap-16">
-        <aside className="lg:col-span-4 space-y-8 order-2 lg:order-1">
-          <div className="lg:sticky lg:top-28 space-y-8">
-            <div className="bg-[#0a1a2f] rounded-[2rem] p-8 text-white relative overflow-hidden shadow-2xl">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 lg:grid-cols-12 lg:gap-16">
+        <aside className="order-2 space-y-8 lg:order-1 lg:col-span-4">
+          <div className="space-y-8 lg:sticky lg:top-28">
+            <div className="relative overflow-hidden rounded-[2rem] bg-[#0a1a2f] p-8 text-white shadow-2xl">
               <div className="relative z-10">
-                <h2 className="text-xl font-black mb-4 text-[#f0b56d]">
+                <h2 className="mb-4 text-xl font-black text-[#f0b56d]">
                   خرید مستقیم سولفات مس
                 </h2>
 
-                <p className="text-sm text-slate-400 leading-7 mb-8">
+                <p className="mb-8 text-sm leading-7 text-slate-400">
                   شیمی گستر سولفات، تأمین‌کننده سولفات مس پنج آبه با امکان ارائه
                   مشاوره، برگه آنالیز و قیمت رقابتی برای سفارش‌های عمده.
                 </p>
 
                 <Link
                   href="/products/copper-sulfate"
-                  className="flex items-center justify-center gap-2 w-full py-4 bg-[#c27829] rounded-2xl font-black hover:bg-[#a86522] transition-all"
+                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#c27829] py-4 font-black transition-all hover:bg-[#a86522]"
                 >
                   مشاهده قیمت و مشخصات
                   <ArrowLeft size={18} />
                 </Link>
               </div>
 
-              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-3xl" />
+              <div className="absolute -right-10 -bottom-10 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
             </div>
 
-            <div className="bg-slate-50 rounded-[2rem] p-8 border border-slate-100 text-center">
-              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-6">
+            <div className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8 text-center">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm">
                 <Phone size={24} className="text-[#c27829]" />
               </div>
 
-              <h3 className="font-black text-[#0a1a2f] mb-2">
+              <h3 className="mb-2 font-black text-[#0a1a2f]">
                 نیاز به راهنمایی فنی دارید؟
               </h3>
 
-              <p className="text-xs text-slate-500 leading-6 mb-6">
-                کارشناسان ما آماده پاسخگویی به سوالات تخصصی شما درباره انتخاب،
+              <p className="mb-6 text-xs leading-6 text-slate-500">
+                کارشناسان ما آماده پاسخ‌گویی به سوالات تخصصی شما درباره انتخاب،
                 خرید و مصرف سولفات مس هستند.
               </p>
 
               <a
                 href="tel:09123063576"
-                className="block w-full py-3 border-2 border-[#c27829] text-[#c27829] rounded-xl font-bold hover:bg-[#c27829] hover:text-white transition-all"
+                className="block w-full rounded-xl border-2 border-[#c27829] py-3 font-bold text-[#c27829] transition-all hover:bg-[#c27829] hover:text-white"
               >
                 تماس با واحد فنی
               </a>
             </div>
 
-            <div className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
-              <h3 className="font-black text-[#0a1a2f] mb-5 flex items-center gap-2">
+            <div className="rounded-[2rem] border border-slate-100 bg-white p-8 shadow-sm">
+              <h3 className="mb-5 flex items-center gap-2 font-black text-[#0a1a2f]">
                 <CheckCircle2 size={20} className="text-[#c27829]" />
                 نکات کلیدی مقاله
               </h3>
 
-              <ul className="space-y-4 text-sm text-slate-600 leading-7">
-                <li className="flex gap-2">
-                  <span className="text-[#c27829] font-black">•</span>
-                  بررسی خلوص و کیفیت محصول پیش از خرید اهمیت زیادی دارد.
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#c27829] font-black">•</span>
-                  برگه آنالیز معتبر ریسک خرید مواد شیمیایی را کاهش می‌دهد.
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#c27829] font-black">•</span>
-                  انتخاب تأمین‌کننده معتبر، قیمت و پایداری تأمین را بهتر می‌کند.
-                </li>
+              <ul className="space-y-4 text-sm leading-7 text-slate-600">
+                {post.highlights.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="font-black text-[#c27829]">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
+
+            {post.slug === "copper-sulfate-complete-guide" ? (
+              <div className="rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
+                <h3 className="mb-4 flex items-center gap-2 font-black text-emerald-900">
+                  <Leaf size={18} />
+                  کاربردهای مهم
+                </h3>
+                <p className="text-sm leading-7 text-emerald-900/80">
+                  سولفات مس در کشاورزی، صنعت، آبکاری، فلوتاسیون، تصفیه آب و
+                  تولید برخی ترکیبات شیمیایی کاربرد دارد.
+                </p>
+              </div>
+            ) : null}
+
+            {post.slug === "copper-sulfate-complete-guide" ? (
+              <div className="rounded-[2rem] border border-sky-100 bg-sky-50 p-8">
+                <h3 className="mb-4 flex items-center gap-2 font-black text-sky-900">
+                  <Factory size={18} />
+                  نکته تولید
+                </h3>
+                <p className="text-sm leading-7 text-sky-900/80">
+                  در روش هوادهی، کنترل دما، غلظت اسید و کیفیت هوا برای بازدهی و
+                  کیفیت محصول نهایی اهمیت زیادی دارد.
+                </p>
+              </div>
+            ) : null}
           </div>
         </aside>
 
-        <article className="lg:col-span-8 order-1 lg:order-2">
-          <div className="max-w-none">
-            <p className="text-xl leading-relaxed text-slate-600 font-medium mb-12 pb-12 border-b border-slate-100">
+        <article className="order-1 lg:order-2 lg:col-span-8">
+          <div className="max-w-none rounded-[2rem] border border-slate-100 bg-white p-7 shadow-sm md:p-10">
+            <p className="mb-12 border-b border-slate-100 pb-12 text-xl font-medium leading-[2.4rem] text-slate-600">
               {post.description}
             </p>
 
-            <div className="space-y-8">
-              {post.content.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className="text-slate-800 text-lg leading-[2.4rem] text-justify"
-                >
-                  {paragraph}
-                </p>
+            <div>
+              {post.sections.map((section, index) => (
+                <ArticleSectionView
+                  key={`${post.slug}-${index}`}
+                  section={section}
+                />
               ))}
             </div>
 
-            <div className="my-14 bg-slate-50 border border-slate-100 rounded-[2rem] p-7 md:p-8">
-              <h2 className="text-2xl font-black text-[#0a1a2f] mb-4">
+            <div className="my-14 rounded-[2rem] border border-slate-100 bg-slate-50 p-7 md:p-8">
+              <h2 className="mb-4 text-2xl font-black text-[#0a1a2f]">
                 جمع‌بندی
               </h2>
 
-              <p className="text-slate-700 leading-9 text-justify">
-                انتخاب سولفات مس مناسب، نیازمند توجه به کیفیت، خلوص، نوع کاربرد
-                و اعتبار تأمین‌کننده است. اگر قصد خرید عمده سولفات مس دارید،
-                پیشنهاد می‌شود پیش از ثبت سفارش، مشخصات فنی محصول و شرایط تحویل
-                را با کارشناسان فروش بررسی کنید.
+              <p className="text-justify leading-9 text-slate-700">
+                {post.summary}
               </p>
 
               <div className="mt-7">
                 <Link
                   href="/products/copper-sulfate"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#c27829] text-white rounded-2xl font-black hover:bg-[#a86522] transition-all"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#c27829] px-6 py-4 font-black text-white transition-all hover:bg-[#a86522]"
                 >
                   مشاهده صفحه سولفات مس
                   <ArrowLeft size={18} />
                 </Link>
               </div>
             </div>
+
+            <div className="rounded-[2rem] bg-[#0a1a2f] p-7 text-white md:p-8">
+              <h2 className="mb-3 text-2xl font-black">{post.ctaTitle}</h2>
+              <p className="max-w-3xl leading-8 text-slate-300">
+                {post.ctaDescription}
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-2xl bg-[#c27829] px-6 py-3 font-black text-white transition-all hover:bg-[#a86522]"
+                >
+                  تماس با ما
+                </Link>
+
+                <Link
+                  href="/products/copper-sulfate"
+                  className="inline-flex items-center justify-center rounded-2xl border border-white/20 px-6 py-3 font-bold text-white transition-all hover:bg-white/10"
+                >
+                  مشاهده محصول
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-slate-100 flex flex-wrap gap-3">
-            <span className="text-sm font-bold text-slate-400 ml-2 flex items-center gap-1">
+          <div className="mt-16 flex flex-wrap gap-3 border-t border-slate-100 pt-8">
+            <span className="ml-2 flex items-center gap-1 text-sm font-bold text-slate-400">
               <Tag size={16} />
               برچسب‌ها:
             </span>
@@ -302,7 +728,7 @@ export default async function BlogPost({
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-4 py-1.5 bg-slate-50 text-slate-600 rounded-full text-xs font-bold border border-slate-100 cursor-default"
+                className="cursor-default rounded-full border border-slate-100 bg-slate-50 px-4 py-1.5 text-xs font-bold text-slate-600"
               >
                 # {tag}
               </span>

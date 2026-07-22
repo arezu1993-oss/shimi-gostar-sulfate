@@ -38,7 +38,7 @@ const navItems = [
   { title: "وبلاگ و مقالات", href: "/blog", icon: BookOpenText },
   { title: "درباره ما", href: "/about", icon: Info },
   { title: "شرکای تجاری", href: "/business-partners", icon: BriefcaseBusiness },
-  { title: "همکاری با ما", href: "/partnership", icon: Handshake },
+  { title: "همکاری با ما", href: "/cooperation", icon: Handshake },
   { title: "تماس با ما", href: "/contact", icon: Phone },
 ];
 

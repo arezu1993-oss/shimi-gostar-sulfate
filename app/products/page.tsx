@@ -109,17 +109,17 @@ const trustItems = [
 
 const processSteps = [
   {
-    step: "۰۱",
+    step: "۱",
     title: "ثبت درخواست اولیه",
     description: "مشخصات محصول درخواستی، مقدار مورد نیاز و شهر مقصد را با کارشناسان ما مطرح کنید.",
   },
   {
-    step: "۰۲",
+    step: "۲",
     title: "صدور پیش‌فاکتور و تأیید فنی",
     description: "آنالیز محصول به همراه بهترین قیمت روز و شرایط لجستیک خدمت شما ارسال می‌شود.",
   },
   {
-    step: "۰۳",
+    step: "۳",
     title: "ارسال و تحویل محموله",
     description: "پس از نهایی شدن فرآیند مالی، بارگیری مستقیم از درب کارخانه یا انبار تهران انجام می‌گیرد.",
   },
@@ -208,7 +208,7 @@ export default function ProductsPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-black text-[#0a1a2f]">سولفات مس ۵ آبه</h2>
-                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">خلوص ۹۹-۹۸٪</span>
+                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-lg">خلوص ٪ ۹۸ - ۹۴</span>
                 </div>
                 <p className="mt-4 text-sm leading-7 text-slate-600">
                   عرضه همزمان به صورت <span className="font-bold text-slate-800">کریستالی، پودری و شکری</span>. مناسب کشاورزی، خوراک دام، آبکاری و تولید کودهای مایع.

@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowLeft,
-  BookOpen,
   Clock,
   ChevronLeft,
   Sparkles,
@@ -16,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "وبلاگ و دانشنامه تخصصی شیمی گستر سولفات",
   description:
-    "مقالات تخصصی درباره خرید سولفات مس، قیمت سولفات مس، کاربردهای سولفات مس در کشاورزی، صنعت، ایمنی و نگهداری مواد شیمیایی.",
+    "مقالات تخصصی درباره خرید سولفات مس، قیمت سولفات مس، کاربردهای سولفات مس در کشاورزی، صنعت، ایمنی، نگهداری و روش‌های تولید مواد شیمیایی.",
 };
 
 const categories = [
@@ -52,6 +51,16 @@ const categories = [
 
 const posts = [
   {
+    slug: "copper-sulfate-complete-guide",
+    title:
+      "سولفات مس چیست؟ معرفی کامل کاربردها، انواع، ویژگی‌ها و تولید به روش هوادهی",
+    description:
+      "در این مقاله با سولفات مس، انواع آن، ویژگی‌های فیزیکی و شیمیایی، کاربردها در کشاورزی و صنعت، روش تولید به روش هوادهی و نکات ایمنی آشنا می‌شوید.",
+    category: "انواع و مشخصات",
+    readTime: "۱۰ دقیقه",
+    date: "۱۴۰۵/۰۴/۳۱",
+  },
+  {
     slug: "buying-copper-sulfate-tips",
     title: "نکات حیاتی که پیش از خرید سولفات مس باید بدانید",
     description:
@@ -83,44 +92,44 @@ const posts = [
 export default function BlogPage() {
   return (
     <main className="bg-[#fcfdfe] pb-20">
-      <section className="relative bg-[#07111f] pt-32 pb-24 overflow-hidden">
+      <section className="relative overflow-hidden bg-[#07111f] pt-32 pb-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
+          <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#f0b56d] text-sm font-bold mb-6">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-[#f0b56d]">
             <Sparkles size={16} />
             مرجع تخصصی تحلیل بازار و دانش شیمی
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight tracking-tight">
+          <h1 className="mb-6 text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">
             دانشنامه تخصصی <span className="text-[#f0b56d]">شیمی گستر</span>
           </h1>
 
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-400">
             آخرین تحلیل‌های بازار، راهنمای خرید هوشمندانه و مقالات علمی درباره
             سولفات مس و مواد شیمیایی برای متخصصان، کشاورزان و صنعتگران.
           </p>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 -mt-10 relative z-20">
-        <div className="bg-white rounded-[2rem] md:rounded-[2.5rem] shadow-xl shadow-slate-200/50 p-5 md:p-8 border border-slate-100">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="relative z-20 mx-auto -mt-10 max-w-7xl px-4">
+        <div className="rounded-[2rem] border border-slate-100 bg-white p-5 shadow-xl shadow-slate-200/50 md:rounded-[2.5rem] md:p-8">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categories.map((cat) => (
               <div
                 key={cat.title}
-                className="flex items-start gap-4 p-4 rounded-3xl hover:bg-slate-50 transition-all border border-slate-100"
+                className="flex items-start gap-4 rounded-3xl border border-slate-100 p-4 transition-all hover:bg-slate-50"
               >
                 <div
-                  className={`w-12 h-12 shrink-0 ${cat.bg} ${cat.color} rounded-2xl flex items-center justify-center`}
+                  className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${cat.bg} ${cat.color}`}
                 >
                   <cat.icon size={24} />
                 </div>
 
                 <div>
-                  <h2 className="text-sm font-black text-slate-800 mb-1">
+                  <h2 className="mb-1 text-sm font-black text-slate-800">
                     {cat.title}
                   </h2>
                   <p className="text-xs leading-6 text-slate-500">
@@ -133,59 +142,64 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="flex items-center justify-between mb-12">
+      <section className="mx-auto max-w-7xl px-4 py-20">
+        <div className="mb-12 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-1.5 h-8 bg-[#c27829] rounded-full" />
-            <h2 className="text-3xl font-black text-[#0a1a2f] tracking-tight">
+            <div className="h-8 w-1.5 rounded-full bg-[#c27829]" />
+            <h2 className="text-3xl font-black tracking-tight text-[#0a1a2f]">
               تازه‌ترین مقالات
             </h2>
           </div>
 
           <Link
             href="/products/copper-sulfate"
-            className="hidden md:flex items-center gap-2 text-[#c27829] font-bold hover:gap-3 transition-all"
+            className="hidden items-center gap-2 font-bold text-[#c27829] transition-all hover:gap-3 md:flex"
           >
             مشاهده سولفات مس
             <ChevronLeft size={20} />
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <article
               key={post.slug}
-              className="group bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:shadow-slate-200/70 transition-all duration-500 overflow-hidden"
+              className="group overflow-hidden rounded-[2rem] border border-slate-100 bg-white shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-slate-200/70 md:rounded-[2.5rem]"
             >
               <div className="p-7 md:p-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <span className="px-3 py-1 bg-slate-100 rounded-lg text-[10px] font-black text-slate-500">
+                <div className="mb-6 flex items-center gap-4">
+                  <span className="rounded-lg bg-slate-100 px-3 py-1 text-[10px] font-black text-slate-500">
                     {post.category}
                   </span>
 
-                  <div className="flex items-center gap-1.5 text-slate-400 text-xs">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-400">
                     <Clock size={14} />
                     {post.readTime}
                   </div>
                 </div>
 
-                <h3 className="text-xl font-black text-[#0a1a2f] mb-4 group-hover:text-[#c27829] transition-colors leading-relaxed">
+                <h3 className="mb-4 text-xl font-black leading-9 text-[#0a1a2f] transition-colors group-hover:text-[#c27829]">
                   {post.title}
                 </h3>
 
-                <p className="text-slate-500 text-sm leading-8 mb-8">
+                <p className="mb-8 text-sm leading-8 text-slate-500">
                   {post.description}
                 </p>
 
+                <div className="mb-6 flex items-center justify-between text-xs text-slate-400">
+                  <span>تاریخ انتشار</span>
+                  <span>{post.date}</span>
+                </div>
+
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="flex items-center justify-between pt-6 border-t border-slate-100 group/btn"
+                  className="group/btn flex items-center justify-between border-t border-slate-100 pt-6"
                 >
                   <span className="text-sm font-black text-slate-900 group-hover/btn:text-[#c27829]">
                     ادامه مطلب
                   </span>
 
-                  <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center group-hover/btn:bg-[#c27829] group-hover/btn:text-white transition-all">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 transition-all group-hover/btn:bg-[#c27829] group-hover/btn:text-white">
                     <ArrowLeft size={18} />
                   </div>
                 </Link>
@@ -194,17 +208,17 @@ export default function BlogPage() {
           ))}
         </div>
 
-        <div className="mt-16 bg-[#0a1a2f] rounded-[2rem] p-8 md:p-10 text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div className="mt-16 flex flex-col items-start justify-between gap-8 rounded-[2rem] bg-[#0a1a2f] p-8 text-white lg:flex-row lg:items-center md:p-10">
           <div className="flex items-start gap-4">
-            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#f0b56d] shrink-0">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-[#f0b56d]">
               <Newspaper size={26} />
             </div>
 
             <div>
-              <h3 className="text-2xl font-black mb-3">
+              <h3 className="mb-3 text-2xl font-black">
                 به دنبال خرید سولفات مس هستید؟
               </h3>
-              <p className="text-slate-400 leading-8 max-w-2xl">
+              <p className="max-w-2xl leading-8 text-slate-400">
                 برای دریافت قیمت روز، برگه آنالیز و مشاوره انتخاب گرید مناسب،
                 صفحه محصول سولفات مس شیمی گستر را مشاهده کنید.
               </p>
@@ -213,7 +227,7 @@ export default function BlogPage() {
 
           <Link
             href="/products/copper-sulfate"
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#c27829] hover:bg-[#a86522] rounded-2xl font-black transition-all whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-[#c27829] px-7 py-4 font-black transition-all hover:bg-[#a86522]"
           >
             مشاهده محصول
             <ArrowLeft size={18} />
