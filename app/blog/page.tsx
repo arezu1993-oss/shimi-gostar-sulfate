@@ -51,6 +51,15 @@ const categories = [
 
 const posts = [
   {
+    slug: "copper-sulfate-powder-sugar-crystal-differences",
+    title: "تفاوت سولفات مس پودری، شکری و کریستالی + راهنمای انتخاب بهترین نوع",
+    description:
+      "در این مقاله تفاوت سولفات مس پودری، شکری و کریستالی را از نظر اندازه ذرات، سرعت حل شدن، گرد و غبار، حمل‌ونقل و کاربرد بررسی می‌کنیم.",
+    category: "انواع و مشخصات",
+    readTime: "۷ دقیقه",
+    date: "۱۴۰۵/۰۵/۱۷",
+  },
+  {
     slug: "copper-sulfate-complete-guide",
     title:
       "سولفات مس چیست؟ معرفی کامل کاربردها، انواع، ویژگی‌ها و تولید به روش هوادهی",

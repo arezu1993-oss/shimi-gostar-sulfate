@@ -428,12 +428,6 @@ ${form.message || "-"}
                   desc="نیاز، پیشنهاد، ظرفیت یا مدل همکاری مورد نظر را کوتاه و دقیق بنویسید."
                 />
               </div>
-
-              <div className="mt-8 rounded-2xl border border-white/10 bg-white/10 p-4 text-sm leading-7 text-white/85">
-                در نسخه فعلی، پیام فرم از طریق ایمیل یا واتساپ ارسال می‌شود.
-                بعداً می‌توانیم همین فرم را به PHP و ارسال مستقیم روی هاست وصل
-                کنیم.
-              </div>
             </div>
           </div>
 
