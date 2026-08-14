@@ -51,6 +51,15 @@ const categories = [
 
 const posts = [
   {
+    slug: "copper-sulfate-agriculture-plant-growth",
+    title: "کاربرد سولفات مس در کشاورزی و اهمیت آن برای رشد گیاهان",
+    description:
+      "سولفات مس یکی از منابع مهم تأمین عنصر مس در کشاورزی است. مصرف صحیح آن در فتوسنتز، فعالیت آنزیم‌ها، تشکیل کلروفیل و افزایش مقاومت گیاه تأثیرگذار است.",
+    category: "کاربردها و کشاورزی",
+    readTime: "۶ دقیقه",
+    date: "۱۴۰۵/۰۵/۲۴",
+  },
+  {
     slug: "copper-sulfate-powder-sugar-crystal-differences",
     title: "تفاوت سولفات مس پودری، شکری و کریستالی + راهنمای انتخاب بهترین نوع",
     description:
