@@ -51,6 +51,16 @@ const categories = [
 
 const posts = [
   {
+    slug: "copper-sulfate-industrial-applications",
+    title: "کاربرد سولفات مس در صنایع مختلف | بررسی کامل سولفات مس صنعتی",
+    description:
+      "سولفات مس در تصفیه آب، آبکاری فلزات، صنایع معدنی، فرآیندهای شیمیایی و تولید رنگدانه‌ها کاربرد دارد. در این مقاله کاربردهای صنعتی و اهمیت کیفیت سولفات مس را بررسی می‌کنیم.",
+    category: "کاربردها و کشاورزی",
+    readTime: "۷ دقیقه",
+    date: "۱۴۰۵/۰۵/۳۱",
+  },
+
+  {
     slug: "copper-sulfate-agriculture-plant-growth",
     title: "کاربرد سولفات مس در کشاورزی و اهمیت آن برای رشد گیاهان",
     description:
