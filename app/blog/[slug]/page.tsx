@@ -1150,9 +1150,9 @@ export default async function BlogPost({
               برچسب‌ها:
             </span>
 
-            {post.tags.map((tag) => (
+            {post.tags.map((tag, index) => (
               <span
-                key={tag}
+                key={`${post.slug}-${tag}-${index}`}
                 className="cursor-default rounded-full border border-slate-100 bg-slate-50 px-4 py-1.5 text-xs font-bold text-slate-600"
               >
                 # {tag}
